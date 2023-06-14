@@ -1,0 +1,1 @@
+class ClientIsOfflineException implements Exception {}
