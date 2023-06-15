@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/user/user.dart';
+import '../../../domain/user/user.dart';
 
 class UserInformationColumn extends StatelessWidget {
   final User _user;

@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/widgets/users/user_box/user_box_cover_image.dart';
-import 'package:close_frontend/widgets/users/user_information_column.dart';
+import 'package:close_frontend/widgets/close_users/user_box/user_box_cover_image.dart';
+import 'package:close_frontend/widgets/close_users/user_box/user_information_column.dart';
 import 'package:flutter/material.dart';
 
 class UserBox extends StatelessWidget {
