@@ -1,11 +1,12 @@
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/widgets/close_users/user_box/cover_image/user_box_cover_image.dart';
+import 'package:close_frontend/widgets/close_users/user_box/presentation_image/user_box_presentation_image.dart';
 import 'package:close_frontend/widgets/close_users/user_box/user_information_column.dart';
 import 'package:flutter/material.dart';
 
 class UserBox extends StatelessWidget {
   final User _user;
   final double height = 150;
+
   const UserBox(this._user);
 
   @override
@@ -15,7 +16,7 @@ class UserBox extends StatelessWidget {
       decoration: _getDecoration(),
       margin: _getMargin(),
       child: Row(
-        children: [UserBoxCoverImage(_user.photos![0]), UserInformationColumn(_user)],
+        children: [UserBoxPresentationImage(_user.presentationImage), UserInformationColumn(_user)],
       ),
     );
   }

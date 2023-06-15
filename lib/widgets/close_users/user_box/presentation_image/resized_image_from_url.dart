@@ -1,14 +1,14 @@
 import 'dart:typed_data';
 
-import 'package:close_frontend/image_processing/image_conversor_from_network.dart';
 import 'package:close_frontend/services/centred_circular_progress_indicator.dart';
+import 'package:close_frontend/services/image_from_URL_cache_service/image_from_url_cache_service.dart';
 import 'package:flutter/material.dart';
 
-class ResizedImageFromURLWithLoading extends StatelessWidget {
+class ResizedImageWithLoading extends StatelessWidget {
   final String _imageURL;
-  late final Future<Uint8List> _imageConvertedFromURL = ImageConversorFromNetwork.parse(_imageURL);
+  late final Future<Uint8List> _imageConvertedFromURL = ImageFromURLCacheService.getImageFrom(_imageURL);
 
-  ResizedImageFromURLWithLoading(this._imageURL, {super.key});
+  ResizedImageWithLoading(this._imageURL, {super.key});
 
   @override
   Widget build(BuildContext context) {

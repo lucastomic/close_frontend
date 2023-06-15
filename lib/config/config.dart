@@ -1,4 +1,4 @@
-import 'package:close_frontend/widgets/screens/main_screen.dart';
+import 'package:close_frontend/widgets/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {

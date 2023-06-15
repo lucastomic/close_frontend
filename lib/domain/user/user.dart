@@ -58,4 +58,8 @@ class User {
     accountNonLocked = json['accountNonLocked'];
     credentialsNonExpired = json['credentialsNonExpired'];
   }
+
+  String get presentationImage {
+    return photos![0];
+  }
 }
