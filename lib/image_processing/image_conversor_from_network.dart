@@ -6,12 +6,8 @@ import 'package:flutter/services.dart';
 
 class ImageConversorFromNetwork {
   static Future<Uint8List> parse(String url) async {
-    try {
-      ByteData bytesData = await _getByteData(url);
-      return _parseByteDataIntoUint8List(bytesData);
-    } catch (e) {
-      rethrow;
-    }
+    ByteData bytesData = await _getByteData(url);
+    return _parseByteDataIntoUint8List(bytesData);
   }
 
   static Future<ByteData> _getByteData(String url) async {

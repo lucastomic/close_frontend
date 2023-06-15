@@ -4,7 +4,7 @@ import '../../domain/user/user.dart';
 
 class UserInformationColumn extends StatelessWidget {
   final User _user;
-  UserInformationColumn(this._user);
+  const UserInformationColumn(this._user);
 
   @override
   Widget build(BuildContext context) {
