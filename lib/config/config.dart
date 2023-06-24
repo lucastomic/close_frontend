@@ -1,9 +1,12 @@
+import 'package:close_frontend/widgets/authentication_screen/authentication_screen.dart';
 import 'package:close_frontend/widgets/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   'mainScreen': (_) => const MainScreen(),
+  'login': (_) => AuthenticationScreen.login(),
+  'register': (_) => AuthenticationScreen.login(),
 };
 
-const String initalRoute = 'mainScreen';
+const String initalRoute = 'login';
 const String title = "close";

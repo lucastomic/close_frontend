@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
-import 'package:close_frontend/services/centred_circular_progress_indicator.dart';
-import 'package:close_frontend/services/image_from_URL_cache_service/image_from_url_cache_service.dart';
+import 'package:close_frontend/widgets/centred_circular_progress_indicator.dart';
+import 'package:close_frontend/image_processing/cache/image_from_url_cache_service.dart';
 import 'package:flutter/material.dart';
 
 class ResizedImageWithLoading extends StatelessWidget {

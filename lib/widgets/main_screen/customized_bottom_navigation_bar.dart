@@ -4,7 +4,7 @@ class CustomizedNaviagtionBar extends StatelessWidget {
   final Function(int) _onItemTapped;
   final int _selectedIndex;
 
-  CustomizedNaviagtionBar({required Function(int) onItemTapped, required int selectedIndex})
+  const CustomizedNaviagtionBar({required Function(int) onItemTapped, required int selectedIndex})
       : _onItemTapped = onItemTapped,
         _selectedIndex = selectedIndex;
 

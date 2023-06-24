@@ -1,5 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/widgets/close_users/users_list.dart';
+import 'package:close_frontend/widgets/main_screen/close_users/users_list.dart';
 import 'package:flutter/material.dart';
 
 class CloseUsersFromStream extends StatelessWidget {

@@ -1,7 +1,7 @@
-import 'package:close_frontend/widgets/close_users/close_users.dart';
+import 'package:close_frontend/widgets/main_screen/close_users/close_users.dart';
 import 'package:close_frontend/widgets/main_screen/customized_bottom_navigation_bar.dart';
-import 'package:close_frontend/widgets/profile/profile.dart';
-import 'package:close_frontend/widgets/settings/settings_list.dart';
+import 'package:close_frontend/widgets/main_screen/profile/profile.dart';
+import 'package:close_frontend/widgets/main_screen/settings/settings_list.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

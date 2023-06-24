@@ -7,13 +7,13 @@ class HTTPRequester {
   late http.Response _response;
 
   static Future<Map<String, dynamic>> get(Request request) async {
-    HTTPRequester httpWrapper = HTTPRequester._internal(request);
-    return httpWrapper._makeRequest((uri) => http.get(uri));
+    HTTPRequester httpRequester = HTTPRequester._internal(request);
+    return httpRequester._makeRequest(_getRequest);
   }
 
   static Future<Map<String, dynamic>> post(Request request) async {
-    HTTPRequester httpWrapper = HTTPRequester._internal(request);
-    return httpWrapper._makeRequest((uri) => http.post(uri));
+    HTTPRequester httpRequester = HTTPRequester._internal(request);
+    return httpRequester._makeRequest(_postRequest);
   }
 
   HTTPRequester._internal(this._request);
@@ -21,14 +21,22 @@ class HTTPRequester {
   Future<Map<String, dynamic>> _makeRequest(Future<http.Response> Function(Uri) makeRequest) async {
     var url = _getRequestDecoded();
     _response = await makeRequest(url);
-    if (responseSuccess()) {
+    if (_responseSuccess()) {
       return _getResponseDecoded();
     } else {
       throw Exception(_response.body);
     }
   }
 
-  bool responseSuccess() {
+  static Future<http.Response> _getRequest(Uri uri) {
+    return http.get(uri);
+  }
+
+  static Future<http.Response> _postRequest(Uri uri) {
+    return http.post(uri);
+  }
+
+  bool _responseSuccess() {
     return _response.statusCode == 200;
   }
 
