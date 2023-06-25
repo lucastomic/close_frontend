@@ -1,0 +1,3 @@
+class ServerConnectionException implements Exception{
+
+}
