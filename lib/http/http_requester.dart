@@ -1,19 +1,19 @@
+import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/http/request.dart';
-import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 
 class HTTPRequester {
-  late final Request _request;
+  final Request _request;
   late Uri _requestCodedIntoURI;
   late http.Response _response; 
   static String? _authenticationToken;
 
-  static Future<Map<String, dynamic>> get(Request request) async {
+  static Future<HTTPResponse> get(Request request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
     return httpRequester._makeGenericRequest(httpRequester._makeGETRequest);
   }
 
-  static Future<Map<String, dynamic>> post(Request request) async {
+  static Future<HTTPResponse> post(Request request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
     return httpRequester._makeGenericRequest(httpRequester._makePOSTRequest);
   }
@@ -24,10 +24,10 @@ class HTTPRequester {
 
   HTTPRequester._internal(this._request);
 
-  Future<Map<String, dynamic>> _makeGenericRequest(Future<void> Function() executeSpecificRequest) async {
+  Future<HTTPResponse> _makeGenericRequest(Future<void> Function() makeSpecificRequest) async {
     _authenticateRequestIfTokenExists();
     _setRequestCodedIntoURI();
-    await executeSpecificRequest();
+    await makeSpecificRequest();
     if (_responseSuccess()) {
       return _getResponseDecoded();
     } else {
@@ -60,8 +60,8 @@ class HTTPRequester {
     return _response.statusCode == 200;
   }
 
-  Map<String, dynamic> _getResponseDecoded() {
-    return convert.jsonDecode(_response.body) as Map<String, dynamic>;
+  HTTPResponse _getResponseDecoded() {
+    return HTTPResponse(statusCode: _response.statusCode, headers: _response.headers, body: _response.body);
   }
 
   bool _requestContainsHeaders(){
