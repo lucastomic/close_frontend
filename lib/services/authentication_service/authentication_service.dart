@@ -16,7 +16,7 @@ class AuthenticationService extends IAuthenticationService {
 
   @override
   Future<String> login(String username, String password) async {
-    Request request = Request(url: _urlAPI, unencodedPath: "/auth/authenticate", queryParameters: {"username": username, "password": password});
+    Request request = Request(url: _urlAPI, unencodedPath: "/auth/authenticate", body: {"username": username, "password": password});
     Map<String, dynamic> response = await HTTPRequester.post(request);
     return response["token"];
   }
