@@ -1,19 +1,19 @@
 import 'package:close_frontend/http/http_response.dart';
-import 'package:close_frontend/http/request.dart';
+import 'package:close_frontend/http/http_request.dart';
 import 'package:http/http.dart' as http;
 
 class HTTPRequester {
-  final Request _request;
+  final HTTPRequest _request;
   late Uri _requestCodedIntoURI;
   late http.Response _response; 
   static String? _authenticationToken;
 
-  static Future<HTTPResponse> get(Request request) async {
+  static Future<HTTPResponse> get(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
     return httpRequester._makeGenericRequest(httpRequester._makeGETRequest);
   }
 
-  static Future<HTTPResponse> post(Request request) async {
+  static Future<HTTPResponse> post(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
     return httpRequester._makeGenericRequest(httpRequester._makePOSTRequest);
   }

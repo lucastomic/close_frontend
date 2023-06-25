@@ -1,7 +1,7 @@
 class HTTPResponse{
-  int _statusCode;
+  final int _statusCode;
   Map<String,String> _headers;
-  Object? _body;
+  final Object? _body;  
   HTTPResponse({
     required int statusCode, 
     required Map<String,String> headers, 
@@ -10,6 +10,14 @@ class HTTPResponse{
 
   get statusIsOK{
     return _statusCode == 200;  
+  }
+
+  get statusIsBadRequest{
+    return _statusCode == 400;  
+  }
+
+  get statusIsNotFound{
+    return _statusCode == 404;  
   }
 
   get body{
