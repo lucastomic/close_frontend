@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'card_container.dart';
+import 'decorated_input_container.dart';
 
 class CustomFormInput extends StatefulWidget {
   @override
@@ -11,14 +11,14 @@ class CustomFormInput extends StatefulWidget {
   final String labelText;
   final IconData icon;
   final bool obscureText;
-  final GlobalKey? key;
+  final GlobalKey key;
 
   const CustomFormInput({
     required this.validate,
     required this.hintText,
     required this.labelText,
     required this.icon,
-    this.key,
+    required this.key,
     this.obscureText = false,
   });
 }
@@ -28,9 +28,8 @@ class CustomFormInputState extends State<CustomFormInput> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomizedRoundedBox(
+    return DecoratedInputContainer(
       child: TextFormField(
-        key: widget.key,
         validator: widget.validate,
         autocorrect: false,
         obscureText: widget.obscureText,

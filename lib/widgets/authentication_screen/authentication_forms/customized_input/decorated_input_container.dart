@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomizedRoundedBox extends StatelessWidget {
+class DecoratedInputContainer extends StatelessWidget {
 
   final Widget child;
 
-  const CustomizedRoundedBox({Key? key, required this.child}) : super(key: key);
+  const DecoratedInputContainer({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,7 @@ import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'custom_form_input.dart';
+import 'customized_input/custom_form_input.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -22,22 +22,9 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
-          CustomFormInput(
-            validate: (String)=>null,
-            hintText: 'john.doe@gmail.com', 
-            labelText: 'Email', 
-            icon: Icons.alternate_email_rounded, 
-            key: _emailKey
-          ),
+          _getEmailInput(),
           const SizedBox(height: 30),
-          CustomFormInput(
-            validate: (String)=>null, 
-            hintText: '******',
-            labelText: 'Contraseña',
-            icon: Icons.lock_outline,
-            obscureText: true,
-            // key: _passwordKey,
-          ),
+          _getPasswordInput(),  
           const SizedBox(height: 30),
           MaterialButton(
             onPressed: _isLoading ? null : _onSubmit,
@@ -66,5 +53,26 @@ class _LoginFormState extends State<LoginForm> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  Widget _getEmailInput(){
+    return CustomFormInput(
+      validate: (String)=>null,
+      hintText: 'john.doe@gmail.com', 
+      labelText: 'Email', 
+      icon: Icons.alternate_email_rounded, 
+      key: _emailKey
+    );
+  }
+
+  Widget _getPasswordInput(){
+    return CustomFormInput(
+      validate: (String)=>null, 
+      hintText: '******',
+      labelText: 'Contraseña',
+      icon: Icons.lock_outline,
+      obscureText: true,
+      key: _passwordKey,
+    );
   }
 }
