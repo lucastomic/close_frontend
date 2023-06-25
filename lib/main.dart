@@ -21,11 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: title,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        primaryColor: Colors.white,
-        useMaterial3: true,
-      ),
+      theme: themeData,
       routes: routes,
       initialRoute: initalRoute,
     );
