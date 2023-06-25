@@ -25,7 +25,7 @@ class HTTPRequester {
   HTTPRequester._internal(this._request);
 
   Future<Map<String, dynamic>> _makeGenericRequest(Future<void> Function() executeSpecificRequest) async {
-    _authenticateRequest();
+    _authenticateRequestIfTokenExists();
     _setRequestCodedIntoURI();
     await executeSpecificRequest();
     if (_responseSuccess()) {
@@ -42,24 +42,26 @@ class HTTPRequester {
   Future<void> _makePOSTRequest()async {
     _response = await http.post(_requestCodedIntoURI,headers: _request.headers, body:_request.body);
   }
-  bool _responseSuccess() {
-    return _response.statusCode == 200;
-  }
 
-  Map<String, dynamic> _getResponseDecoded() {
-    return convert.jsonDecode(_response.body) as Map<String, dynamic>;
-  }
   void _setRequestCodedIntoURI() {
     _requestCodedIntoURI =  Uri.http(_request.url, _request.unencodedPath, _request.queryParameters);
   }
 
-  void _authenticateRequest(){
+  void _authenticateRequestIfTokenExists(){
     if(_authenticationToken == null) return;
     if(_requestContainsHeaders()){
       _addAuthenticationTokenToRequestHeaders();
     }else{
       _createHeadersToRequestWithAuthenticationToken();
     }
+  }
+
+  bool _responseSuccess() {
+    return _response.statusCode == 200;
+  }
+
+  Map<String, dynamic> _getResponseDecoded() {
+    return convert.jsonDecode(_response.body) as Map<String, dynamic>;
   }
 
   bool _requestContainsHeaders(){
