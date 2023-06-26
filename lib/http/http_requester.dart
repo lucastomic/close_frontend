@@ -30,11 +30,7 @@ class HTTPRequester {
     _authenticateRequestIfTokenExists();
     _setRequestCodedIntoURI();
     await makeSpecificRequest();
-    if (_responseSuccess()) {
-      return _getResponseDecoded();
-    } else {
-      throw Exception(_response.body);
-    }
+    return _getResponseDecoded();
   }
 
   Future<void> _makeGETRequest() async{
@@ -58,15 +54,11 @@ class HTTPRequester {
     }
   }
 
-  bool _responseSuccess() {
-    return _response.statusCode == 200;
-  }
-
   HTTPResponse _getResponseDecoded() {
     return HTTPResponse(
       statusCode: _response.statusCode,
       headers: _response.headers, 
-      body: jsonDecode(_response.body)
+      body: _parseBody(_response.body)
     );
   }
 
@@ -79,4 +71,14 @@ class HTTPRequester {
   void _createHeadersToRequestWithAuthenticationToken(){
       _request.headers = {"Authorization": "Bearer $_authenticationToken"};
   }
+
+  Map<String,dynamic>? _parseBody(String? rawBody){
+    if(rawBody == null) return null;
+    try{
+      return jsonDecode(rawBody);
+    }catch(e){
+      return {"message":rawBody};
+    }
+  }
+
 }
