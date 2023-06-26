@@ -1,3 +1,5 @@
+import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
+import 'package:close_frontend/popup_alert_displayer/popup_alert_displayer.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +24,7 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
-          _getEmailInput(),
+          _getUsernameInput(),
           const SizedBox(height: 30),
           _getPasswordInput(),  
           const SizedBox(height: 30),
@@ -36,13 +38,22 @@ class _LoginFormState extends State<LoginForm> {
   }
 
 
-  void _onSubmit() async {
-    AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
+  void _onSubmit() {
     FocusScope.of(context).unfocus();
-    _executeWhileLoads((){
+    _executeWhileLoads(()async{
       _formKey.currentState!.validate();
-      authenticationProvider.logIn(_emailKey.currentState!.value, _passwordKey.currentState!.value);
+      await _tryToAuthenticate();
     });
+  }
+
+  Future<void> _tryToAuthenticate()async {
+    AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
+    try{
+      await authenticationProvider.logIn(_emailKey.currentState!.value, _passwordKey.currentState!.value);
+      Navigator.of(context).pushNamed("main");
+    }on BadCredentialsException catch(e){
+      PopUpAlertDisplayer.showAlert(context, "Error al logearse", e.message);
+    }
   }
 
   void _executeWhileLoads(Function() func)async{
@@ -55,12 +66,12 @@ class _LoginFormState extends State<LoginForm> {
     });
   }
 
-  Widget _getEmailInput(){
+  Widget _getUsernameInput(){
     return CustomFormInput(
       validate: (String)=>null,
-      hintText: 'john.doe@gmail.com', 
-      labelText: 'Email', 
-      icon: Icons.alternate_email_rounded, 
+      hintText: 'myusername', 
+      labelText: 'Username', 
+      icon: Icons.account_circle_outlined, 
       key: _emailKey
     );
   }

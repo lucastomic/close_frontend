@@ -4,6 +4,7 @@ import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/services/authentication_service/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:close_frontend/services/authentication_service/login/login_token_retriever.dart';
+import '../../exceptions/authentication/bad_credentials_exception.dart';
 
 class AuthenticationService extends IAuthenticationService {
 
@@ -17,9 +18,13 @@ class AuthenticationService extends IAuthenticationService {
 
   @override
   Future<User> login(String username, String password) async {
-    String authenticationToken = await LoginTokenRetriever.getTokenFromLogin(username, password);
-    HTTPRequester.authenticationToken = authenticationToken;
-    return _getUserFromToken(authenticationToken);
+    try{
+      String authenticationToken = await LoginTokenRetriever.getTokenFromLogin(username, password);
+      HTTPRequester.authenticationToken = authenticationToken;
+      return _getUserFromToken(authenticationToken);
+    }on BadCredentialsException{
+      rethrow;
+    }
   } 
 
   Future<User> _getUserFromToken(String token)async {

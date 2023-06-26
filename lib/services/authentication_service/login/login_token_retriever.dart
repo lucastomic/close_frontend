@@ -16,7 +16,11 @@ class LoginTokenRetriever{
 
   static Future<String> getTokenFromLogin(String username, String password){
     LoginTokenRetriever loginService = LoginTokenRetriever._internal(username: username,password: password);
-    return loginService._getTokenFromLogin();
+    try{
+      return loginService._getTokenFromLogin();
+    }catch(e){
+      rethrow;
+    }
   }
 
   LoginTokenRetriever._internal({required String username, required String password})
@@ -50,8 +54,8 @@ class LoginTokenRetriever{
 
   Exception _getExceptionFromResponse(){
     assert(!_httpResponse.statusIsOK);
-    if(_httpResponse.statusIsNotFound)throw BadCredentialsException("Incorrect username");
-    if(_httpResponse.statusIsBadRequest)throw BadCredentialsException("Incorrect password");
+    if(_httpResponse.statusIsNotFound)throw BadCredentialsException("Nombre de usuario incorrecto");
+    if(_httpResponse.statusIsBadRequest)throw BadCredentialsException("Contaseña incorrecta");
     throw ServerConnectionException();
   }
 }
