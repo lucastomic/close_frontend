@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
@@ -26,8 +24,8 @@ class AuthenticationService extends IAuthenticationService {
 
   Future<User> _getUserFromToken(String token)async {
     HTTPRequest request = HTTPRequest.toServer(unencodedPath: "/users/getUserInfo");
-    Map<String, dynamic> response = (await HTTPRequester.post(request)).body;
-    return response["token"];
+    Map<String, dynamic> response = (await HTTPRequester.get(request)).body;
+    return User.fromJson(response);
   }
 
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:http/http.dart' as http;
@@ -61,7 +63,11 @@ class HTTPRequester {
   }
 
   HTTPResponse _getResponseDecoded() {
-    return HTTPResponse(statusCode: _response.statusCode, headers: _response.headers, body: _response.body);
+    return HTTPResponse(
+      statusCode: _response.statusCode,
+      headers: _response.headers, 
+      body: jsonDecode(_response.body)
+    );
   }
 
   bool _requestContainsHeaders(){

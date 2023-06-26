@@ -1,11 +1,11 @@
 class HTTPResponse{
   final int _statusCode;
   Map<String,String> _headers;
-  final Object? _body;  
+  final Map<String,dynamic>? _body;  
   HTTPResponse({
     required int statusCode, 
     required Map<String,String> headers, 
-    Object? body}
+    Map<String,dynamic>? body}
   ):_statusCode = statusCode, _headers = headers, _body = body;
 
   get statusIsOK{
