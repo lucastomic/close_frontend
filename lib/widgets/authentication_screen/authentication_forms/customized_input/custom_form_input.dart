@@ -1,4 +1,3 @@
-import 'package:close_frontend/config/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'decorated_input_container.dart';
@@ -70,16 +69,18 @@ class CustomFormInputState extends State<CustomFormInput> {
         border:InputBorder.none ,
         hintText: widget.hintText,
         labelText: widget.labelText,
-        labelStyle: const TextStyle(
-          color:Colors.grey
+        labelStyle: TextStyle(
+          color: _getLabelColor(),
         ),
         prefixIcon: Icon(widget.icon, color:_getIconColor()),
       );
   }
 
   Color? _getIconColor(){
-    return _errorMessage != null ? errorColor : null;
-  
+    return _errorMessage != null ? Theme.of(context).colorScheme.error: null;
+  }
+  Color _getLabelColor(){
+    return _errorMessage != null ? Theme.of(context).colorScheme.error: Colors.grey;
   }
 }
 

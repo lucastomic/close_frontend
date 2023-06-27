@@ -11,7 +11,11 @@ Map<String, Widget Function(BuildContext)> routes = {
 const String initalRoute = 'login';
 const String title = "close";
 ThemeData themeData = ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor:Color.fromRGBO(0, 151, 182, 1),
+          primary: Color.fromRGBO(0, 151, 182, 1),
+          error: const Color.fromARGB(255, 185, 12, 0),
+        ),
         primaryColor: Colors.white,
         useMaterial3: true,
       );

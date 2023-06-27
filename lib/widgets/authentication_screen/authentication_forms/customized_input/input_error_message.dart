@@ -1,4 +1,4 @@
-import 'package:close_frontend/config/colors.dart';
+
 import 'package:flutter/material.dart';
 class InputErrorMessage extends StatelessWidget {
   const InputErrorMessage(this._message);
@@ -6,6 +6,9 @@ class InputErrorMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(_message,style: const TextStyle(color:errorColor),);
+    return Text(
+        _message,
+        style: TextStyle(color:Theme.of(context).colorScheme.error),
+    );
   }
 }

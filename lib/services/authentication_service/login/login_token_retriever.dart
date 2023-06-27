@@ -54,7 +54,7 @@ class LoginTokenRetriever{
 
   Exception _getExceptionFromResponse(){
     assert(!_httpResponse.statusIsOK);
-    if(_httpResponse.statusIsNotFound)throw BadCredentialsException("Nombre de usuario incorrecto");
+    if(_httpResponse.statusIsNotFound)throw BadCredentialsException("No existe ningun usuario con el username proporcionado");
     if(_httpResponse.statusIsBadRequest)throw BadCredentialsException("Contaseña incorrecta");
     throw ServerConnectionException();
   }

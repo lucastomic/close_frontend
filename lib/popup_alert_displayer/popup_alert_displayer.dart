@@ -24,7 +24,7 @@ class PopUpAlertDisplayer{
 
   Widget _getAlertDialog(){
     return AlertDialog(
-      title: Text(_title),
+      title: Image.asset("assets/images/sad_panda.png"),
       content: SingleChildScrollView(
         child: Text(_message),
       ),

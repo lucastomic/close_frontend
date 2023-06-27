@@ -1,3 +1,4 @@
+import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 import 'authentication_forms/login_form.dart';
 
@@ -13,7 +14,7 @@ class AuthenticationScreen extends StatelessWidget {
   AuthenticationScreen.login()
       : _title = "Login",
         _form = LoginForm(),
-        _changeScreenButton = Container();
+        _changeScreenButton = _ChangeScreenButton("Aun no tengo cuenta", "register");
 
   // AuthenticationScreen.register()
   //     : _title = "Register",
@@ -24,33 +25,43 @@ class AuthenticationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () async => false,
-        child: SafeArea(
-          child: Scaffold(
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  _Title(_title),
-                  const SizedBox(height: 30),
+        child: Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child:Column(
+                children:[
+                  _Header(),
                   _form,
                   _changeScreenButton,
-                  const SizedBox(height: 50),
                 ],
-              ),
+              )
             ),
           ),
-        ));
+       )
+    );
   }
 }
 
-class _Title extends StatelessWidget {
-  final String _title;
-  _Title(String title) : this._title = title;
-
+class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      _title,
-      style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.black),
+    return Image.asset("assets/images/logo.png");
+  }
+}
+
+class _ChangeScreenButton extends StatelessWidget {
+  final String _text;
+  final String _route;
+
+  _ChangeScreenButton(this._text,this._route);
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedButton.hollow(
+      context: context, 
+      text: _text, 
+      onPressed: (){
+        Navigator.of(context).pushNamed(_route);
+      }
     );
   }
 }
