@@ -1,6 +1,8 @@
+import 'package:close_frontend/config/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'decorated_input_container.dart';
+import 'input_error_message.dart';
 
 class CustomFormInput extends StatefulWidget {
   @override
@@ -25,21 +27,38 @@ class CustomFormInput extends StatefulWidget {
 
 class CustomFormInputState extends State<CustomFormInput> {
   String _value = "";
+  String? _errorMessage;
+
+  void validate(){
+    setState(() {
+      _errorMessage = widget.validate(_value);
+    });  
+  }
+  bool isValid(){
+    return _errorMessage == null;  
+  }
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedInputContainer(
-      child: TextFormField(
-        validator: widget.validate,
-        autocorrect: false,
-        obscureText: widget.obscureText,
-        keyboardType: TextInputType.emailAddress,
-        decoration: _getInputDecoration(),
-        onChanged: _onChanged,
-      ),
+    return Column(
+      children: [
+        DecoratedInputContainer(
+          child: TextFormField(
+            autocorrect: false,
+            obscureText: widget.obscureText,
+            keyboardType: TextInputType.emailAddress,
+            decoration: _getInputDecoration(),
+            onChanged: _onChanged,
+          ),
+        ),
+        _showErrorMessageIfExists()
+      ],
     );
   }
 
+  Widget _showErrorMessageIfExists(){
+    return _errorMessage != null ? InputErrorMessage(_errorMessage!) : Container();
+  }
   void _onChanged(String value) {
     _value = value;
   }
@@ -54,7 +73,13 @@ class CustomFormInputState extends State<CustomFormInput> {
         labelStyle: const TextStyle(
           color:Colors.grey
         ),
-        prefixIcon:  Icon(widget.icon),
+        prefixIcon: Icon(widget.icon, color:_getIconColor()),
       );
   }
+
+  Color? _getIconColor(){
+    return _errorMessage != null ? errorColor : null;
+  
+  }
 }
+
