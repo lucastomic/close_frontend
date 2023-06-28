@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AuthenticationErrorMessageBox extends StatelessWidget {
-  String _message;
+  final String _message;
   AuthenticationErrorMessageBox(this._message);
   @override
   Widget build(BuildContext context) {

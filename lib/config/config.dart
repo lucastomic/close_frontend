@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 Map<String, Widget Function(BuildContext)> routes = {
   'main': (_) => const MainScreen(),
   'login': (_) => AuthenticationScreen.login(),
-  'register': (_) => AuthenticationScreen.login(),
+  'register': (_) => AuthenticationScreen.register(),
 };
 
 const String initalRoute = 'login';

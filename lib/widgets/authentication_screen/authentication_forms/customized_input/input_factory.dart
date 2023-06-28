@@ -15,7 +15,7 @@ class InputFactory{
   }
   CustomFormInput passaword(){
     return CustomFormInput( 
-      validate: _mandatoryInputValidation, 
+      validate: _atLeast6charactersValidation, 
       hintText: '******',
       labelText: 'Contraseña',
       icon: Icons.lock_outline,
@@ -24,9 +24,33 @@ class InputFactory{
     );
   }
 
+  CustomFormInput profileName(){
+    return CustomFormInput( 
+      validate: _mandatoryInputValidation, 
+      hintText: 'My complete name',
+      labelText: 'Nombre de perfil',
+      icon: Icons.abc,
+      key: GlobalKey() ,
+    );
+  }
+
+  CustomFormInput phone(){
+    return CustomFormInput( 
+      validate: _mandatoryInputValidation, 
+      hintText: '+34 123 321 123',
+      labelText: 'Numero de teléfono',
+      icon: Icons.phone,
+      key: GlobalKey() ,
+    );
+  }
+
   String? _mandatoryInputValidation(String? value){
     if(value == null || value =="") return "Este campo es obligatorio";
     return null;
   }
-
+  String? _atLeast6charactersValidation(String? value){
+    if(value == null || value =="") return "Este campo es obligatorio";
+    if(value.length < 6) return "La contraseña debe tener al menos 6 caracteres";
+    return null;
+  }
 }

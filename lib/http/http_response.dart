@@ -9,7 +9,10 @@ class HTTPResponse{
   ):_statusCode = statusCode, _headers = headers, _body = body;
 
   get statusIsOK{
-    return _statusCode == 200;  
+    return _statusCodeStartsWith2();  
+  }
+  bool _statusCodeStartsWith2(){
+    return _statusCode.toString()[0] == "2";
   }
 
   get statusIsBadRequest{
@@ -19,7 +22,9 @@ class HTTPResponse{
   get statusIsNotFound{
     return _statusCode == 404;  
   }
-
+  get statusIsConflict{
+    return _statusCode == 409;  
+  }
   get body{
     return _body;
   }

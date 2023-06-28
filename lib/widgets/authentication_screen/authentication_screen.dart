@@ -1,6 +1,7 @@
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 import 'authentication_forms/login_from.dart';
+import 'authentication_forms/register_form.dart';
 
 class AuthenticationScreen extends StatelessWidget {
   const AuthenticationScreen({required String title, required Widget form, required Widget changeScreenButton})
@@ -13,10 +14,9 @@ class AuthenticationScreen extends StatelessWidget {
       : _form = LoginForm(),
         _changeScreenButton = _ChangeScreenButton("Aun no tengo cuenta", "register");
 
-  // AuthenticationScreen.register()
-  //     : _title = "Register",
-  //       _form = RegisterForm(),
-  //       _changeScreenButton = Container();
+  AuthenticationScreen.register()
+      : _form = RegisterForm(),
+        _changeScreenButton = _ChangeScreenButton("Ya tengo cuenta", "login");
 
   @override
   Widget build(BuildContext context) {
