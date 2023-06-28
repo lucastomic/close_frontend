@@ -35,12 +35,12 @@ List<User> _initalDataForTesting = [
     profileName: "Cooper",
     username: "coopersindog",
     age: 3,
-    photos: ["https://res.cloudinary.com/da9uye5mo/image/upload/v1665048100/bn6z32qufuz5xoxospmx.jpg"],
+    photo: "https://res.cloudinary.com/da9uye5mo/image/upload/v1665048100/bn6z32qufuz5xoxospmx.jpg",
   ),
   User(
     profileName: "Otto",
     username: "ottoelperro",
     age: 2,
-    photos: ["https://res.cloudinary.com/da9uye5mo/image/upload/v1665308955/ubthh4fjefwznzb5slme.jpg"],
+    photo: "https://res.cloudinary.com/da9uye5mo/image/upload/v1665308955/ubthh4fjefwznzb5slme.jpg",
   ),
 ];

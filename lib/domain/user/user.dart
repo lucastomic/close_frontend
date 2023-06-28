@@ -7,7 +7,7 @@ class User {
   String? role;
   String? phone;
   bool? phoneIsVerified;
-  List<String>? photos;
+  String? photo;
   List<String>? interests;
   bool? enabled;
   bool? accountNonExpired;
@@ -23,7 +23,7 @@ class User {
     this.role,
     this.phone,
     this.phoneIsVerified,
-    this.photos,
+    this.photo,
     this.interests,
     this.enabled,
     this.accountNonExpired,
@@ -40,12 +40,7 @@ class User {
     role = json['role'];
     phone = json['phone'];
     phoneIsVerified = json['phoneIsVerified'];
-    if (json['photos'] != null) {
-      photos = <String>[];
-      json['photos'].forEach((v) {
-        photos!.add(v);
-      });
-    }
+    photo = json['photo'];
     if (json['interests'] != null) {
       interests = <String>[];
       json['interests'].forEach((v) {
@@ -60,6 +55,6 @@ class User {
   }
 
   String get presentationImage {
-    return photos![0];
+    return photo!;
   }
 }
