@@ -7,21 +7,32 @@ class CustomFormInput extends StatefulWidget {
   @override
   State<CustomFormInput> createState() => CustomFormInputState();
 
-  final String? Function(String?) validate;
-  final String hintText;
-  final String labelText;
-  final IconData icon;
-  final bool obscureText;
-  final GlobalKey key;
+  final String? Function(String?) _validate;
+  final String _hintText;
+  final String _labelText;
+  final IconData _icon;
+  final bool _obscureText;
+  final GlobalKey<CustomFormInputState> key;
 
   const CustomFormInput({
-    required this.validate,
-    required this.hintText,
-    required this.labelText,
-    required this.icon,
+    required String? Function(String?)validate,
+    required String hintText,
+    required String labelText,
+    required IconData icon,
     required this.key,
-    this.obscureText = false,
-  });
+    bool obscureText = false,
+  }): _obscureText = obscureText, _icon = icon, _labelText = labelText, _hintText = hintText,_validate = validate;
+
+  bool isValid(){
+	return key.currentState!.isValid();
+  }
+  void validate(){
+	key.currentState!.validate();
+  }
+  get value{
+	return key.currentState!._value;
+  }
+
 }
 
 class CustomFormInputState extends State<CustomFormInput> {
@@ -30,7 +41,7 @@ class CustomFormInputState extends State<CustomFormInput> {
 
   void validate(){
     setState(() {
-      _errorMessage = widget.validate(_value);
+      _errorMessage = widget._validate(_value);
     });  
   }
   bool isValid(){
@@ -44,7 +55,7 @@ class CustomFormInputState extends State<CustomFormInput> {
         DecoratedInputContainer(
           child: TextFormField(
             autocorrect: false,
-            obscureText: widget.obscureText,
+            obscureText: widget._obscureText,
             keyboardType: TextInputType.emailAddress,
             decoration: _getInputDecoration(),
             onChanged: _onChanged,
@@ -67,12 +78,12 @@ class CustomFormInputState extends State<CustomFormInput> {
   InputDecoration _getInputDecoration(){
       return InputDecoration(
         border:InputBorder.none ,
-        hintText: widget.hintText,
-        labelText: widget.labelText,
+        hintText: widget._hintText,
+        labelText: widget._labelText,
         labelStyle: TextStyle(
           color: _getLabelColor(),
         ),
-        prefixIcon: Icon(widget.icon, color:_getIconColor()),
+        prefixIcon: Icon(widget._icon, color:_getIconColor()),
       );
   }
 
