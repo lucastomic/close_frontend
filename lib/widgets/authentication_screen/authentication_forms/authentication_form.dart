@@ -14,7 +14,7 @@ class AuthenticationForm extends StatefulWidget {
       required FormInputsList inputs,
       required Future<void> Function(Map<String,String>) authenticate})
       : _authenticate = authenticate,
-		_submitButtonText = submitButtonText,
+        _submitButtonText = submitButtonText,
         _inputs = inputs;
 
   @override

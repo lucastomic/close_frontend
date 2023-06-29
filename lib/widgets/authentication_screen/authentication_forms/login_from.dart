@@ -3,7 +3,7 @@ import 'package:close_frontend/widgets/authentication_screen/authentication_form
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'authentication_form.dart';
-import 'customized_input/input_factory.dart';
+import 'customized_input/factory/input_factory.dart';
 
 class LoginForm extends StatelessWidget{
   final InputFactory _inputFactory = const InputFactory();

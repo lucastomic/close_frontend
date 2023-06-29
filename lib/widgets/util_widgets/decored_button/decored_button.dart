@@ -6,7 +6,7 @@ class DecoratedButton extends StatelessWidget {
   Decoration? _boxDecoration;
   final bool _formIsLoading;
   final void Function()? _onPressed;
-  late Color _textColor;
+  late final  Color _textColor;
   final BorderRadius _borderRadius =  BorderRadius.circular(20);
 
   /// Context must be passed to access to theme. If there is any better way to do this, please change.
@@ -14,7 +14,6 @@ class DecoratedButton extends StatelessWidget {
       : _text = text,
         _formIsLoading = formIsLoading,
         _onPressed = onPressed
-        
         {
         _textColor = Theme.of(context).primaryColor;
          _boxDecoration = BoxDecoration(

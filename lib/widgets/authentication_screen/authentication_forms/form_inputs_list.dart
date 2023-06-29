@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'customized_input/custom_form_input.dart';
+import 'customized_input/form_input.dart';
 
 class FormInputsList {
-  final Map<String, CustomFormInput> _inputs;
+  final Map<String, FormInput> _inputs;
 
   FormInputsList(this._inputs);
 
@@ -21,11 +21,11 @@ class FormInputsList {
   }
 
   Map<String,String> getInputsValues() {
-	Map<String,String> response = {};
-	_inputs.forEach((inputName, input) {
-	  response.addAll({inputName:input.value});
-	});
-	return response;
+    Map<String,String> response = {};
+    _inputs.forEach((inputName, input) {
+      response.addAll({inputName:input.value});
+    });
+    return response;
   }
 
   List<Widget> getInputsSpacedBetween() {

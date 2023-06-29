@@ -1,6 +1,6 @@
 import 'dart:collection';
 import 'dart:typed_data';
-import 'package:close_frontend/image_processing/image_conversor_from_network.dart';
+import 'package:close_frontend/image_manage/image_conversor/image_conversor_from_network.dart';
 
 class ImageFromURLCacheService {
   static final HashMap<String, Uint8List> _alreadyLoadedImages = HashMap();

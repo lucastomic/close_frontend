@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'authentication_form.dart';
-import 'customized_input/input_factory.dart';
+import 'customized_input/factory/input_factory.dart';
 import 'form_inputs_list.dart';
 
 class RegisterForm extends StatelessWidget {
@@ -18,6 +18,7 @@ class RegisterForm extends StatelessWidget {
           AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
           CreateUserRequestData requestData = CreateUserRequestData(
             username: inputValues["username"],
+            photo: inputValues["photo"],
             profileName: inputValues["profileName"],
             password: inputValues["password"]
           );
@@ -28,6 +29,7 @@ class RegisterForm extends StatelessWidget {
 
   FormInputsList _getFormInputsList(){
     return FormInputsList({
+	    "photo": _inputFactory.photo(),
       "username": _inputFactory.username(),
       "profileName": _inputFactory.profileName(),
       "password":_inputFactory.passaword(),

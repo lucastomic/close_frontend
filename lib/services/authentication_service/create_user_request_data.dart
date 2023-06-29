@@ -11,6 +11,7 @@ class CreateUserRequestData {
     this.username,
     this.profileName,
     this.password,
+    this.photo,
   });
 
   Map<String, dynamic> toJson() => {

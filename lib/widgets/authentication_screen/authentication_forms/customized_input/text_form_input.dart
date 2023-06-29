@@ -1,41 +1,49 @@
 import 'package:flutter/material.dart';
+import 'ui_widgets/decorated_input_container.dart';
+import 'form_input.dart';
+import 'ui_widgets/input_error_message.dart';
 
-import 'decorated_input_container.dart';
-import 'input_error_message.dart';
-
-class CustomFormInput extends StatefulWidget {
+class TextFormInput extends StatefulWidget implements FormInput{
   @override
-  State<CustomFormInput> createState() => CustomFormInputState();
+  State<TextFormInput> createState() => TextFormInputState();
 
   final String? Function(String?) _validate;
   final String _hintText;
   final String _labelText;
   final IconData _icon;
   final bool _obscureText;
-  final GlobalKey<CustomFormInputState> key;
+  @override
+  final GlobalKey<TextFormInputState> key;
 
-  const CustomFormInput({
+  const TextFormInput({
     required String? Function(String?)validate,
     required String hintText,
     required String labelText,
     required IconData icon,
     required this.key,
     bool obscureText = false,
-  }): _obscureText = obscureText, _icon = icon, _labelText = labelText, _hintText = hintText,_validate = validate;
+  }): 
+  _obscureText = obscureText,
+  _icon = icon,
+  _labelText = labelText,
+  _hintText = hintText,
+  _validate = validate;
 
+  @override
   bool isValid(){
-	return key.currentState!.isValid();
+    return key.currentState!._errorMessage == null;
   }
+  @override
   void validate(){
-	key.currentState!.validate();
+    key.currentState!.validate();
   }
+  @override
   get value{
-	return key.currentState!._value;
+    return key.currentState!._value;
   }
-
 }
 
-class CustomFormInputState extends State<CustomFormInput> {
+class TextFormInputState extends State<TextFormInput> {
   String _value = "";
   String? _errorMessage;
 
@@ -43,9 +51,6 @@ class CustomFormInputState extends State<CustomFormInput> {
     setState(() {
       _errorMessage = widget._validate(_value);
     });  
-  }
-  bool isValid(){
-    return _errorMessage == null;  
   }
 
   @override

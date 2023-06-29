@@ -1,3 +1,4 @@
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/ui_widgets/input_box_shadows.dart';
 import 'package:flutter/material.dart';
 
 class DecoratedInputContainer extends StatelessWidget {
@@ -21,12 +22,6 @@ class DecoratedInputContainer extends StatelessWidget {
   BoxDecoration _buildDecoration(BuildContext context) => BoxDecoration(
     borderRadius: BorderRadius.circular(15),
     color: Theme.of(context).primaryColor,
-    boxShadow: const [
-      BoxShadow(
-        color: Colors.black26,
-        blurRadius: 15,
-        offset: Offset(0,5)
-      )
-    ]
+    boxShadow: InputBoxShadows.getInputBoxShadows(),
   );
 }
