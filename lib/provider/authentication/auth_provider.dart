@@ -1,6 +1,6 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
-import 'package:close_frontend/services/authentication_service/authentication_service_port.dart';
+import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:flutter/material.dart';
 

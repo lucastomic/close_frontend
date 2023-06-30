@@ -18,7 +18,7 @@ class CreateUserRequestData {
         "username": username,
         "profileName": profileName,
         "password": password,
-        "photos": photo,
+        "photo": photo,
         "interests": interests,
       };
 

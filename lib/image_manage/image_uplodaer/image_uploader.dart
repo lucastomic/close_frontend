@@ -6,14 +6,22 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as:ImageUploaderPort)
 class ImageUploader implements ImageUploaderPort{
+  final String _uploadPreset = "hwyixjzf";
+  final int _apiKey = 715479738731197;
+  final String _apiURL = 'api.cloudinary.com';
+  final String  _apiUndecodedPath = '/v1_1/da9uye5mo/image/upload';
+
   @override
   Future<String> uploadImage(String imagePath)async{ 
     HTTPRequest request = HTTPRequest(
-      url: 'api.cloudinary.com/v1_1/da9uye5mo/image/upload?api_key=715479738731197&upload_preset=hwyixjzf',
-      body: jsonEncode({'file':imagePath}),
-      headers: {"Content-Type":"application/json"}
+      url: _apiURL,
+      unencodedPath:_apiUndecodedPath,
     );
-    var response = await HTTPRequester.post(request);
+    Map<String,String> fields = {
+      "api_key": _apiKey.toString(),
+      "upload_preset": _uploadPreset
+    };
+    var response = await HTTPRequester.multiPartRequest(request, imagePath, fields);
     return response.body["secure_url"];
   }
 }
