@@ -1,4 +1,5 @@
 import 'package:close_frontend/dependency_injection/injection.dart';
+import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/ports/login_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/ports/register_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_screen.dart';
@@ -6,7 +7,7 @@ import 'package:close_frontend/widgets/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
-  'main': (_) => const MainScreen(),
+  'main': (_) => MainScreen(getIt.get<ICloseUsersService>()),
   'login': (_) => AuthenticationScreen.login(getIt.get<ILoginInputFactory>()),
   'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>()),
 };

@@ -2,13 +2,15 @@ import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/image_manage/image_uplodaer/image_uploader_port.dart';
-import 'package:close_frontend/services/authentication_service/authentication_service_port.dart';
+import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:close_frontend/services/authentication_service/token_retriever/login_token_retriever.dart';
 import 'package:close_frontend/services/authentication_service/token_retriever/register_token_retriever.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: IAuthenticationService)
 class AuthenticationService extends IAuthenticationService {
-  ImageUploaderPort _imageUploader;
+  final ImageUploaderPort _imageUploader;
   AuthenticationService(this._imageUploader);
 
   @override

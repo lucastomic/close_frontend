@@ -1,4 +1,3 @@
-import 'package:close_frontend/dependency_injection/injection.dart';
 import 'package:close_frontend/image_manage/image_picker/image.dart';
 import 'package:close_frontend/image_manage/image_picker/image_picker_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/form_input.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class PhotoInputSelctor extends StatefulWidget implements FormInput{
   final ImagePickerPort _imagePicker;
+
   @override
   final GlobalKey<PhotoInputSelctorState> key = GlobalKey();
 

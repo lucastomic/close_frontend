@@ -1,7 +1,9 @@
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 import 'image.dart';
 import 'image_picker_port.dart';
 
+@Injectable(as: ImagePickerPort)
 class ImagePickerImpl implements ImagePickerPort{
   ImageFromDevice? _defaultImage;
   final ImagePicker _imagePicker = ImagePicker();

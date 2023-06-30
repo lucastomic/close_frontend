@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 
+@Injectable(as:ICloseUsersService)
 class CloseUsersService implements ICloseUsersService {
   final StreamController<List<User>> _closeUsersStream = StreamController();
   @override

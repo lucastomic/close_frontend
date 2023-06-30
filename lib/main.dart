@@ -1,8 +1,7 @@
 import 'package:close_frontend/config/config.dart';
 import 'package:close_frontend/dependency_injection/injection.dart';
-import 'package:close_frontend/image_manage/image_uplodaer/image_uploader.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
-import 'package:close_frontend/services/authentication_service/authentication_service.dart';
+import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,7 @@ void main() {
   configureDependencies();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => AuthenticationProvider(AuthenticationService(new ImageUploader()))),
+      ChangeNotifierProvider(create: (_) => AuthenticationProvider(getIt.get<IAuthenticationService>())),
     ],
     child: const MyApp(),
   ));

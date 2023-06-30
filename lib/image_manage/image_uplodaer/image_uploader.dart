@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/image_manage/image_uplodaer/image_uploader_port.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as:ImageUploaderPort)
 class ImageUploader implements ImageUploaderPort{
   @override
   Future<String> uploadImage(String imagePath)async{ 
