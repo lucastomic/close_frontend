@@ -2,13 +2,13 @@ import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'authentication_form.dart';
-import 'customized_input/factory/input_factory.dart';
+import 'customized_input/factory/ports/register_input_factory_port.dart';
 import 'form_inputs_list.dart';
 
 class RegisterForm extends StatelessWidget {
-  final InputFactory _inputFactory = const InputFactory();
+  final IRegisterInputFactory _inputFactory;
+  const RegisterForm(this._inputFactory);
 
   @override
   Widget build(BuildContext context) {
