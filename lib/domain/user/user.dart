@@ -13,7 +13,7 @@ class User {
   bool? phoneIsVerified;
   String? photo;
   List<String>? interests;
-  List<SocialNetwork> socialNetworks = [];
+  Map<SocialNetwork, String> socialNetworks = {};
   bool? enabled;
   bool? accountNonExpired;
   bool? accountNonLocked;
@@ -33,7 +33,7 @@ class User {
     this.enabled,
     this.accountNonExpired,
     this.accountNonLocked,
-    this.socialNetworks = const [],
+    this.socialNetworks = const {},
     this.credentialsNonExpired,
   }): this._username = username;
 
@@ -47,9 +47,9 @@ class User {
     phone = json['phone'];
     phoneIsVerified = json['phoneIsVerified'];
     photo = json['photo'];
-    socialNetworks = [];
+    socialNetworks = {};
     for (var sn in json['socialNetworks']??[]) {
-      socialNetworks.add(SocialNetwork(sn["socialNetwork"],sn["username"]));
+      socialNetworks.addAll({SocialNetwork(sn["socialNetwork"]):sn["username"]});
     }
 
     if (json['interests'] != null) {
