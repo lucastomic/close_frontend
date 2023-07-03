@@ -1,24 +1,18 @@
 import 'dart:async';
-
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
+import 'package:close_frontend/websockets/web_socket_service.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
-import 'package:stomp_dart_client/stomp_frame.dart';
+
 
 @Injectable(as:ICloseUsersService)
 class CloseUsersService implements ICloseUsersService {
-  final StreamController<List<User>> _closeUsersStream = StreamController();
   @override
-  Stream<List<User>> get closeUsersStream => _closeUsersStream.stream;
-
-  CloseUsersService() {
-    _initCloseUsersListening();
-  }
-
-  void _initCloseUsersListening() {
-    client.activate();
+  Stream<List<User>> closeUsersStream(BuildContext context){
+    WebSocketService service = WebSocketService(context);
+    service.start();
+    return service.closeUsersStream;
   }
 
   @override
@@ -27,22 +21,3 @@ class CloseUsersService implements ICloseUsersService {
   }
 }
 
-final StompClient client = StompClient(
-    config: const StompConfig(
-  webSocketConnectHeaders: {
-    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb29wZXJzaW5kb2ciLCJpYXQiOjE2ODc1NDAwMjQsImV4cCI6MTY4NzYyNjQyNH0.RjXEZ3arMh7e9pX2jdGwQrmadMgpTsa7SVQAHInbsG8"
-  },
-  url: 'ws://10.0.2.2:8080/socket',
-  onConnect: onConnectCallback,
-));
-
-void onConnectCallback(StompFrame connectFrame) {
-  client.subscribe(
-      headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjb29wZXJzaW5kb2ciLCJpYXQiOjE2ODc1NDAwMjQsImV4cCI6MTY4NzYyNjQyNH0.RjXEZ3arMh7e9pX2jdGwQrmadMgpTsa7SVQAHInbsG8"
-      },
-      destination: "/user/queue/closeusers",
-      callback: (StompFrame frame) {
-        print(frame.body);
-      });
-}

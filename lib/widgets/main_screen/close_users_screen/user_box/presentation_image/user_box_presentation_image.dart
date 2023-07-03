@@ -1,6 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:close_frontend/widgets/main_screen/close_users/user_box/presentation_image/resized_image_from_url.dart';
+import 'package:close_frontend/widgets/main_screen/close_users_screen/user_box/presentation_image/resized_image_from_url.dart';
 import 'package:flutter/material.dart';
 
 class UserBoxPresentationImage extends StatefulWidget {

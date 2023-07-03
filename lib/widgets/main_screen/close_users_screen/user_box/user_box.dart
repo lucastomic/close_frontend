@@ -1,6 +1,6 @@
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/widgets/main_screen/close_users/user_box/presentation_image/user_box_presentation_image.dart';
-import 'package:close_frontend/widgets/main_screen/close_users/user_box/user_information_column.dart';
+import 'package:close_frontend/widgets/main_screen/close_users_screen/user_box/card_content.dart';
+import 'package:close_frontend/widgets/main_screen/close_users_screen/user_box/presentation_image/user_box_presentation_image.dart';
 import 'package:flutter/material.dart';
 
 class UserBox extends StatelessWidget {
@@ -16,7 +16,10 @@ class UserBox extends StatelessWidget {
       decoration: _getDecoration(),
       margin: _getMargin(),
       child: Row(
-        children: [UserBoxPresentationImage(_user.presentationImage), UserInformationColumn(_user)],
+        children: [
+          UserBoxPresentationImage(_user.presentationImage), 
+          UserBoxCardContent(_user)
+        ],
       ),
     );
   }
@@ -26,6 +29,9 @@ class UserBox extends StatelessWidget {
   }
 
   BoxDecoration _getDecoration() {
-    return BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(width: .3, color: Colors.black45));
+    return BoxDecoration(
+	  borderRadius: BorderRadius.circular(15),
+	  border: Border.all(width: .3, color: Colors.black45)
+	);
   }
 }

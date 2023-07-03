@@ -24,7 +24,7 @@ class CreateUserRequestData {
 
   User toUser() {
     return User(
-      username: this.username,
+      username: this.username!,
       profileName: this.profileName,
       password: this.password,
       photo: this.photo,

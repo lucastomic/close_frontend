@@ -1,5 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/widgets/main_screen/close_users/users_list.dart';
+import 'package:close_frontend/widgets/main_screen/close_users_screen/users_list.dart';
 import 'package:flutter/material.dart';
 
 class CloseUsersFromStream extends StatelessWidget {
@@ -10,7 +10,7 @@ class CloseUsersFromStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<User>>(
-      initialData: _initalDataForTesting,
+
       stream: _stream,
       builder: _buildWidgetFromSnapshot,
     );
@@ -20,7 +20,7 @@ class CloseUsersFromStream extends StatelessWidget {
     if (_snapshotHasLoaded(snapshot)) {
       return UsersList(snapshot.data!);
     } else {
-      return const CircularProgressIndicator();
+      return const Center(child: CircularProgressIndicator());
     }
   }
 
@@ -29,18 +29,3 @@ class CloseUsersFromStream extends StatelessWidget {
   }
 }
 
-//TODO: REMOVE
-List<User> _initalDataForTesting = [
-  User(
-    profileName: "Cooper",
-    username: "coopersindog",
-    age: 3,
-    photo: "https://res.cloudinary.com/da9uye5mo/image/upload/v1665048100/bn6z32qufuz5xoxospmx.jpg",
-  ),
-  User(
-    profileName: "Otto",
-    username: "ottoelperro",
-    age: 2,
-    photo: "https://res.cloudinary.com/da9uye5mo/image/upload/v1665308955/ubthh4fjefwznzb5slme.jpg",
-  ),
-];

@@ -6,5 +6,5 @@ class HTTPRequest {
   Object? body;
 
   HTTPRequest({required this.url, this.unencodedPath = '', this.queryParameters, this.headers, this.body});
-  HTTPRequest.toServer({this.unencodedPath ='', this.queryParameters,this.headers,this.body}): url = "10.0.2.2:8080";
+  HTTPRequest.toServer({this.unencodedPath ='', this.queryParameters,this.headers,this.body}): url = "192.168.18.32:8080";
 }

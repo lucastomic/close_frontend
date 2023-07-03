@@ -1,5 +1,5 @@
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
-import 'package:close_frontend/widgets/main_screen/close_users/close_users.dart';
+import 'package:close_frontend/widgets/main_screen/close_users_screen/close_users_screen.dart';
 import 'package:close_frontend/widgets/main_screen/customized_bottom_navigation_bar.dart';
 import 'package:close_frontend/widgets/main_screen/profile/profile.dart';
 import 'package:close_frontend/widgets/main_screen/settings/settings_list.dart';
@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    _displayOptions = [const SettingsList(), CloseUsers(widget._closeUsersService), const Profile()];
+    _displayOptions = [const SettingsList(), CloseUsersScreen(widget._closeUsersService), const Profile()];
     super.initState();
   }
 

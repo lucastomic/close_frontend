@@ -1,6 +1,10 @@
+import 'package:close_frontend/domain/social_network/social_network.dart';
+import 'package:close_frontend/extensions/string_extensions.dart';
+import 'package:close_frontend/widgets/main_screen/close_users_screen/user_box/user_information_column.dart';
+
 class User {
   int? id;
-  String? username;
+  late String _username;
   String? profileName;
   int? age;
   String? password;
@@ -9,6 +13,7 @@ class User {
   bool? phoneIsVerified;
   String? photo;
   List<String>? interests;
+  List<SocialNetwork> socialNetworks = [];
   bool? enabled;
   bool? accountNonExpired;
   bool? accountNonLocked;
@@ -16,7 +21,7 @@ class User {
 
   User({
     this.id,
-    this.username,
+    required String username,
     this.profileName,
     this.age,
     this.password,
@@ -28,12 +33,13 @@ class User {
     this.enabled,
     this.accountNonExpired,
     this.accountNonLocked,
+    this.socialNetworks = const [],
     this.credentialsNonExpired,
-  });
+  }): this._username = username;
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    username = json['username'];
+    _username = json['username']!;
     profileName = json['profileName'];
     age = json['age'];
     password = json['password'];
@@ -41,6 +47,11 @@ class User {
     phone = json['phone'];
     phoneIsVerified = json['phoneIsVerified'];
     photo = json['photo'];
+    socialNetworks = [];
+    for (var sn in json['socialNetworks']??[]) {
+      socialNetworks.add(SocialNetwork(sn["socialNetwork"],sn["username"]));
+    }
+
     if (json['interests'] != null) {
       interests = <String>[];
       json['interests'].forEach((v) {
@@ -56,5 +67,9 @@ class User {
 
   String get presentationImage {
     return photo!;
+  }
+
+  String get username{
+    return _username.asUsername();
   }
 }

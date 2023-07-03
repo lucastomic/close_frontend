@@ -14,31 +14,32 @@ class AuthenticationService extends IAuthenticationService {
   AuthenticationService(this._imageUploader);
 
   @override
-  Future<User> register(CreateUserRequestData requestData) async {
+  Future<String> tokenFromRegister(CreateUserRequestData requestData) async {
       requestData.photo = await _uploadUserPhoto(requestData);
       RegisterTokenRetriever registerTokenRetriever = RegisterTokenRetriever();
       String authenticationToken = await registerTokenRetriever.getToken(requestData);
       HTTPRequester.authenticationToken = authenticationToken;
-      return _getUserFromToken(authenticationToken);
-  }
+      return authenticationToken;
 
-  Future<String> _uploadUserPhoto(CreateUserRequestData requestData)async{
-    return await _imageUploader.uploadImage(requestData.photo!);
   }
 
   @override
-  Future<User> login(String username, String password) async {
+  Future<String> tokenFromLogin(String username, String password) async {
       LoginTokenRetriever loginTokenRetriever = LoginTokenRetriever();
       String authenticationToken = await loginTokenRetriever.getToken(username, password);
       HTTPRequester.authenticationToken = authenticationToken;
-      return _getUserFromToken(authenticationToken);
+      return authenticationToken;
   } 
 
-  Future<User> _getUserFromToken(String token)async {
+  @override
+  Future<User> getUserFromToken(String token)async {
     HTTPRequest request = HTTPRequest.toServer(unencodedPath: "/users/getUserInfo");
     Map<String, dynamic> response = (await HTTPRequester.get(request)).body;
     return User.fromJson(response);
   }
 
+  Future<String> _uploadUserPhoto(CreateUserRequestData requestData)async{
+    return await _imageUploader.uploadImage(requestData.photo!);
+  }
 }
  
