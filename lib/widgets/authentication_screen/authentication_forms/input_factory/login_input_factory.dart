@@ -1,9 +1,9 @@
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/ports/login_input_factory_port.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/validator/input_validator.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/text_form_input.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart';
+import 'package:close_frontend/widgets/forms/inputs/text_form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import '../form_input.dart';
+import '../../../forms/inputs/form_input.dart';
 
 @Injectable(as: ILoginInputFactory)
 class LoginInputFactory implements ILoginInputFactory{

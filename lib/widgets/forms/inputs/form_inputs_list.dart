@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'customized_input/form_input.dart';
+import 'form_input.dart';
 
 class FormInputsList {
   final Map<String, FormInput> _inputs;

@@ -1,10 +1,10 @@
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/ports/login_input_factory_port.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/ports/register_input_factory_port.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
+
 import 'authentication_forms/login_from.dart';
 import 'authentication_forms/register_form.dart';
-
 class AuthenticationScreen extends StatelessWidget {
   final Widget _form; 
   final Widget _changeScreenButton;

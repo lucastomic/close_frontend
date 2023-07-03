@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AuthenticationErrorMessageBox extends StatelessWidget {
+class FormErrorMessageBox extends StatelessWidget {
   final String _message;
-  AuthenticationErrorMessageBox(this._message);
+  FormErrorMessageBox(this._message);
   @override
   Widget build(BuildContext context) {
     return Opacity(

@@ -17,15 +17,15 @@ import '../services/authentication_service/port/authentication_service_port.dart
     as _i10;
 import '../services/close_users/close_users_servic_port.dart' as _i3;
 import '../services/close_users/close_users_service.dart' as _i4;
-import '../widgets/authentication_screen/authentication_forms/customized_input/factory/login_input_factory.dart'
+import '../widgets/authentication_screen/authentication_forms/input_factory/login_input_factory.dart'
     as _i13;
-import '../widgets/authentication_screen/authentication_forms/customized_input/factory/ports/login_input_factory_port.dart'
+import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
     as _i12;
-import '../widgets/authentication_screen/authentication_forms/customized_input/factory/ports/register_input_factory_port.dart'
+import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
     as _i14;
-import '../widgets/authentication_screen/authentication_forms/customized_input/factory/register_input_factory.dart'
+import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
     as _i15;
-import '../widgets/authentication_screen/authentication_forms/customized_input/factory/validator/input_validator.dart'
+import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars

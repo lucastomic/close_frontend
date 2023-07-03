@@ -1,8 +1,8 @@
 import 'package:close_frontend/image_manage/image_picker/image_picker_port.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/factory/ports/register_input_factory_port.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/form_input.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/photo_selector_input/photo_selector_input.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/text_form_input.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
+import 'package:close_frontend/widgets/forms/inputs/photo_selector_input/photo_selector_input.dart';
+import 'package:close_frontend/widgets/forms/inputs/text_form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'validator/input_validator.dart';

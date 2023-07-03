@@ -1,9 +1,9 @@
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/form_inputs_list.dart';
+import 'package:close_frontend/widgets/forms/custom_form.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'authentication_form.dart';
-import 'customized_input/factory/ports/login_input_factory_port.dart';
 
 class LoginForm extends StatelessWidget{
   final ILoginInputFactory _inputFactory;
@@ -11,7 +11,7 @@ class LoginForm extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-	return AuthenticationForm(
+	return CustomForm(
 	  submitButtonText: "Ingresar",
 	  authenticate: (Map<String,String> inputValues) async{  
       AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
@@ -19,15 +19,16 @@ class LoginForm extends StatelessWidget{
         inputValues["username"]!, 
         inputValues["password"]!
       );
+      Navigator.of(context).pushNamed("main");
 	  }, 
-	  inputs: 	_getFormInputsList()
+	  inputs: _getFormInputsList()
 	);
   }
 
   FormInputsList _getFormInputsList(){
-	return FormInputsList({
-	  "username": _inputFactory.username(),
-	  "password":_inputFactory.passaword(),
-	});
+    return FormInputsList({
+      "username": _inputFactory.username(),
+      "password":_inputFactory.passaword(),
+    });
   }
 }

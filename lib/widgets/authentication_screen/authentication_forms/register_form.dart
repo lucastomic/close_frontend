@@ -1,10 +1,10 @@
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
+import 'package:close_frontend/widgets/forms/custom_form.dart';
+import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'authentication_form.dart';
-import 'customized_input/factory/ports/register_input_factory_port.dart';
-import 'form_inputs_list.dart';
 
 class RegisterForm extends StatelessWidget {
   final IRegisterInputFactory _inputFactory;
@@ -12,7 +12,7 @@ class RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthenticationForm(
+    return CustomForm(
         submitButtonText: "Registrarme",
         authenticate: (Map<String, String> inputValues) async {
           AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
@@ -23,6 +23,7 @@ class RegisterForm extends StatelessWidget {
             password: inputValues["password"]
           );
           await authenticationProvider.register(requestData);
+          Navigator.of(context).pushNamed("socialNetworks");
         },
         inputs: _getFormInputsList());
   }

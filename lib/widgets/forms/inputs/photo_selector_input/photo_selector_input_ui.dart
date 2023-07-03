@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:close_frontend/image_manage/image_picker/image.dart';
+import 'package:close_frontend/widgets/forms/inputs/ui_widgets/input_box_shadows.dart';
 import 'package:flutter/material.dart';
-
-import '../ui_widgets/input_box_shadows.dart';
 
 class PhotoSelectorInputUI extends StatelessWidget {
   final ImageFromDevice? _imageToShow;

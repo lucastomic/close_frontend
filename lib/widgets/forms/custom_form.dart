@@ -1,15 +1,15 @@
 import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/authentication_error_message_box.dart';
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/form_inputs_list.dart';
+import 'package:close_frontend/widgets/forms/form_error_message_box.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 
-class AuthenticationForm extends StatefulWidget {
+class CustomForm extends StatefulWidget {
   final FormInputsList _inputs;
   final Future<void> Function(Map<String,String>) _authenticate;
   final String _submitButtonText;
 
-  const AuthenticationForm({
+  const CustomForm({
 	  required String submitButtonText,
       required FormInputsList inputs,
       required Future<void> Function(Map<String,String>) authenticate})
@@ -18,10 +18,10 @@ class AuthenticationForm extends StatefulWidget {
         _inputs = inputs;
 
   @override
-  State<AuthenticationForm> createState() => _AuthenticationFormState();
+  State<CustomForm> createState() => _CustomFormState();
 }
 
-class _AuthenticationFormState extends State<AuthenticationForm> {
+class _CustomFormState extends State<CustomForm> {
   bool _isLoading = false;
   String? _errorMessage;
 
@@ -55,10 +55,9 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
 
   Widget _showErrorMessageIfExists() {
     return _errorMessage != null
-        ? AuthenticationErrorMessageBox(_errorMessage!)
+        ? FormErrorMessageBox(_errorMessage!)
         : Container();
   }
-
 
   void _executeWhileLoads(Function() func) async {
     setState(() {
@@ -73,12 +72,10 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
   Future<void> _tryToAuthenticate() async {
     try {
       await widget._authenticate(widget._inputs.getInputsValues());
-      Navigator.of(context).pushNamed("main");
     } on BadCredentialsException catch (e) {
       _updateErrorMessage(e.message);
     }
   }
-
 
   void _unfocusTarget() {
     FocusScope.of(context).unfocus();

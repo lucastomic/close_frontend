@@ -1,4 +1,4 @@
-import 'package:close_frontend/widgets/authentication_screen/authentication_forms/customized_input/ui_widgets/input_box_shadows.dart';
+import 'package:close_frontend/widgets/forms/inputs/ui_widgets/input_box_shadows.dart';
 import 'package:flutter/material.dart';
 
 class DecoratedInputContainer extends StatelessWidget {
