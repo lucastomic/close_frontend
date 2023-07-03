@@ -30,8 +30,8 @@ class UserBox extends StatelessWidget {
 
   BoxDecoration _getDecoration() {
     return BoxDecoration(
-	  borderRadius: BorderRadius.circular(15),
-	  border: Border.all(width: .3, color: Colors.black45)
-	);
+      borderRadius: BorderRadius.circular(15),
+      border: Border.all(width: .3, color: Colors.black45)
+    );
   }
 }

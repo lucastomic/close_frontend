@@ -12,8 +12,8 @@ class CustomForm extends StatefulWidget {
   const CustomForm({
 	  required String submitButtonText,
       required FormInputsList inputs,
-      required Future<void> Function(Map<String,String>) authenticate})
-      : _authenticate = authenticate,
+      required Future<void> Function(Map<String,String>) onSubmit})
+      : _authenticate = onSubmit,
         _submitButtonText = submitButtonText,
         _inputs = inputs;
 
@@ -29,6 +29,7 @@ class _CustomFormState extends State<CustomForm> {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _showErrorMessageIfExists(),
           ...widget._inputs.getInputsSpacedBetween(),
