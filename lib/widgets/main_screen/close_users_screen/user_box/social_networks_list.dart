@@ -1,4 +1,3 @@
-
 import 'dart:math';
 import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/extensions/string_extensions.dart';

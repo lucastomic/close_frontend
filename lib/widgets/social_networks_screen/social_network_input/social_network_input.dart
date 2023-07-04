@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class SocialNetworkInput extends StatefulWidget implements FormInput{
   final SocialNetwork _socialNetwork;
-  GlobalKey<SocialNetworkInputState> key = GlobalKey();
-  SocialNetworkInput(this._socialNetwork);
+  final String? _initialValue;
+  final GlobalKey<SocialNetworkInputState> key = GlobalKey();
+  SocialNetworkInput(this._socialNetwork, {String? initialValue}):_initialValue = initialValue;
 
   @override
   State<SocialNetworkInput> createState() => SocialNetworkInputState();
@@ -29,6 +30,7 @@ class SocialNetworkInputState extends State<SocialNetworkInput> {
   Widget build(BuildContext context) {
     return DecoratedInputContainer(
       child: TextFormField(
+          initialValue: widget._initialValue,
           decoration:_getInputDecoration(),
           onChanged: (String? value)=>_value = value,
       )
@@ -36,7 +38,8 @@ class SocialNetworkInputState extends State<SocialNetworkInput> {
   }
 
   InputDecoration _getInputDecoration(){
-    return InputDecoration(
+    return InputDecoration( 
+      label: Text(widget._socialNetwork.displayName),
       border:InputBorder.none,
       prefixIcon: Container(
         padding: const EdgeInsets.all(8),
@@ -44,5 +47,5 @@ class SocialNetworkInputState extends State<SocialNetworkInput> {
         child: widget._socialNetwork.logo
       )
     );
-}
+  }
 }

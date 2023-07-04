@@ -1,6 +1,7 @@
 import 'package:close_frontend/dependency_injection/injection.dart';
 
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
+import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_screen.dart';
@@ -12,7 +13,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   'main': (_) => MainScreen(getIt.get<ICloseUsersService>()),
   'login': (_) => AuthenticationScreen.login(getIt.get<ILoginInputFactory>()),
   'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>()),
-  'socialNetworks': (_) => const SocialNetworksScreen(),
+  'socialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>()),
 };
 
 const String initalRoute = 'login';
