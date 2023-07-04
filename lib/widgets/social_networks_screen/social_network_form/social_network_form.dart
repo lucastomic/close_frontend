@@ -18,11 +18,11 @@ class SocialNetowrksForm extends StatefulWidget {
 }
 
 class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
-  late final User authenticatedUser;
+  late final AuthenticationProvider _authenticationProvider;
 
   @override
   void initState() {
-    _initializeAuthenticatedUser();
+    _initializeAuthenticationProvider();
     super.initState();
   }
 
@@ -35,15 +35,13 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
     );
   }
 
-  void _initializeAuthenticatedUser(){
-    authenticatedUser = context.read<AuthenticationProvider>().authenticatedUser;
+  void _initializeAuthenticationProvider(){
+    _authenticationProvider = context.read<AuthenticationProvider>();
   }
 
   Future<void> _onSubmit(Map<SocialNetwork, String?> inputs)async{
-    inputs.forEach((socialNetwork, username) {
-      username != null ? widget._socialNetworkService.updateSocialNetwork(socialNetwork, username):
-      widget._socialNetworkService.removeSocialNetwork(socialNetwork);
-    });
+    await _updateSocialNetworks(inputs);
+    await _authenticationProvider.refreshUser();
     Navigator.of(context).pop();
   }
 
@@ -55,10 +53,17 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
     return FormInputsList(inputs);
   }
 
+  Future<void> _updateSocialNetworks(Map<SocialNetwork, String?> inputs) async{
+    await Future.forEach(inputs.entries,(entry) async{
+      entry.value != null ? await widget._socialNetworkService.updateSocialNetwork(entry.key, entry.value!):
+      await widget._socialNetworkService.removeSocialNetwork(entry.key);
+    });
+  }
+
   Map<SocialNetwork,FormInput<String?>>_getSocialNetworkInputMapEntry(SocialNetwork socialNetwork){
       return {socialNetwork: SocialNetworkInput(
-        socialNetwork, 
-        initialValue: authenticatedUser.socialNetworks[socialNetwork]
+        socialNetwork,    
+        initialValue: _authenticationProvider.getUsernameFromSocialNetwork(socialNetwork)
       )};
   }
 }

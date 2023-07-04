@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
@@ -29,6 +32,10 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> refreshUser() async {
+    _authenticatedUser = await _authenticationService.getUserFromToken(_authenticatedToken!);
+  }
+
   User get authenticatedUser {
     assert(_authenticatedToken !=null, "There is no authentitcated user");
     return _authenticatedUser!;
@@ -37,5 +44,9 @@ class AuthenticationProvider extends ChangeNotifier {
   String get authenticationToken {
     assert(_authenticatedToken !=null, "There is no authentitcated user");
     return _authenticatedToken!;
+  }
+
+  String? getUsernameFromSocialNetwork(SocialNetwork socialNetwork){
+    return _authenticatedUser!.socialNetworks[socialNetwork];
   }
 }

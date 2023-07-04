@@ -6,21 +6,23 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: ISocialNetworkService)
 class SocialNetworkService extends ISocialNetworkService{
+
   @override
   Future<void> updateSocialNetwork(SocialNetwork socialNetwork, String username) async{
     HTTPRequest request = HTTPRequest.toServer(
         unencodedPath: "/socialnetwork/add",
         body: {
-          //Server expects the ENUM in UpperCase formatt
+          //Server expects the ENUM in UpperCase format
           "socialNetwork":socialNetwork.name.toUpperCase(),
           "username":username
         }
     ); 
     await HTTPRequester.post(request);
+    //TODO: HANDLE ERROR
   }
   
   @override
-  void removeSocialNetwork(SocialNetwork socialNetwork) {
+  Future<void> removeSocialNetwork(SocialNetwork socialNetwork)async {
     // TODO: implement removeSocialNetwork
   }
 
