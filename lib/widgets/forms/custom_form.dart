@@ -4,16 +4,17 @@ import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 
-class CustomForm extends StatefulWidget {
-  final FormInputsList _inputs;
-  final Future<void> Function(Map<String,String>) _authenticate;
+/// T is the ID type asigned to every input, and I the type of its value
+class CustomForm<T,I> extends StatefulWidget {
+  final FormInputsList<T,I> _inputs;
+  final Future<void> Function(Map<T,I>) _onSubmit;
   final String _submitButtonText;
 
   const CustomForm({
 	  required String submitButtonText,
-      required FormInputsList inputs,
-      required Future<void> Function(Map<String,String>) onSubmit})
-      : _authenticate = onSubmit,
+      required FormInputsList<T,I> inputs,
+      required Future<void> Function(Map<T,I>) onSubmit})
+      : _onSubmit = onSubmit,
         _submitButtonText = submitButtonText,
         _inputs = inputs;
 
@@ -72,7 +73,7 @@ class _CustomFormState extends State<CustomForm> {
 
   Future<void> _tryToAuthenticate() async {
     try {
-      await widget._authenticate(widget._inputs.getInputsValues());
+      await widget._onSubmit(widget._inputs.getInputsValues());
     } on BadCredentialsException catch (e) {
       _updateErrorMessage(e.message);
     }

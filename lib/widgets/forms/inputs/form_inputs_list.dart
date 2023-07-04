@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'form_input.dart';
 
-class FormInputsList {
-  final Map<String, FormInput> _inputs;
+class FormInputsList<T,I> {
+  final Map<T, FormInput> _inputs;
 
   FormInputsList(this._inputs);
 
@@ -20,8 +20,8 @@ class FormInputsList {
     return true;
   }
 
-  Map<String,String> getInputsValues() {
-    Map<String,String> response = {};
+  Map<T,I> getInputsValues() {
+    Map<T,I> response = {};
     _inputs.forEach((inputName, input) {
       response.addAll({inputName:input.value});
     });

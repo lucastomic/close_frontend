@@ -12,9 +12,9 @@ class RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomForm(
+    return CustomForm<String,String>(
         submitButtonText: "Registrarme",
-        onSubmit: (Map<String, String> inputValues) async {
+        onSubmit: (Map<String, String?> inputValues) async {
           AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
           CreateUserRequestData requestData = CreateUserRequestData(
             username: inputValues["username"],
@@ -28,7 +28,7 @@ class RegisterForm extends StatelessWidget {
         inputs: _getFormInputsList());
   }
 
-  FormInputsList _getFormInputsList(){
+  FormInputsList<String,String> _getFormInputsList(){
     return FormInputsList({
 	    "photo": _inputFactory.photo(),
       "username": _inputFactory.username(),
