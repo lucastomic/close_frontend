@@ -14,7 +14,7 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomForm<String,String>(
         submitButtonText: "Registrarme",
-        onSubmit: (Map<String, String?> inputValues) async {
+        onSubmit: (Map<String, String> inputValues) async {
           AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
           CreateUserRequestData requestData = CreateUserRequestData(
             username: inputValues["username"],

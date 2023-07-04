@@ -13,7 +13,7 @@ class LoginForm extends StatelessWidget{
   Widget build(BuildContext context) {
 	return CustomForm<String,String>(
 	  submitButtonText: "Ingresar",
-	  onSubmit: (Map<String,String?> inputValues) async{  
+	  onSubmit: (Map<String,String> inputValues) async{  
       AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
       await authenticationProvider.logIn(
         inputValues["username"]!, 
@@ -25,8 +25,9 @@ class LoginForm extends StatelessWidget{
 	);
   }
 
+
   FormInputsList<String,String> _getFormInputsList(){
-    return FormInputsList({
+    return FormInputsList<String,String>({
       "username": _inputFactory.username(),
       "password":_inputFactory.passaword(),
     });

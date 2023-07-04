@@ -19,10 +19,10 @@ class CustomForm<T,I> extends StatefulWidget {
         _inputs = inputs;
 
   @override
-  State<CustomForm> createState() => _CustomFormState();
+  State<CustomForm> createState() => _CustomFormState<T,I>();
 }
 
-class _CustomFormState extends State<CustomForm> {
+class _CustomFormState<T,I> extends State<CustomForm<T,I>> {
   bool _isLoading = false;
   String? _errorMessage;
 
