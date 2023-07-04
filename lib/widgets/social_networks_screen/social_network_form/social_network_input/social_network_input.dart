@@ -25,7 +25,12 @@ class SocialNetworkInput extends StatefulWidget implements FormInput<String?>{
 }
 
 class SocialNetworkInputState extends State<SocialNetworkInput> {
-  String? _value;
+  String? _value ;
+  @override
+  void initState() {
+    _value = widget._initialValue;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return DecoratedInputContainer(
@@ -39,7 +44,7 @@ class SocialNetworkInputState extends State<SocialNetworkInput> {
 
   InputDecoration _getInputDecoration(){
     return InputDecoration( 
-      label: Text(widget._socialNetwork.displayName),
+      label: Text(widget._socialNetwork.name),
       border:InputBorder.none,
       prefixIcon: Container(
         padding: const EdgeInsets.all(8),

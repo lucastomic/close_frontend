@@ -1,7 +1,6 @@
 import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
-import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,12 +11,12 @@ class SocialNetworkService extends ISocialNetworkService{
     HTTPRequest request = HTTPRequest.toServer(
         unencodedPath: "/socialnetwork/add",
         body: {
-          "socialNetwork":socialNetwork,
+          //Server expects the ENUM in UpperCase formatt
+          "socialNetwork":socialNetwork.name.toUpperCase(),
           "username":username
         }
     ); 
-    HTTPResponse response =await HTTPRequester.post(request);
-    print("response");
+    await HTTPRequester.post(request);
   }
   
   @override

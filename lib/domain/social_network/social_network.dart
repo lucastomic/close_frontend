@@ -6,10 +6,10 @@ enum SocialNetwork{
   tiktok("TikTok","assets/images/social_networks/tiktok.png"),
   instagram("Instagram","assets/images/social_networks/instagram.png");
 
-  final String displayName;
+  final String name;
   final String _photoPath;
 
-  const SocialNetwork(this.displayName, this._photoPath);
+  const SocialNetwork(this.name, this._photoPath);
 
   static SocialNetwork fromUpperCaseName(String name){
     switch(name){
