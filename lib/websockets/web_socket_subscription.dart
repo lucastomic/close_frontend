@@ -26,18 +26,12 @@ class WebSocketSubscription{
       )
     );
     _client.activate();
-
-
   }
 
 
   void unsuscribe(){
     _client.deactivate(); 
     _unsuscribeFunction(unsubscribeHeaders: {"simpDestination":_destination});
-  }
-
-  bool get isSubscribed{
-    return _client.isActive;
   }
 
   void _subscribe() {
