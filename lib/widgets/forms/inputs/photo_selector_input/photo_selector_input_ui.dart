@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:close_frontend/image_manage/image_picker/image.dart';
 import 'package:close_frontend/widgets/forms/inputs/ui_widgets/input_box_shadows.dart';
+import 'package:close_frontend/widgets/util_widgets/circular_image_with_loader.dart';
 import 'package:flutter/material.dart';
 
 class PhotoSelectorInputUI extends StatelessWidget {
@@ -53,19 +54,9 @@ class _SelectedImageWithLoader extends StatelessWidget {
   const _SelectedImageWithLoader( this._imageToShow);
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        const CircularProgressIndicator(),
-        SizedBox( 
-          width: 90,
-          height: 90,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child:Image.file(File(_imageToShow.path),fit: BoxFit.cover) ,
-          ),
-        ),
-      ],
+    return CircularImageWithLaoder(
+      image: Image.file(File(_imageToShow.path),fit: BoxFit.cover) , 
+      diameter: 90
     );
   }
 }
