@@ -23,17 +23,27 @@ class _CloseUsersScreenState extends State<CloseUsersScreen> {
   }
 
   @override
+  void dispose() {
+    _closeStream();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-		CloseUsersHeader(),
+		    CloseUsersHeader(),
         CloseUsersFromStream(_closeUsersStream),
       ],
     );
   }
 
   void _initializeStream(BuildContext context) {
-    _closeUsersStream = widget._closeUsersService.closeUsersStream(context);
+    _closeUsersStream = widget._closeUsersService.getCloseUsersStream(context);
+  }
+
+  void _closeStream(){
+    widget._closeUsersService.closeCloseUsersSubscription();
   }
 }
 

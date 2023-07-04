@@ -27,6 +27,7 @@ class WebSocketSubscription{
     _client.activate();
   } 
 
+
   void finish(){
     _client.deactivate(); 
   }
