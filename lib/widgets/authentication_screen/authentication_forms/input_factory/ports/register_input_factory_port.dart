@@ -2,7 +2,7 @@ import 'package:close_frontend/widgets/authentication_screen/authentication_form
 import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
 
 abstract class IRegisterInputFactory extends ILoginInputFactory{
-  FormInput profileName();
-  FormInput phone();
-  FormInput photo();
+  FormInput<String> profileName();
+  FormInput<String> phone();
+  FormInput<String> photo();
 }

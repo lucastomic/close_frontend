@@ -3,7 +3,7 @@ import 'ui_widgets/decorated_input_container.dart';
 import 'form_input.dart';
 import 'ui_widgets/input_error_message.dart';
 
-class TextFormInput extends StatefulWidget implements FormInput{
+class TextFormInput extends StatefulWidget implements FormInput<String>{
   @override
   State<TextFormInput> createState() => TextFormInputState();
 

@@ -11,7 +11,7 @@ class LoginInputFactory implements ILoginInputFactory{
   const LoginInputFactory(this._validator);
 
   @override
-  FormInput username(){
+  FormInput<String> username(){
     return TextFormInput( 
       validate: _validator.mandatoryInputValidation,
       hintText: 'myusername', 
@@ -21,7 +21,7 @@ class LoginInputFactory implements ILoginInputFactory{
     );
   }
   @override
-  FormInput passaword(){
+  FormInput<String> passaword(){
     return TextFormInput( 
       validate: _validator.minimumLengthValidation, 
       hintText: '******',

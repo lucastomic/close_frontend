@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'form_input.dart';
 
 class FormInputsList<T,I> {
-  final Map<T, FormInput> _inputs;
+  final Map<T, FormInput<I>> _inputs;
 
   FormInputsList(this._inputs);
 

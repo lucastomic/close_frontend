@@ -16,7 +16,7 @@ class RegisterInputFactory extends LoginInputFactory implements IRegisterInputFa
   RegisterInputFactory(this._validator, this._imagePicker): super(_validator);
 
   @override
-  FormInput profileName(){
+  FormInput<String> profileName(){
     return TextFormInput( 
       validate: _validator.mandatoryInputValidation, 
       hintText: 'My complete name',
@@ -27,7 +27,7 @@ class RegisterInputFactory extends LoginInputFactory implements IRegisterInputFa
   }
 
   @override
-  FormInput phone(){
+  FormInput<String> phone(){
     return TextFormInput( 
       validate: _validator.mandatoryInputValidation, 
       hintText: '+34 123 321 123',
@@ -38,7 +38,7 @@ class RegisterInputFactory extends LoginInputFactory implements IRegisterInputFa
   } 
 
   @override
-  FormInput photo(){
+  FormInput<String> photo(){
     return PhotoInputSelctor(_imagePicker);
   }
 

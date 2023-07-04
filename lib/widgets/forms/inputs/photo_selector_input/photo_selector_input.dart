@@ -5,7 +5,7 @@ import 'package:close_frontend/widgets/forms/inputs/photo_selector_input/photo_s
 
 import 'package:flutter/material.dart';
 
-class PhotoInputSelctor extends StatefulWidget implements FormInput{
+class PhotoInputSelctor extends StatefulWidget implements FormInput<String>{
   final ImagePickerPort _imagePicker;
 
   @override
