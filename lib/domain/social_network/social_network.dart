@@ -1,24 +1,30 @@
+
 import 'package:flutter/material.dart';
 
-class SocialNetwork{
-  final Widget logo;
-  final String name;
+enum SocialNetwork{
+  twitter("Twitter","assets/images/social_networks/twitter.png"),
+  tiktok("TikTok","assets/images/social_networks/tiktok.png"),
+  instagram("Instagram","assets/images/social_networks/instagram.png");
 
-  SocialNetwork._internal({
-    required this.logo,
-    required this.name,
-  });
+  final String displayName;
+  final String _photoPath;
 
-  factory SocialNetwork(String name){
+  const SocialNetwork(this.displayName, this._photoPath);
+
+  static SocialNetwork fromUpperCaseName(String name){
     switch(name){
       case "INSTAGRAM":
-        return SocialNetwork._internal(logo: Image.asset("assets/images/social_networks/instagram.png"), name: "Instagram");
-      case "TIKTOK":
-        return SocialNetwork._internal(logo: Image.asset("assets/images/social_networks/tiktok.png"), name: "TikTok");
+        return SocialNetwork.instagram;
       case "TWITTER":
-        return SocialNetwork._internal(logo: Image.asset("assets/images/social_networks/twitter.png"), name: "Twitter");
+        return SocialNetwork.twitter;
+      case "TIKTOK":
+        return SocialNetwork.tiktok;
       default:
-        throw Exception("Unkown social network");
+        throw Exception("Undefined social network");
     }
+  }
+
+  Widget get logo{
+    return Image.asset(_photoPath);
   }
 }

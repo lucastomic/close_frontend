@@ -1,6 +1,5 @@
 import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/extensions/string_extensions.dart';
-import 'package:close_frontend/widgets/main_screen/close_users_screen/user_box/user_information_column.dart';
 
 class User {
   int? id;
@@ -49,7 +48,7 @@ class User {
     photo = json['photo'];
     socialNetworks = {};
     for (var sn in json['socialNetworks']??[]) {
-      socialNetworks.addAll({SocialNetwork(sn["socialNetwork"]):sn["username"]});
+      socialNetworks.addAll({SocialNetwork.fromUpperCaseName(sn["socialNetwork"]):sn["username"]});
     }
 
     if (json['interests'] != null) {
