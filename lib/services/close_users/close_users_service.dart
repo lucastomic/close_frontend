@@ -8,19 +8,19 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as:ICloseUsersService)
 class CloseUsersService implements ICloseUsersService {
-  late StreamController<List<User>>? _closeUsersStreamController;
-  WebSocketSubscription? _closeUsersSubscription;
+  StreamController<List<User>>? _closeUsersStreamController;
+  late WebSocketSubscription _closeUsersSubscription;
 
   @override
   Stream<List<User>> getCloseUsersStream(BuildContext context){
     _closeUsersStreamController = StreamController<List<User>>(); 
-    if(_closeUsersSubscription == null) _subscribeToCloseUsers(context);
+    _initializeSubscription(context);
     return _closeUsersStreamController!.stream;
   }
 
   @override
   void closeCloseUsersSubscription(){
-    _closeUsersSubscription!.finish();
+    _closeUsersSubscription.unsuscribe();
   }
 
   @override
@@ -28,14 +28,13 @@ class CloseUsersService implements ICloseUsersService {
     // TODO: implement sendLocation
   }
 
-  void _subscribeToCloseUsers(BuildContext context){
+  void _initializeSubscription(BuildContext context){
     _closeUsersSubscription = WebSocketSubscription(
       context,
-      "/user/queue/closeusers", 
-      "ws://10.0.2.2:8080/socket", 
-      _onUsersReceived
+      destination: "/user/queue/closeusers", 
+      url:"ws://10.0.2.2:8080/socket", 
+      callback: _onUsersReceived
     );
-    _closeUsersSubscription!.start();
   }
 
   void _onUsersReceived(String? frameBody){

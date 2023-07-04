@@ -8,8 +8,12 @@ import '../provider/authentication/auth_provider.dart';
 class WebSocketSubscription{
   late StompClient _client;
   late String _authenticationToken;
+  late final String _destination;
+  final Function(String?) _callback;
+  late void Function({Map<String, String>? unsubscribeHeaders}) _unsuscribeFunction;
 
-  WebSocketSubscription(BuildContext context, String destination,String url,void Function(String?) callback){
+  WebSocketSubscription(BuildContext context, {required String destination,required String url,required void Function(String?) callback}):_callback = callback, _destination = destination
+  {
     AuthenticationProvider provider =  context.read<AuthenticationProvider>();
     _authenticationToken = provider.authenticationToken;
     _client = StompClient(
@@ -18,27 +22,31 @@ class WebSocketSubscription{
           "Authorization": "Bearer $_authenticationToken}"
         },
         url:url,
-        onConnect: (_)=>_subscribe(destination,callback),
+        onConnect: (_)=>_subscribe(),
       )
     );
-  }
-
-  void start(){    
     _client.activate();
-  } 
 
 
-  void finish(){
-    _client.deactivate(); 
   }
 
-  void _subscribe(String destination, void Function(String?) callback) {
-    _client.subscribe(
+
+  void unsuscribe(){
+    _client.deactivate(); 
+    _unsuscribeFunction(unsubscribeHeaders: {"simpDestination":_destination});
+  }
+
+  bool get isSubscribed{
+    return _client.isActive;
+  }
+
+  void _subscribe() {
+    _unsuscribeFunction = _client.subscribe(
         headers: {
           "Authorization": "Bearer $_authenticationToken}"
         },
-        destination: destination,
-        callback: (StompFrame frame)=>callback(frame.body)
+        destination: _destination,
+        callback: (StompFrame frame)=>_callback(frame.body)
     );
   }
 }
