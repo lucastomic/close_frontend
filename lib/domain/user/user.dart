@@ -47,9 +47,9 @@ class User {
     phoneIsVerified = json['phoneIsVerified'];
     photo = json['photo'];
     socialNetworks = {};
-    for (var sn in json['socialNetworks']??[]) {
-      socialNetworks.addAll({SocialNetwork.fromUpperCaseName(sn["socialNetwork"]):sn["username"]});
-    }
+    json['socialNetworks'].forEach((key,value){
+      socialNetworks.addAll({SocialNetwork.fromUpperCaseName(key):value});
+    });
 
     if (json['interests'] != null) {
       interests = <String>[];
