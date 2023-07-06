@@ -23,7 +23,14 @@ class SocialNetworkService extends ISocialNetworkService{
   
   @override
   Future<void> removeSocialNetwork(SocialNetwork socialNetwork)async {
-    // TODO: implement removeSocialNetwork
+    HTTPRequest request = HTTPRequest.toServer(
+        unencodedPath: "/socialnetwork/remove",
+        body: {
+          //Server expects the ENUM in UpperCase format
+          "socialNetwork":socialNetwork.name.toUpperCase(),
+        }
+    ); 
+    await HTTPRequester.post(request);  
   }
 
 }

@@ -1,5 +1,4 @@
 import 'package:close_frontend/domain/social_network/social_network.dart';
-import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/forms/custom_form.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input.dart';

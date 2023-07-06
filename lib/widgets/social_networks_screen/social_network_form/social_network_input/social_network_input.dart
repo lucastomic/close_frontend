@@ -21,7 +21,7 @@ class SocialNetworkInput extends StatefulWidget implements FormInput<String?>{
   void validate() {}
 
   @override
-  String? get value => key.currentState!._value;
+  String? get value => key.currentState!._value == "" ? null :  key.currentState!._value;
 }
 
 class SocialNetworkInputState extends State<SocialNetworkInput> {
