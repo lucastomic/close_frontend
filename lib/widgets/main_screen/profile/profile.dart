@@ -1,5 +1,6 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
+import 'package:close_frontend/widgets/duck/duck_logo.dart';
 import 'package:close_frontend/widgets/util_widgets/circular_image_with_loader.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class Profile extends StatelessWidget {
         children: [
             _ProfilePhoto(user.presentationImage),
             _ProfileUsername(user.username),
+            _DucksReceivedBox(),
             Expanded(child: Container()),
             _ModifySocialNetworksButton()
         ],
@@ -60,6 +62,31 @@ class _ModifySocialNetworksButton extends StatelessWidget {
       onPressed: (){
         Navigator.of(context).pushNamed("socialNetworks");
       },
+    );
+  }
+}
+
+class _DucksReceivedBox extends StatefulWidget {
+  const _DucksReceivedBox({super.key});
+
+  @override
+  State<_DucksReceivedBox> createState() => _DucksReceivedBoxState();
+}
+
+class _DucksReceivedBoxState extends State<_DucksReceivedBox> {
+  // late int _ducksReceived;
+
+  // @override
+  // void initState() {
+  //   _ducksReceived = context.read<AuthenticationProvider>().authenticatedUser.
+  //   super.initState();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: DuckLogo(),
+
     );
   }
 }
