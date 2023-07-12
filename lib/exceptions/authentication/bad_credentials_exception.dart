@@ -1,7 +1,5 @@
-class BadCredentialsException implements Exception{
-  final String _message;
-  BadCredentialsException(String message) : _message = message;
-  get message{
-    return _message;
-  }
+import 'package:close_frontend/exceptions/exception_with_message.dart';
+
+class BadCredentialsException extends ExceptionWithMessage{
+  BadCredentialsException(String message) : super(message);
 }
