@@ -51,7 +51,7 @@ class _CustomFormState<T,I> extends State<CustomForm<T,I>> {
     _unfocusTarget();
     widget._inputs.validateAllInputs();
     if (widget._inputs.allInputsAreValid()) {
-      _executeWhileLoads(_tryToAuthenticate);
+      _executeWhileLoads(_executeOnSubmit);
     }
   }
 
@@ -71,7 +71,7 @@ class _CustomFormState<T,I> extends State<CustomForm<T,I>> {
     });
   }
 
-  Future<void> _tryToAuthenticate() async {
+  Future<void> _executeOnSubmit() async {
     try {
       await widget._onSubmit(widget._inputs.getInputsValues());
     } on ExceptionWithMessage catch (e) {
