@@ -1,4 +1,4 @@
-import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
+import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/widgets/forms/form_error_message_box.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
@@ -74,7 +74,7 @@ class _CustomFormState<T,I> extends State<CustomForm<T,I>> {
   Future<void> _tryToAuthenticate() async {
     try {
       await widget._onSubmit(widget._inputs.getInputsValues());
-    } on BadCredentialsException catch (e) {
+    } on ExceptionWithMessage catch (e) {
       _updateErrorMessage(e.message);
     }
   }
