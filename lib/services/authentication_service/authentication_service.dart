@@ -1,4 +1,4 @@
-import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/image_manage/image_uplodaer/image_uploader_port.dart';
@@ -20,7 +20,6 @@ class AuthenticationService extends IAuthenticationService {
       String authenticationToken = await registerTokenRetriever.getToken(requestData);
       HTTPRequester.authenticationToken = authenticationToken;
       return authenticationToken;
-
   }
 
   @override
@@ -32,10 +31,10 @@ class AuthenticationService extends IAuthenticationService {
   } 
 
   @override
-  Future<User> getUserFromToken(String token)async {
+  Future<AuthenticatedUser> getUserFromToken(String token)async {
     HTTPRequest request = HTTPRequest.toServer(unencodedPath: "/users/getUserInfo");
     Map<String, dynamic> response = (await HTTPRequester.get(request)).body;
-    return User.fromJson(response);
+    return AuthenticatedUser.fromJson(response);
   }
 
   Future<String> _uploadUserPhoto(CreateUserRequestData requestData)async{
