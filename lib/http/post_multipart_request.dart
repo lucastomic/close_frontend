@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 class POSTMultipartRequest{
-  http.MultipartRequest _request;
+  final http.MultipartRequest _request;
 
   POSTMultipartRequest(Uri uri):
     _request = http.MultipartRequest("POST",uri);
@@ -19,7 +19,7 @@ class POSTMultipartRequest{
     );
   }
 
-  Future<http.Response>send() async {
+  Future<http.Response> send() async {
     final rawResponse = await _request.send();
     return await http.Response.fromStream(rawResponse);
   }
