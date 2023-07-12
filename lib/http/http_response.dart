@@ -4,7 +4,7 @@ class HTTPResponse{
   final Map<String,dynamic>? _body;  
   HTTPResponse({
     required int statusCode, 
-    required Map<String,String> headers, 
+    Map<String,String> headers =const {}, 
     Map<String,dynamic>? body}
   ):_statusCode = statusCode, _headers = headers, _body = body;
 
@@ -24,6 +24,9 @@ class HTTPResponse{
   }
   get statusIsConflict{
     return _statusCode == 409;  
+  }
+  get statusIsTimeout{
+    return _statusCode == 408;  
   }
   get body{
     return _body;

@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:close_frontend/http/post_multipart_request.dart';
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/http/http_request.dart';
@@ -8,7 +10,9 @@ class HTTPRequester {
   final HTTPRequest _request;
   late Uri _requestCodedIntoURI;
   late HTTPResponse _response; 
+
   static String? _authenticationToken;
+  final Duration defaultTimeOut = const Duration(seconds: 5);
 
   static Future<HTTPResponse> get(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
@@ -34,17 +38,21 @@ class HTTPRequester {
   Future<HTTPResponse> _makeGenericRequest(Future<void> Function() makeSpecificRequest) async {
     _authenticateRequestIfTokenExists();
     _setRequestCodedIntoURI();
-    await makeSpecificRequest();
+    try{
+      await makeSpecificRequest();
+    }on TimeoutException{
+      _setTimeoutResponse();
+    }
     return _response;
   }
 
   Future<void> _makeGETRequest() async{
-    http.Response rawResponse = await http.get(_requestCodedIntoURI,headers: _request.headers);
+    http.Response rawResponse = await http.get(_requestCodedIntoURI,headers: _request.headers).timeout(defaultTimeOut);
     _response =  _parseResponse(rawResponse);
   }
 
   Future<void> _makePOSTRequest()async {
-    http.Response rawResponse = await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body);
+    http.Response rawResponse = await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
     _response =  _parseResponse(rawResponse);  
   }
 
@@ -67,6 +75,10 @@ class HTTPRequester {
     }else{
       _createHeadersToRequestWithAuthenticationToken();
     }
+  }
+
+  void _setTimeoutResponse(){
+    _response = HTTPResponse(statusCode: HttpStatus.requestTimeout);
   }
 
   HTTPResponse _parseResponse(http.Response response) {
