@@ -10,8 +10,8 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../image_manage/image_picker/image_picker.dart' as _i8;
 import '../image_manage/image_picker/image_picker_port.dart' as _i7;
-import '../image_manage/image_uplodaer/image_uploader.dart' as _i10;
-import '../image_manage/image_uplodaer/image_uploader_port.dart' as _i9;
+import '../image_manage/image_uploader/cloudinary_image_uploader.dart' as _i10;
+import '../image_manage/image_uploader/image_uploader_port.dart' as _i9;
 import '../services/authentication_service/authentication_service.dart' as _i13;
 import '../services/authentication_service/port/authentication_service_port.dart'
     as _i12;
@@ -47,10 +47,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i3.ICloseUsersService>(() => _i4.CloseUsersService());
     gh.factory<_i5.ISocialNetworkService>(() => _i6.SocialNetworkService());
     gh.factory<_i7.ImagePickerPort>(() => _i8.ImagePickerImpl());
-    gh.factory<_i9.ImageUploaderPort>(() => _i10.ImageUploader());
+    gh.factory<_i9.ImageUploader>(() => _i10.CloudinaryImageUploader());
     gh.factory<_i11.InputValidator>(() => _i11.InputValidator());
     gh.factory<_i12.IAuthenticationService>(
-        () => _i13.AuthenticationService(get<_i9.ImageUploaderPort>()));
+        () => _i13.AuthenticationService(get<_i9.ImageUploader>()));
     gh.factory<_i14.ILoginInputFactory>(
         () => _i15.LoginInputFactory(get<_i11.InputValidator>()));
     gh.factory<_i16.IRegisterInputFactory>(() => _i17.RegisterInputFactory(

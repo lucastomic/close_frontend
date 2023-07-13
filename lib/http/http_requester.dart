@@ -12,7 +12,7 @@ class HTTPRequester {
   late HTTPResponse _response; 
 
   static String? _authenticationToken;
-  final Duration defaultTimeOut = const Duration(seconds: 5);
+  final Duration defaultTimeOut = const Duration(seconds: 15);
 
   static Future<HTTPResponse> get(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
