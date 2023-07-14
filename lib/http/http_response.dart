@@ -28,6 +28,11 @@ class HTTPResponse{
   get statusIsTimeout{
     return _statusCode == 408;  
   }
+
+  get statusIsInternalServerError{
+    return _statusCode == 500;
+  }
+
   get body{
     return _body;
   }

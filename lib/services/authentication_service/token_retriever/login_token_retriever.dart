@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
 import 'package:close_frontend/exceptions/http/server_connection_exception.dart';
+import 'package:close_frontend/exceptions/internal_server_error.dart/internal_server_error.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/services/authentication_service/token_retriever/token_retriever.dart';
@@ -32,7 +33,6 @@ class LoginTokenRetriever{
 
   Exception _getExceptionFromResponse(HTTPResponse response){
     if(response.statusIsNotFound)throw BadCredentialsException("No existe ningun usuario con el username proporcionado");
-    if(response.statusIsTimeout)throw RenderizableTimeOutException();
     if(response.statusIsBadRequest)throw BadCredentialsException("Contaseña incorrecta");
     throw ServerConnectionException();
   }

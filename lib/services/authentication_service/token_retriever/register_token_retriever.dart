@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:close_frontend/exceptions/authentication/bad_credentials_exception.dart';
 import 'package:close_frontend/exceptions/http/server_connection_exception.dart';
-import 'package:close_frontend/exceptions/timeout/timeout_exception.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
@@ -21,6 +20,7 @@ class RegisterTokenRetriever{
       rethrow;
     }
   } 
+
   HTTPRequest _getRequest(CreateUserRequestData requestData){
     return HTTPRequest.toServer(
       unencodedPath: "/auth/register", 
@@ -31,7 +31,6 @@ class RegisterTokenRetriever{
 
   Exception _getExceptionFromResponse(HTTPResponse response){
     if(response.statusIsConflict)throw BadCredentialsException("Ese nombre de usuario no esta disponible");
-    if(response.statusIsTimeout)throw RenderizableTimeOutException();
     throw ServerConnectionException();
   }
 }
