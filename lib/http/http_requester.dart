@@ -15,14 +15,13 @@ class HTTPRequester {
 
   static Future<HTTPResponse> get(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
-    return httpRequester._makeGenericRequest(httpRequester._makeGETRequest);
+    return httpRequester._makeRequest(httpRequester._makeGETRequest);
   }
 
   static Future<HTTPResponse> post(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
-    return httpRequester._makeGenericRequest(httpRequester._makePOSTRequest);
+    return httpRequester._makeRequest(httpRequester._makePOSTRequest);
   }
-
 
   static set authenticationToken(String token){
     _authenticationToken = token;
@@ -30,25 +29,20 @@ class HTTPRequester {
 
   HTTPRequester._internal(this._request);
 
-  Future<HTTPResponse> _makeGenericRequest(Future<void> Function() makeSpecificRequest) async {
+  Future<HTTPResponse> _makeRequest(Future<http.Response> Function() makeSpecificRequest) async {
     _authenticateRequestIfTokenExists();
     _setRequestCodedIntoURI();
-    try{
-      await makeSpecificRequest();
-    }on TimeoutException{
-      _setTimeoutResponse();
-    }
+    await _setResponse(makeSpecificRequest);
     return _response;
   }
 
-  Future<void> _makeGETRequest() async{
-    http.Response rawResponse = await http.get(_requestCodedIntoURI,headers: _request.headers).timeout(defaultTimeOut);
-    _response =  _parseResponse(rawResponse);
+  Future<http.Response> _makeGETRequest() async{
+    return await http.get(_requestCodedIntoURI,headers: _request.headers).timeout(defaultTimeOut);
+
   }
 
-  Future<void> _makePOSTRequest()async {
-    http.Response rawResponse = await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
-    _response =  _parseResponse(rawResponse);  
+  Future<http.Response> _makePOSTRequest()async {
+    return await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
   }
 
 
@@ -65,8 +59,23 @@ class HTTPRequester {
     }
   }
 
+  Future<void> _setResponse(Future<http.Response> Function() makeSpecificRequest)async{
+    try{
+      http.Response rawResponse = await makeSpecificRequest();
+      _response = _parseResponse(rawResponse);
+    }on TimeoutException{
+      _setTimeoutResponse();
+    }catch(e){
+      _setInternalServerErrorResponse();
+    }
+  }
+
   void _setTimeoutResponse(){
     _response = HTTPResponse(statusCode: HttpStatus.requestTimeout);
+  }
+
+  void _setInternalServerErrorResponse(){
+    _response = HTTPResponse(statusCode: HttpStatus.internalServerError);
   }
 
   HTTPResponse _parseResponse(http.Response response) {
