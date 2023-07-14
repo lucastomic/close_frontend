@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:close_frontend/http/post_multipart_request.dart';
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:http/http.dart' as http;
@@ -24,10 +23,6 @@ class HTTPRequester {
     return httpRequester._makeGenericRequest(httpRequester._makePOSTRequest);
   }
 
-  static Future<HTTPResponse> multiPartRequest(HTTPRequest request, String imagePath, Map<String,String> fields) async {
-    HTTPRequester httpRequester = HTTPRequester._internal(request);
-    return httpRequester._makeGenericRequest(()=>httpRequester._makeMultipartRequest(imagePath, fields));
-  }
 
   static set authenticationToken(String token){
     _authenticationToken = token;
@@ -56,13 +51,6 @@ class HTTPRequester {
     _response =  _parseResponse(rawResponse);  
   }
 
-  Future<void> _makeMultipartRequest(String imagePath, Map<String,String> fields)async {
-    var request = POSTMultipartRequest(_requestCodedIntoURI);
-    request.addFields(fields);
-    request.addFile(imagePath);
-    final response = await request.send();
-    _response = HTTPResponse(statusCode: response.statusCode, headers: response.headers, body:_parseBody(response.body));
-  }
 
   void _setRequestCodedIntoURI() {
     _requestCodedIntoURI =  Uri.http(_request.url, _request.unencodedPath, _request.queryParameters);
