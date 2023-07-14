@@ -1,4 +1,5 @@
 import 'package:close_frontend/exceptions/internal_server_error.dart/internal_server_error.dart';
+import 'package:close_frontend/exceptions/internet_connection/internet_connection_exception.dart';
 import 'package:close_frontend/exceptions/timeout/timeout_exception.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
@@ -24,6 +25,7 @@ class TokenRetriever{
   Exception _getException(HTTPResponse response){
     if(response.statusIsTimeout)throw RenderizableTimeOutException();
     if(response.statusIsInternalServerError) throw InternalServerErrorException();
+    if(response.connectionError) throw InternetConnectionException();
     return _getExceptionFromResponse(response);
   }
 

@@ -65,6 +65,8 @@ class HTTPRequester {
       _response = _parseResponse(rawResponse);
     }on TimeoutException{
       _setTimeoutResponse();
+    }on SocketException{
+      _setNoConnectionResponse();
     }catch(e){
       _setInternalServerErrorResponse();
     }
@@ -77,6 +79,11 @@ class HTTPRequester {
   void _setInternalServerErrorResponse(){
     _response = HTTPResponse(statusCode: HttpStatus.internalServerError);
   }
+
+    void _setNoConnectionResponse(){
+    _response = HTTPResponse.connectionError();
+  }
+
 
   HTTPResponse _parseResponse(http.Response response) {
     return HTTPResponse(
