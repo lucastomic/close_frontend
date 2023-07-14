@@ -15,8 +15,7 @@ class CloudinaryImageUploader implements ImageUploader{
   @override
   Future<String> uploadImage(String imagePath)async{ 
     CloudinaryResponse response = await _uploadImage(imagePath);
-    CloudinaryImage image = CloudinaryImage(response.url);
-    return _getURLWithQualityReduced(image);
+    return response.secureUrl;
   }
 
   void _initializeConfig(){
@@ -28,9 +27,4 @@ class CloudinaryImageUploader implements ImageUploader{
       CloudinaryFile.fromFile(imagePath)
     );
   }
-
-  String _getURLWithQualityReduced(CloudinaryImage image){
-    return image.transform().quality("60").generate();
-  }
-
 }
