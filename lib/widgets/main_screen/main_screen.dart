@@ -1,14 +1,18 @@
+import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/widgets/main_screen/close_users_screen/close_users_screen.dart';
 import 'package:close_frontend/widgets/main_screen/customized_bottom_navigation_bar.dart';
 import 'package:close_frontend/widgets/main_screen/profile/profile.dart';
 import 'package:close_frontend/widgets/main_screen/settings/settings_list.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable()
 class MainScreen extends StatefulWidget {
   final ICloseUsersService _closeUsersService;
+  final ImageQualityReducer _qualityReducer;
 
-  MainScreen(this._closeUsersService);
+  const MainScreen(this._closeUsersService, this._qualityReducer);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -20,7 +24,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    _displayOptions = [const SettingsList(), CloseUsersScreen(widget._closeUsersService), const Profile()];
+    _displayOptions = [
+      const SettingsList(), 
+      CloseUsersScreen(widget._closeUsersService,widget._qualityReducer), 
+      const Profile()
+    ];
     super.initState();
   }
 
