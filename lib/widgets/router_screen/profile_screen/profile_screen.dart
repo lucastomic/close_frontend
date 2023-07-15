@@ -1,7 +1,7 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
-import 'package:close_frontend/widgets/main_screen/profile_screen/profile_info/basic_profile_info.dart';
-import 'package:close_frontend/widgets/main_screen/profile_screen/buttons/log_out_button.dart';
+import 'package:close_frontend/widgets/router_screen/profile_screen/profile_info/basic_profile_info.dart';
+import 'package:close_frontend/widgets/router_screen/profile_screen/buttons/log_out_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

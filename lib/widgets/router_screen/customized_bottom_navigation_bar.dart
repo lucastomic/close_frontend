@@ -3,17 +3,17 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 class CustomizedNaviagtionBar extends StatelessWidget {
   final Function(int) _onItemTapped;
-  final int _selectedIndex;
+  final int _initialIndex;
 
-  const CustomizedNaviagtionBar({required Function(int) onItemTapped, required int selectedIndex})
+  const CustomizedNaviagtionBar({required Function(int) onItemTapped, required int initialIndex})
       : _onItemTapped = onItemTapped,
-        _selectedIndex = selectedIndex;
+      _initialIndex = initialIndex;
 
   @override
   Widget build(BuildContext context) {
     return  GNav(
+      selectedIndex: _initialIndex,
       onTabChange: _onItemTapped,
-      selectedIndex: _selectedIndex,
       color: Theme.of(context).colorScheme.secondary, // unselected icon color
       activeColor: Theme.of(context).colorScheme.primary, 
       mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -34,7 +34,7 @@ import '../widgets/authentication_screen/authentication_forms/input_factory/regi
     as _i20;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i13;
-import '../widgets/main_screen/main_screen.dart'
+import '../widgets/router_screen/router_screen.dart'
     as _i14; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -57,7 +57,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i10.CloudinaryImageQualityReducer());
     gh.factory<_i11.ImageUploader>(() => _i12.CloudinaryImageUploader());
     gh.factory<_i13.InputValidator>(() => _i13.InputValidator());
-    gh.factory<_i14.MainScreen>(() => _i14.MainScreen(
+    gh.factory<_i14.RouterScreen>(() => _i14.RouterScreen(
           get<_i3.ICloseUsersService>(),
           get<_i9.ImageQualityReducer>(),
         ));

@@ -34,6 +34,17 @@ class DecoratedButton extends StatelessWidget {
           );
         }
 
+  DecoratedButton.dangerous({required BuildContext context, required String text, void Function()? onPressed, bool formIsLoading = false})
+      : _text = text,
+        _formIsLoading = formIsLoading,
+        _onPressed = onPressed
+        {
+        _textColor = Theme.of(context).primaryColor;
+         _boxDecoration = BoxDecoration(
+            borderRadius: _borderRadius,
+            color: Theme.of(context).colorScheme.error, 
+          );
+        }
 
   @override
   Widget build(BuildContext context) {
