@@ -13,7 +13,7 @@ class UserBoxCardContent extends StatelessWidget {
 	    child: Column(
 		  children: [
 		    UserInformationColumn(_user) ,
-		    SendMessageButton()
+		    SendMessageButton(_user)
 		  ],
 	    ),
 	  );
