@@ -1,4 +1,4 @@
-import 'package:close_frontend/dependency_injection/injection.dart';
+  import 'package:close_frontend/dependency_injection/injection.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';

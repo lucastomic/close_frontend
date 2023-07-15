@@ -18,13 +18,13 @@ class _DucksReceivedBoxState extends State<DucksReceivedBox> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          DuckLogo(width:180),
-          Text(_ducksReceived.toString(),style: const TextStyle(fontSize: 25),)
-        ],
-      )
+    return Column(
+      children: [
+        DuckLogo.primary(width:180),
+        Text(_ducksReceived.toString(),style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+        const SizedBox(width:200, child: Divider()),
+        const Text("patos recibidos",style: TextStyle(fontSize: 20),),
+      ],
     );
   }
 }

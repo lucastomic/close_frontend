@@ -2,7 +2,7 @@ import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/widgets/main_screen/close_users_screen/close_users_screen.dart';
 import 'package:close_frontend/widgets/main_screen/customized_bottom_navigation_bar.dart';
-import 'package:close_frontend/widgets/main_screen/profile/profile.dart';
+import 'package:close_frontend/widgets/main_screen/profile_screen/profile_screen.dart';
 import 'package:close_frontend/widgets/main_screen/settings/settings_list.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
     _displayOptions = [
       const SettingsList(), 
       CloseUsersScreen(widget._closeUsersService,widget._qualityReducer), 
-      const Profile()
+      const ProfileScreen()
     ];
     super.initState();
   }
