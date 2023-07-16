@@ -1,12 +1,13 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
-import 'package:close_frontend/widgets/router_screen/close_users_screen/user_box/user_box.dart';
+import 'package:close_frontend/widgets/router_screen/close_users_screen/user_button.dart';
 import 'package:flutter/material.dart';
 
-class UsersList extends StatelessWidget {
+
+class UsersButtonsList extends StatelessWidget {
   final List<User> _users;
   final ImageQualityReducer _qualityReducer;
-  const UsersList(List<User> users, ImageQualityReducer qualityReducer) : _users = users, _qualityReducer = qualityReducer;
+  const UsersButtonsList(List<User> users, ImageQualityReducer qualityReducer) : _users = users, _qualityReducer = qualityReducer;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,10 @@ class UsersList extends StatelessWidget {
       child: ListView.builder(
         itemCount: _users.length,
         itemBuilder: (_, int index){
-          return UserBox(_users[index], _qualityReducer);
+          return UserButton(
+            _users[index],
+            _qualityReducer
+          );
         }
       ),
     );
