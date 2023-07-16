@@ -4,7 +4,7 @@ import 'package:close_frontend/extensions/string_extensions.dart';
 class User {
   int? id;
   late String _username;
-  String? profileName;
+  late String profileName;
   String? password;
   String? photo;
   List<String>? interests;
@@ -13,7 +13,7 @@ class User {
   User({
     this.id,
     required String username,
-    this.profileName,
+    required this.profileName,
     this.password,
     this.photo,
     this.interests,
@@ -23,7 +23,7 @@ class User {
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     _username = json['username']!;
-    profileName = json['profileName'];
+    profileName = json['profileName'!];
     password = json['password'];
     photo = json['photo'];
     socialNetworks = {};
