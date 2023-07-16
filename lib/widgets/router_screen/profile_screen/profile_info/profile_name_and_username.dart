@@ -3,13 +3,22 @@ import 'package:flutter/material.dart';
 
 class ProfileNameAndUsername extends StatelessWidget {
   final User _user;
-  const ProfileNameAndUsername(this._user);
+  final double _usernameFontSize;
+  final double _profileNameFontSize;
+  
+  ProfileNameAndUsername(
+    this._user,
+    {double usernameFontSize = 20,
+    double profileNameFontSize = 25}
+  ):_usernameFontSize = usernameFontSize ,
+    _profileNameFontSize = profileNameFontSize;
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _getProfileNameWidget(_user.profileName!),
+        _getProfileNameWidget(_user.profileName),
         _getUsernameWidget(_user.username),
       ],
     );
@@ -18,14 +27,14 @@ class ProfileNameAndUsername extends StatelessWidget {
   Widget _getUsernameWidget(String username){
     return Text(
       username,
-      style: const TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: _usernameFontSize),
     );
   }
 
   Widget _getProfileNameWidget(String name){
     return Text(
       name,
-      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: _profileNameFontSize, fontWeight: FontWeight.bold),
     );
   }
 }
