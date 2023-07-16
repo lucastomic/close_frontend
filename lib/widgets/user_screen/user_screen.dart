@@ -1,4 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/widgets/user_screen/user_app_bar/user_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class UserScreen extends StatelessWidget {
@@ -10,23 +11,12 @@ class UserScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar( 
-            pinned: true,
-            expandedHeight: 260.0,
-            flexibleSpace: FlexibleSpaceBar(
-              centerTitle: true,  
-              title: Text(_user.username),
-              background: FittedBox(
-                fit:BoxFit.cover,   
-                child: Image.network(_user.presentationImage)
-              ),
-            ),
-          ),
+          UserAppBar(_user),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
-                  color: index.isOdd ? Colors.white : Colors.black12,
+                  color: Colors.white,
                   height: 100.0,
                   child: Center(
                     child: Text('$index', textScaleFactor: 5),
