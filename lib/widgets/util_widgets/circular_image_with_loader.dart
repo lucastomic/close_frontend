@@ -18,7 +18,10 @@ class CircularImageWithLaoder extends StatelessWidget {
           height: _diameter,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            child:_image,
+            child:FittedBox(
+              fit: BoxFit.cover,
+              child: _image,
+            ),
           ),
         ),
       ],
