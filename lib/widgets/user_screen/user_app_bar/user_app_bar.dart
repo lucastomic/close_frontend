@@ -1,4 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/widgets/router_screen/profile_screen/profile_info/profile_name_and_username.dart';
 import 'package:flutter/material.dart';
 
 class UserAppBar extends StatelessWidget {
@@ -9,6 +10,7 @@ class UserAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar( 
+automaticallyImplyLeading: false,
       pinned: true,
       expandedHeight: _maxHeight,
       flexibleSpace: FlexibleSpaceBar(
@@ -37,9 +39,10 @@ class _Title extends StatelessWidget {
           alignment: Alignment.center,
           height: 45,
           decoration:_getTitleBackgroundDecoration(context),
-          child: Text(
-            _user.username,
-            textAlign: TextAlign.center,
+          child: ProfileNameAndUsername(
+            _user,
+            usernameFontSize: 12,
+            profileNameFontSize: 18,
           )
       );
   }
@@ -53,7 +56,7 @@ class _Title extends StatelessWidget {
       stops: const [0.2,0.6,1],
       colors: [ 
         Theme.of(context).colorScheme.onSecondary,   
-        Theme.of(context).colorScheme.onSecondary.withOpacity(0.7),   
+        Theme.of(context).colorScheme.onSecondary.withOpacity(0.8),   
         Theme.of(context).colorScheme.onSecondary.withOpacity(0),   
       ],
       begin: Alignment.bottomCenter,
