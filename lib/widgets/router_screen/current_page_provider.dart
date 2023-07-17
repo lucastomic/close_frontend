@@ -3,19 +3,24 @@ import 'package:injectable/injectable.dart';
 
 @Injectable()
 class CurrentPageProvider extends ChangeNotifier{
-  late Widget _currentPage;
+  Widget? _currentPage;
+  late Widget _defaultPage;
 
   set currentPage(Widget page){
     notifyListeners();
     _currentPage = page;
   }
 
+  void goToDefaultPage(){
+    notifyListeners();
+    _currentPage = _defaultPage;
+  }
+
   set defaultPage(Widget page){
-    _currentPage = page;
+    _defaultPage = page;
   }
 
   Widget get currentPage{
-    return _currentPage;
+    return _currentPage ?? _defaultPage;
   }
-
 }
