@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 Map<String, Widget Function(BuildContext)> routes = {
   'main': (_) =>getIt.get<RouterScreen>(),
   'login': (_) => AuthenticationScreen.login(getIt.get<ILoginInputFactory>()),
-  'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>()),
+  'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>(),getIt.get<ISocialNetworkService>()),
   'socialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>()),
 };
 

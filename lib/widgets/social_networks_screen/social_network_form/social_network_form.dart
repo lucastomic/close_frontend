@@ -10,7 +10,14 @@ import '../../../provider/authentication/auth_provider.dart';
 
 class SocialNetowrksForm extends StatefulWidget {
   final ISocialNetworkService _socialNetworkService;
-  const SocialNetowrksForm(this._socialNetworkService);
+  final void Function()? _execAfterSubmit;
+
+  const SocialNetowrksForm(
+    this._socialNetworkService,
+    {
+      void Function()? execAfterSubmit //If it's omitted it will Pop to the previous page as default
+    }
+  ) : _execAfterSubmit = execAfterSubmit;
 
   @override
   State<SocialNetowrksForm> createState() => _SocialNetowrksFormState();
@@ -41,7 +48,7 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
   Future<void> _onSubmit(Map<SocialNetwork, String?> inputs)async{
     await _updateSocialNetworks(inputs);
     await _authenticationProvider.refreshUser();
-    Navigator.of(context).pop();
+    _execAfterSubmitOrPop();
   }
 
   FormInputsList<SocialNetwork,String?> _getFormInputsList(){
@@ -64,5 +71,10 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
         socialNetwork,    
         initialValue: _authenticationProvider.getUsernameFromSocialNetwork(socialNetwork)
       )};
+  }
+
+  void _execAfterSubmitOrPop(){
+    widget._execAfterSubmit!= null ? widget._execAfterSubmit!() : Navigator.of(context).pop();
+
   }
 }

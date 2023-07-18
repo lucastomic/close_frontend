@@ -1,3 +1,4 @@
+import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
@@ -13,8 +14,8 @@ class AuthenticationScreen extends StatelessWidget {
       : _form = LoginForm(inputFactory),
         _changeScreenButton = _ChangeScreenButton("Aun no tengo cuenta", "register");
 
-  AuthenticationScreen.register(IRegisterInputFactory inputFactory)
-      : _form = RegisterForm(inputFactory),
+  AuthenticationScreen.register(IRegisterInputFactory inputFactory, ISocialNetworkService socialNetworkService)
+      : _form = RegisterForm(inputFactory, socialNetworkService),
         _changeScreenButton = _ChangeScreenButton("Ya tengo cuenta", "login");
 
   @override
