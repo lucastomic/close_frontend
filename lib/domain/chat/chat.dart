@@ -11,13 +11,23 @@ class Chat{
     _initializeMessagesFromJSON(json);
   }
 
+  Message getMessage(int i){
+    return _messages[i];  
+  }
+
+  int get amountOfMessages{
+      return _messages.length;  
+  }
+
   void _initializeMembersFromJSON(Map<String,dynamic> json){
-    for(Map<String,dynamic> member in json["users"]! as List<Map<String,dynamic>>){
+    List usersJSON = json["users"];
+    for(Map<String,dynamic> member in usersJSON ){
       _members.add(User.fromJson(member));
     }
   }
   void _initializeMessagesFromJSON(Map<String,dynamic> json){
-    for(Map<String,dynamic> message in json["message"]! as List<Map<String,dynamic>>){
+    List messagesJSON = json["messages"];
+    for(Map<String,dynamic> message in messagesJSON){
       _messages.add(Message.fromJSON(message));
     }
   }

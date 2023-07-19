@@ -1,5 +1,6 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/message_service/message_service_port.dart';
+import 'package:close_frontend/widgets/message_screen/messages_list.dart';
 import 'package:close_frontend/widgets/util_widgets/back_arrow.dart';
 import 'package:close_frontend/widgets/util_widgets/circular_image_with_loader.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,16 @@ class MessageScreen extends StatelessWidget {
           ],
         ),
         automaticallyImplyLeading: false,
+      ),
+      body: FutureBuilder(
+        future: _messageService.getChat(_user),
+        builder: (context, snapshot){
+          if(snapshot.hasData){ 
+            return MessagesList(snapshot.data!);
+          }else{
+            return Container();
+          }
+        } ,
       ),
     );
   }

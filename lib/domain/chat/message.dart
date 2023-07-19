@@ -6,6 +6,10 @@ class Message{
 
   Message.fromJSON(Map<String,dynamic> json){
     _value = json["value"];
-    _sender = json["sender"];
+    _sender = User.fromJson(json["sender"]);
+  }
+
+  String get value{
+    return _value;
   }
 }

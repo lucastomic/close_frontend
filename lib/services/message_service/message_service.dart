@@ -32,7 +32,7 @@ class MessageService implements IMessageService{
     HTTPRequest request = HTTPRequest.toServer(
       unencodedPath: "/chat/get/${receiver.id}",
     );
-    HTTPResponse response = await HTTPRequester.post(request);
+    HTTPResponse response = await HTTPRequester.get(request);
     if(!response.statusIsOK){
       throw _getException(response);
     }
