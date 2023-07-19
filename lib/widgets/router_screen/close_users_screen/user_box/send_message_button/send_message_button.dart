@@ -1,4 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/services/message_service/message_service_port.dart';
 import 'package:close_frontend/widgets/message_screen/message_screen.dart';
 import 'package:close_frontend/widgets/router_screen/current_page_provider.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,8 @@ import 'package:provider/provider.dart';
 
 class SendMessageButton extends StatefulWidget {
   User _user;
-  SendMessageButton(this._user);
+  final IMessageService _messageService;
+  SendMessageButton(this._user, this._messageService);
 
   @override
   State<SendMessageButton> createState() => _SendMessageButtonState();
@@ -29,6 +31,6 @@ class _SendMessageButtonState extends State<SendMessageButton> {
 	}
 
 	void _onPressed(){
-    context.read<CurrentPageProvider>().currentPage = MessageScreen(widget._user);
+    context.read<CurrentPageProvider>().currentPage = MessageScreen(widget._user, widget._messageService);
 	}
 }

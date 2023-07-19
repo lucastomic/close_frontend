@@ -32,7 +32,7 @@ class CloseUsersService implements ICloseUsersService {
     _closeUsersSubscription = WebSocketSubscription(
       context,
       destination: "/user/queue/closeusers", 
-      url:"ws://10.0.2.2:8080/socket", 
+      url:"ws://192.168.18.32:8080/socket", 
       callback: _onUsersReceived
     );
   }
