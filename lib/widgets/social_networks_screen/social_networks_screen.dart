@@ -18,14 +18,21 @@ class SocialNetworksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            const SocialNetworksScreenHeader(), 
-            Expanded(
-              child: SocialNetowrksForm(_socialNetworkService, execAfterSubmit: _execAfterSubmit,),
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  const SocialNetworksScreenHeader(), 
+                  Expanded(
+                    child: SocialNetowrksForm(_socialNetworkService, execAfterSubmit: _execAfterSubmit,)
+                  ) ,
+                ],
+              ),
             ),
           ],
-        ),
+        )
       )
     );
   }
