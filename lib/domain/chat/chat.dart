@@ -3,8 +3,8 @@ import 'package:close_frontend/domain/chat/message.dart';
 import '../user/user.dart';
 
 class Chat{
-  List<User> _members = []; 
-  List<Message> _messages = [];
+  final List<User> _members = []; 
+  final List<Message> _messages = [];
 
   Chat.fromJSON(Map<String,dynamic> json){
     _initializeMembersFromJSON(json);

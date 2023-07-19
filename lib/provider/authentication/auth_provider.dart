@@ -52,4 +52,7 @@ class AuthenticationProvider extends ChangeNotifier {
   int get ducksReceived{
     return _authenticatedUser!.ducksReceived;
   }
+  bool isUserAuthenticated(User user){
+    return _authenticatedUser!.id == user.id;
+  }
 }

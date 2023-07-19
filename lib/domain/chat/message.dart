@@ -12,4 +12,7 @@ class Message{
   String get value{
     return _value;
   }
+  User get sender{
+    return _sender;
+  }
 }
