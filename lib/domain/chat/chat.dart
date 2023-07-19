@@ -11,8 +11,9 @@ class Chat{
     _initializeMessagesFromJSON(json);
   }
 
-  Message getMessage(int i){
-    return _messages[i];  
+  Message getMessageStartingFromLast(int i){
+    int indexStartingFromLast = amountOfMessages - i - 1;
+    return _messages[indexStartingFromLast];  
   }
 
   int get amountOfMessages{

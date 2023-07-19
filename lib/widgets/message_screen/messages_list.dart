@@ -8,11 +8,16 @@ class MessagesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _chat.amountOfMessages,
-      itemBuilder: (BuildContext context, int index) { 
-        return MessageBox(_chat.getMessage(index),);
-      },
+    return Expanded(
+      child: ListView.builder(
+        reverse: true,
+        physics: const ScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: _chat.amountOfMessages,
+        itemBuilder: (BuildContext context, int index) { 
+          return MessageBox(_chat.getMessageStartingFromLast(index),);
+        },
+      ),
     );
   }
 }
