@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/exceptions/internal_server_error.dart/internal_server_error.dart';
 import 'package:close_frontend/exceptions/internet_connection/internet_connection_exception.dart';
@@ -19,7 +18,7 @@ class MessageService implements IMessageService{
   Future<void> sendMessage(User user, String message)async {
     HTTPRequest request = HTTPRequest.toServer(
       unencodedPath: "/chat/send",
-      body: jsonEncode({"receiverID":user.id,"message":message})
+      body: <String,dynamic>{"receiverID":user.id.toString(),"value":message}
     );
     HTTPResponse response = await HTTPRequester.post(request);
     if(!response.statusIsOK){

@@ -1,14 +1,23 @@
+import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/services/message_service/message_service_port.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageButton extends StatelessWidget {
-  const SendMessageButton({super.key});
+  final String? _message;
+  final IMessageService _messageService;
+  final User _receiver;
+  
+  SendMessageButton(this._message, this._messageService, this._receiver);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: _onTap,
       child: const SendMessageButtonUI(),
     );
+  }
+  void _onTap()async{
+    if(_message !=null)await _messageService.sendMessage(_receiver, _message!);
   }
 }
 
