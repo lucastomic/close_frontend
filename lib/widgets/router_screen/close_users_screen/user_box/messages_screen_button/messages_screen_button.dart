@@ -5,16 +5,16 @@ import 'package:close_frontend/widgets/router_screen/current_page_provider.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SendMessageButton extends StatefulWidget {
+class MessagesScreenButton extends StatefulWidget {
   User _user;
   final IMessageService _messageService;
-  SendMessageButton(this._user, this._messageService);
+  MessagesScreenButton(this._user, this._messageService);
 
   @override
-  State<SendMessageButton> createState() => _SendMessageButtonState();
+  State<MessagesScreenButton> createState() => _MessagesScreenButtonState();
 }
 
-class _SendMessageButtonState extends State<SendMessageButton> {
+class _MessagesScreenButtonState extends State<MessagesScreenButton> {
 	@override
 	Widget build(BuildContext context) {
 	  return MaterialButton(
