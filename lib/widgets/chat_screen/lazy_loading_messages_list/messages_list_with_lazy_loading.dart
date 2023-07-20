@@ -23,6 +23,13 @@ class _MessagesListWithLazyLoadingState extends State<MessagesListWithLazyLoadin
   }
 
   @override
+  void didUpdateWidget(covariant MessagesListWithLazyLoading oldWidget) {
+    _messagesList = MessagesListLoader(widget._chat)..loadMessages();
+    super.didUpdateWidget(oldWidget);
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(

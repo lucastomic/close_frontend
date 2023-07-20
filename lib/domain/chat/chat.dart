@@ -6,6 +6,8 @@ class Chat{
   final List<User> _members = []; 
   final List<Message> _messages = [];
 
+  Chat();
+
   Chat.fromJSON(Map<String,dynamic> json){
     _initializeMembersFromJSON(json);
     _initializeMessagesFromJSON(json);
