@@ -6,13 +6,13 @@ import 'package:close_frontend/exceptions/timeout/timeout_exception.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
-import 'package:close_frontend/services/message_service/message_service_port.dart';
+import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/chat/chat.dart';
 
-@Injectable(as: IMessageService)
-class MessageService implements IMessageService{
+@Injectable(as: IChatService)
+class ChatService implements IChatService{
 
   @override
   Future<void> sendMessage(User user, String message)async {
@@ -44,5 +44,9 @@ class MessageService implements IMessageService{
     return InternalServerErrorException();
   }
   
-
+  @override
+  Stream<Chat> getChatStream() {
+    // TODO: implement getChatStream
+    throw UnimplementedError();
+  }
 }

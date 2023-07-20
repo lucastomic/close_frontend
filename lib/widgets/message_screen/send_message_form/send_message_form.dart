@@ -1,15 +1,15 @@
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/services/message_service/message_service_port.dart';
+import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:close_frontend/widgets/message_screen/send_message_form/message_input.dart';
 import 'package:close_frontend/widgets/message_screen/send_message_form/send_message_button.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageForm extends StatefulWidget {
-  final IMessageService _messageService;
+  final IChatService _messageService;
   final User _receiver;
 
   SendMessageForm({
-    required IMessageService messageService,
+    required IChatService messageService,
     required User receiver,
 
   }):

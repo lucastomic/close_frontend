@@ -1,10 +1,10 @@
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/services/message_service/message_service_port.dart';
+import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageButton extends StatelessWidget {
   final String? _message;
-  final IMessageService _messageService;
+  final IChatService _messageService;
   final User _receiver;
   
   SendMessageButton(this._message, this._messageService, this._receiver);

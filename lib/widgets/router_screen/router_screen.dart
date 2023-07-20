@@ -1,6 +1,6 @@
 import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
-import 'package:close_frontend/services/message_service/message_service_port.dart';
+import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/close_users_screen/close_users_screen.dart';
 import 'package:close_frontend/widgets/router_screen/current_page_provider.dart';
 import 'package:close_frontend/widgets/router_screen/customized_bottom_navigation_bar.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 @Injectable()
 class RouterScreen extends StatefulWidget {
-  final IMessageService _messageService;
+  final IChatService _messageService;
   final ICloseUsersService _closeUsersService;
   final ImageQualityReducer _qualityReducer;
 
