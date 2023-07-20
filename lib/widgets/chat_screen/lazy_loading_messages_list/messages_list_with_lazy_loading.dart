@@ -1,6 +1,6 @@
 import 'package:close_frontend/domain/chat/chat.dart';
-import 'package:close_frontend/widgets/message_screen/lazy_loading_messages_list/messages_list_loader.dart';
-import 'package:close_frontend/widgets/message_screen/message_box.dart';
+import 'package:close_frontend/widgets/chat_screen/lazy_loading_messages_list/messages_list_loader.dart';
+import 'package:close_frontend/widgets/chat_screen/message_box.dart';
 import 'package:flutter/material.dart';
 
 class MessagesListWithLazyLoading extends StatefulWidget {

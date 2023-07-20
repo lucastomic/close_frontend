@@ -1,5 +1,5 @@
 import 'package:close_frontend/domain/chat/chat.dart';
-import 'package:close_frontend/widgets/message_screen/lazy_loading_messages_list/messages_list_with_lazy_loading.dart';
+import 'package:close_frontend/widgets/chat_screen/lazy_loading_messages_list/messages_list_with_lazy_loading.dart';
 import 'package:flutter/material.dart';
 
 class MessagesFutureBuilder extends StatelessWidget {

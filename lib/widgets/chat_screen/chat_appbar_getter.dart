@@ -3,7 +3,7 @@ import 'package:close_frontend/widgets/util_widgets/back_arrow.dart';
 import 'package:close_frontend/widgets/util_widgets/circular_image_with_loader.dart';
 import 'package:flutter/material.dart';
 
-class MessageAppBarGetter{
+class ChatAppBarGetter{
   static getAppBar(BuildContext context, User user){
     return AppBar(
       backgroundColor: Theme.of(context).primaryColor,

@@ -1,6 +1,6 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
-import 'package:close_frontend/widgets/message_screen/message_screen.dart';
+import 'package:close_frontend/widgets/chat_screen/chat_screen.dart';
 import 'package:close_frontend/widgets/router_screen/current_page_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +31,6 @@ class _MessagesScreenButtonState extends State<MessagesScreenButton> {
 	}
 
 	void _onPressed(){
-    context.read<CurrentPageProvider>().currentPage = MessageScreen(widget._user, widget._messageService);
+    context.read<CurrentPageProvider>().currentPage = ChatScreen(widget._user, widget._messageService);
 	}
 }
