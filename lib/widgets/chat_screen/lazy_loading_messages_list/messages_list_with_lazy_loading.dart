@@ -17,14 +17,14 @@ class _MessagesListWithLazyLoadingState extends State<MessagesListWithLazyLoadin
 
   @override
   void initState() {
-    _messagesList = MessagesListLoader(widget._chat)..loadMessages();
+    _laodMessagesList();
     _scrollController = ScrollController()..addListener(_scrollListener);
     super.initState();
   }
 
   @override
   void didUpdateWidget(covariant MessagesListWithLazyLoading oldWidget) {
-    _messagesList = MessagesListLoader(widget._chat)..loadMessages();
+    _laodMessagesList();
     super.didUpdateWidget(oldWidget);
   }
 
@@ -43,6 +43,10 @@ class _MessagesListWithLazyLoadingState extends State<MessagesListWithLazyLoadin
         },
       ),
     );
+  }
+
+  void _laodMessagesList(){
+    _messagesList = MessagesListLoader(widget._chat)..loadMessages();
   }
 
   void _scrollListener() {
