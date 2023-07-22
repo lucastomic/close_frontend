@@ -22,6 +22,12 @@ class _MessageBoxState extends State<MessageBox> {
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant MessageBox oldWidget) {
+    _initalizeMessageType();
+    super.didUpdateWidget(oldWidget);
+  }
+
 	@override
 	Widget build(BuildContext context) {
 	  return _getMessageBoxAligned();
