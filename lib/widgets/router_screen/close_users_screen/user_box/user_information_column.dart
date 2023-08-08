@@ -18,7 +18,7 @@ class UserInformationColumn extends StatelessWidget {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.only(left:8.0),
-                child: SocialNetworksList(_user.socialNetworks,),
+                child: SocialNetworksList(_user.socialNetworks, maxSocialNetworksDisplayed: 3,),
               ),
             )
           )

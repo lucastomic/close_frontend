@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class SocialNetworksList extends StatelessWidget {
   final Map<SocialNetwork,String> _socialNetworksToUsername;
-  final int _maxSocialNetworksDisplayed;
+  final int? _maxSocialNetworksDisplayed;
   final double _logoSize;
   final double _fontSize;
 
@@ -14,7 +14,7 @@ class SocialNetworksList extends StatelessWidget {
     {
       double logoSize = 18, 
       double fontSize = 14, 
-      int maxSocialNetworksDisplayed = 3
+      int? maxSocialNetworksDisplayed
     }
   ):
   _logoSize = logoSize, _fontSize =fontSize, _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed;
@@ -36,7 +36,9 @@ class SocialNetworksList extends StatelessWidget {
   }
 
   int _getNumberOfSocialNetworksDisplayed(){
-    return min(_maxSocialNetworksDisplayed, _socialNetworksToUsername.length);
+    return _maxSocialNetworksDisplayed == null 
+      ? _socialNetworksToUsername.length 
+      : min(_maxSocialNetworksDisplayed!, _socialNetworksToUsername.length);
   }
 
 }
