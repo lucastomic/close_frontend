@@ -7,7 +7,7 @@ class DecoratedButton extends StatelessWidget {
   final bool _formIsLoading;
   final void Function()? _onPressed;
   late final  Color _textColor;
-  final BorderRadius _borderRadius =  BorderRadius.circular(20);
+  final BorderRadius _borderRadius =  BorderRadius.circular(15);
 
   /// Context must be passed to access to theme. If there is any better way to do this, please change.
   DecoratedButton.primaryColor({required BuildContext context, required String text, void Function()? onPressed, bool formIsLoading = false})
@@ -51,7 +51,7 @@ class DecoratedButton extends StatelessWidget {
     return MaterialButton(
       onPressed: _formIsLoading ? null : _onPressed,
       child: Container(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.symmetric(vertical:12),
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: _boxDecoration,
           child: Center(

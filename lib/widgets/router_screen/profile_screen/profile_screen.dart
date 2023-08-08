@@ -8,22 +8,37 @@ import 'package:provider/provider.dart';
 import 'buttons/modify_social_networks_button.dart';
 import 'ducks_received_box.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  late User user;
+
+  @override
+  void initState() {
     AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
-    User user = authenticationProvider.authenticatedUser;
+    user = authenticationProvider.authenticatedUser;    
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return CustomScrollView(  
       slivers: [
         SliverFillRemaining(
+          hasScrollBody: false,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                 BasicProfileInfo(user),
-                DucksReceivedBox(),
+                DucksReceivedBox(), 
+                Spacer(),
                 ModifySocialNetworksButton(), 
+                ModifySocialNetworksButton(),
                 const LogOutButton()
             ],
           ),

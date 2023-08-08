@@ -20,10 +20,10 @@ class _DucksReceivedBoxState extends State<DucksReceivedBox> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        DuckLogo.primary(width:180),
-        Text(_ducksReceived.toString(),style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-        const SizedBox(width:200, child: Divider()),
-        const Text("patos recibidos",style: TextStyle(fontSize: 20),),
+        DuckLogo.primary(width:130),
+        Text(_ducksReceived.toString(),style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
+        const SizedBox(width:150,height: 1, child: Divider()),
+        const Text("patos recibidos",style: TextStyle(fontSize: 15),),
       ],
     );
   }

@@ -6,15 +6,35 @@ import 'photo_button_to_edit_profile.dart';
 
 class BasicProfileInfo extends StatelessWidget {
   final User _user;
+  final double _height = 250;
   const BasicProfileInfo(this._user);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        PhotoButtonToEditProfile(_user.presentationImage),
-        Expanded(child: ProfileNameAndUsername(_user))
-      ],
+    return Container(
+      height: _height,
+      decoration: _getDecoration(context),
+      child:  Row(
+        children: [
+          const SizedBox(width: 15,),
+          PhotoButtonToEditProfile(_user.presentationImage),
+          Expanded(child: ProfileNameAndUsername(_user))
+        ],
+      ),
     );
   }
+
+  BoxDecoration _getDecoration(BuildContext context){
+    return BoxDecoration(  
+      gradient: LinearGradient(
+        colors: [
+          Theme.of(context).colorScheme.onPrimary, 
+          Theme.of(context).colorScheme.background ,     
+        ],
+        begin:Alignment.topCenter, 
+        end:Alignment.bottomCenter, 
+      )
+    );
+  }
+
 }
 

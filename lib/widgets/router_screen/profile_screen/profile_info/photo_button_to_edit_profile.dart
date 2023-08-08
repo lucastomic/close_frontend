@@ -13,7 +13,7 @@ class PhotoButtonToEditProfile extends StatelessWidget {
         children: [
           CircularImageWithLaoder(
             image: Image.network(_imagePath,fit: BoxFit.cover,), 
-            diameter: 170
+            diameter: 150
           ),
           const Positioned(
             right: 0,

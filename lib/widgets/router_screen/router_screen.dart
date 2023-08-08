@@ -41,7 +41,7 @@ class _RouterScreenState extends State<RouterScreen> {
           initialIndex: _initalPageIndex,
           onItemTapped: _onItemTapped,
         ),
-        body: SafeArea(child: context.watch<CurrentPageProvider>().currentPage)
+        body: context.watch<CurrentPageProvider>().currentPage
     );
   }
 
