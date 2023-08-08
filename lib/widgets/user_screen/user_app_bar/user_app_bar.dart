@@ -3,14 +3,14 @@ import 'package:close_frontend/widgets/router_screen/profile_screen/profile_info
 import 'package:flutter/material.dart';
 
 class UserAppBar extends StatelessWidget {
-  User _user; 
+  final User _user; 
   final double _maxHeight = 300.0;
   UserAppBar(this._user);
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar( 
-automaticallyImplyLeading: false,
+      automaticallyImplyLeading: false,
       pinned: true,
       expandedHeight: _maxHeight,
       flexibleSpace: FlexibleSpaceBar(
@@ -53,7 +53,7 @@ class _Title extends StatelessWidget {
 
   Gradient _getTitleBackgroundGradient(BuildContext context){
     return LinearGradient(
-      stops: const [0.2,0.6,1],
+      stops: const [0.4,0.8,1],
       colors: [ 
         Theme.of(context).colorScheme.onSecondary,   
         Theme.of(context).colorScheme.onSecondary.withOpacity(0.8),   

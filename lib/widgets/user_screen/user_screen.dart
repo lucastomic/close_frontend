@@ -15,22 +15,18 @@ class UserScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          UserAppBar(_user),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: [ 
-                      SocialNetworksList(_user.socialNetworks, logoSize: 50, fontSize: 20,),
-                      MessagesScreenButton(_user,_messageService),
-                    ],
-                  ),
-                )
-              ]
-            ),
-          ),
+          UserAppBar(_user),  
+          SliverFillRemaining(
+            child:  Container(
+              margin: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                children: [ 
+                  Expanded(child: SocialNetworksList(_user.socialNetworks, logoSize: 50, fontSize: 20,)), 
+                  MessagesScreenButton(_user,_messageService),
+                ],
+              ),
+            )
+          )
         ],
       ),
     );
