@@ -22,7 +22,10 @@ class UserScreen extends StatelessWidget {
               child: Column(
                 children: [ 
                   Expanded(
-                    child: SocialNetworksList(_user.socialNetworks, logoSize: 50, fontSize: 20,)
+                    child: SizedBox(
+                      width: 240, 
+                      child: SocialNetworksList(_user.socialNetworks, logoSize: 30, fontSize: 20, spaceBetweenRows: 24,)
+                    )
                   ), 
                   MessagesScreenButton(_user,_messageService),
                 ],

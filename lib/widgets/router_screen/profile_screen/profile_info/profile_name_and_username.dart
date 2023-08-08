@@ -28,6 +28,7 @@ class ProfileNameAndUsername extends StatelessWidget {
     return Text(
       username,
       style: TextStyle(fontSize: _usernameFontSize),
+      textAlign: TextAlign.center,
     );
   }
 
@@ -35,6 +36,7 @@ class ProfileNameAndUsername extends StatelessWidget {
     return Text(
       name,
       style: TextStyle(fontSize: _profileNameFontSize, fontWeight: FontWeight.bold),
+      textAlign: TextAlign.center,
     );
   }
 }

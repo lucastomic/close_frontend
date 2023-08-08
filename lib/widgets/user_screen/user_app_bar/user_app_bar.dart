@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class UserAppBar extends StatelessWidget {
   final User _user; 
-  final double _maxHeight = 300.0;
+  final double _maxHeight = 240.0;
   UserAppBar(this._user);
 
   @override
@@ -36,15 +36,15 @@ class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-          alignment: Alignment.center,
-          height: 45,
-          decoration:_getTitleBackgroundDecoration(context),
-          child: ProfileNameAndUsername(
-            _user,
-            usernameFontSize: 12,
-            profileNameFontSize: 18,
-          )
-      );
+        alignment: Alignment.center,
+        height: 60,
+        decoration:_getTitleBackgroundDecoration(context),
+        child: ProfileNameAndUsername(
+          _user,
+          usernameFontSize: 12,
+          profileNameFontSize: 16,
+        )
+    );
   }
 
   BoxDecoration _getTitleBackgroundDecoration(BuildContext context){
@@ -53,11 +53,10 @@ class _Title extends StatelessWidget {
 
   Gradient _getTitleBackgroundGradient(BuildContext context){
     return LinearGradient(
-      stops: const [0.4,0.8,1],
+      stops: const [0.3,1],
       colors: [ 
-        Theme.of(context).colorScheme.onSecondary,   
-        Theme.of(context).colorScheme.onSecondary.withOpacity(0.8),   
-        Theme.of(context).colorScheme.onSecondary.withOpacity(0),   
+        Theme.of(context).colorScheme.background,   
+        Theme.of(context).colorScheme.background.withOpacity(0),   
       ],
       begin: Alignment.bottomCenter,
       end: Alignment.topCenter,

@@ -8,16 +8,20 @@ class SocialNetworksList extends StatelessWidget {
   final int? _maxSocialNetworksDisplayed;
   final double _logoSize;
   final double _fontSize;
+  final double _spaceBetweenRows;
+  final double _width;
 
   const SocialNetworksList(
     this._socialNetworksToUsername, 
     {
       double logoSize = 18, 
       double fontSize = 14, 
+      double spaceBetweenRows = 4, 
+      double width = double.infinity,
       int? maxSocialNetworksDisplayed
     }
   ):
-  _logoSize = logoSize, _fontSize =fontSize, _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed;
+  _logoSize = logoSize, _fontSize =fontSize, _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed, _spaceBetweenRows = spaceBetweenRows, _width = width;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class SocialNetworksList extends StatelessWidget {
       itemBuilder: (_, int index){
         SocialNetwork socialNetwork = _socialNetworksToUsername.keys.elementAt(index);
         return Padding(
-          padding: const EdgeInsets.only(bottom: 4.0),
+          padding: EdgeInsets.only(bottom: _spaceBetweenRows),
           child: _SocialNetworkRow(socialNetwork, _socialNetworksToUsername[socialNetwork]!, _logoSize, _fontSize),
         );
       }
@@ -57,10 +61,12 @@ class _SocialNetworkRow extends StatelessWidget {
       children: [
         SizedBox(width:_logoSize, child: _socialNetwork.logo),
         const SizedBox(width: 7,),
-        Text(
-          _username.asUsername(),
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: _fontSize),  
+        Flexible(
+          child: Text(
+            _username.asUsername(),
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: _fontSize, fontWeight: FontWeight.w600),  
+          ),
         ),
       ],
     );
