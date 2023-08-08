@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CircularImageWithLaoder extends StatelessWidget {
-  Image _image;
-  double _diameter;
+  final Image _image;
+  final double _diameter;
   CircularImageWithLaoder({required Image image, required double diameter}):
     _diameter = diameter,
     _image = image;

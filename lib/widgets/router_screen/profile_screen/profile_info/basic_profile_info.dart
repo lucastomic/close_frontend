@@ -10,10 +10,9 @@ class BasicProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         PhotoButtonToEditProfile(_user.presentationImage),
-        ProfileNameAndUsername(_user)
+        Expanded(child: ProfileNameAndUsername(_user))
       ],
     );
   }
