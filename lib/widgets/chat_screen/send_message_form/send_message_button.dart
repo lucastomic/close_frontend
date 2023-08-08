@@ -4,10 +4,20 @@ import 'package:flutter/material.dart';
 
 class SendMessageButton extends StatelessWidget {
   final String? _message;
-  final IChatService _messageService;
+  final IChatService _chatService;
   final User _receiver;
+  final void Function()? _onSubmit;
   
-  SendMessageButton(this._message, this._messageService, this._receiver);
+  const SendMessageButton({
+    required IChatService chatService,
+    required User receiver,
+    String? message,
+    void Function()? onSubmit,
+  }):
+  _message = message,
+  _chatService = chatService,
+  _receiver =receiver,
+  _onSubmit = onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +27,18 @@ class SendMessageButton extends StatelessWidget {
     );
   }
   void _onTap()async{
-    if(_message !=null)await _messageService.sendMessage(_receiver, _message!);
+    if(_messageIsValid()){
+      await _chatService.sendMessage(_receiver, _message!);
+      executeOnSubmitIfExists();
+    }
+  }
+
+  bool _messageIsValid(){
+    return _message !=null && _message != "";
+  }
+
+  void executeOnSubmitIfExists(){
+    if(_onSubmit != null)_onSubmit!();
   }
 }
 

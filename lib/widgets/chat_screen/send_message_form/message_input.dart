@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MessageInput extends StatefulWidget {
-  void Function(String? value) _onChanged; 
-  MessageInput(this._onChanged);
+  final void Function(String? value) _onChanged; 
+  final TextEditingController? _textEditingController;
+  MessageInput(this._onChanged,{ TextEditingController? textEditingController}) : _textEditingController = textEditingController;
   @override
   State<MessageInput> createState() => _MessageInputState();
 }
@@ -15,6 +16,7 @@ class _MessageInputState extends State<MessageInput> {
         padding: const EdgeInsets.all(8),
         decoration: _getExternalDecoration(),
         child: TextField(
+          controller: widget._textEditingController,
           maxLines: null,
           decoration: _getInputDecoration(),
           onChanged: widget._onChanged,

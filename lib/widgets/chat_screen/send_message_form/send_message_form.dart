@@ -5,15 +5,14 @@ import 'package:close_frontend/widgets/chat_screen/send_message_form/send_messag
 import 'package:flutter/material.dart';
 
 class SendMessageForm extends StatefulWidget {
-  final IChatService _messageService;
+  final IChatService _chatService;
   final User _receiver;
 
   SendMessageForm({
     required IChatService messageService,
     required User receiver,
-
   }):
-  _messageService = messageService,
+  _chatService = messageService,
   _receiver = receiver;
 
   @override
@@ -22,7 +21,7 @@ class SendMessageForm extends StatefulWidget {
 
 class _SendMessageFormState extends State<SendMessageForm> {
   String? _message;
-
+  final TextEditingController _messageInputController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -30,13 +29,14 @@ class _SendMessageFormState extends State<SendMessageForm> {
         padding: const EdgeInsets.only(top:8.0,right: 8,left: 8),
         child: Row(
           children: [
-            MessageInput(_updateMessage),
+            MessageInput(_updateMessage, textEditingController:  _messageInputController,),
             Container(
               margin:const EdgeInsets.symmetric(horizontal:5),
               child: SendMessageButton(
-                _message,
-                widget._messageService,
-                widget._receiver
+                message: _message,
+                chatService: widget._chatService,
+                receiver: widget._receiver,
+                onSubmit: _onSent,
               )
             )
           ],
@@ -50,5 +50,11 @@ class _SendMessageFormState extends State<SendMessageForm> {
       _message = value;
     });
   }
+
+  void _onSent(){
+    _messageInputController.clear();
+    _updateMessage(null);
+  }
+
 }
 
