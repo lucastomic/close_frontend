@@ -33,11 +33,13 @@ class _CloseUsersScreenState extends State<CloseUsersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-		    CloseUsersHeader(),
-        CloseUsersFromStream(_closeUsersStream, widget._qualityReducer, widget._messageService),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+            CloseUsersHeader(),
+          CloseUsersFromStream(_closeUsersStream, widget._qualityReducer, widget._messageService),
+        ],
+      ),
     );
   }
 
