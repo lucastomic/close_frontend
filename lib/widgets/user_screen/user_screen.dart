@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class UserScreen extends StatelessWidget {
   final User _user;
   final IChatService _messageService;
-  UserScreen(this._user,this._messageService);
+  const UserScreen(this._user,this._messageService);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,9 @@ class UserScreen extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 children: [ 
-                  Expanded(child: SocialNetworksList(_user.socialNetworks, logoSize: 50, fontSize: 20,)), 
+                  Expanded(
+                    child: SocialNetworksList(_user.socialNetworks, logoSize: 50, fontSize: 20,)
+                  ), 
                   MessagesScreenButton(_user,_messageService),
                 ],
               ),
