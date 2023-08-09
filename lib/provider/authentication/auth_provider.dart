@@ -22,6 +22,11 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
+  void logOut(){
+    _authenticatedToken = null;
+    _authenticatedToken = null;
+  }
+
   Future<void> register(CreateUserRequestData requestData) async {
     try{
       _authenticatedToken = await _authenticationService.tokenFromRegister(requestData);
@@ -45,14 +50,15 @@ class AuthenticationProvider extends ChangeNotifier {
     return _authenticatedToken!;
   }
 
+  bool isUserAuthenticated(User user){
+    return _authenticatedUser!.id == user.id;
+  }
+
   String? getUsernameFromSocialNetwork(SocialNetwork socialNetwork){
     return _authenticatedUser!.socialNetworks[socialNetwork];
   }
 
   int get ducksReceived{
     return _authenticatedUser!.ducksReceived;
-  }
-  bool isUserAuthenticated(User user){
-    return _authenticatedUser!.id == user.id;
-  }
+  } 
 }
