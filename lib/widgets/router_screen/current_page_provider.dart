@@ -16,8 +16,9 @@ class CurrentPageProvider extends ChangeNotifier{
     _currentPage = _defaultPage;
   }
 
-  set defaultPage(Widget page){
+  set defaultAndCurrentPage(Widget page){
     _defaultPage = page;
+    _currentPage = page;
   }
 
   Widget get currentPage{

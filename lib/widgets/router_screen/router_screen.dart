@@ -51,8 +51,7 @@ class _RouterScreenState extends State<RouterScreen> {
 
   void _initCurrentPageProvider(){
     _currentPage = context.read<CurrentPageProvider>();
-    _currentPage.defaultPage = _displayOptions[_initalPageIndex];
-    _currentPage.goToDefaultPage();
+    _currentPage.defaultAndCurrentPage = _displayOptions[_initalPageIndex];
   }
 
   void _initDisplayOptions(){
