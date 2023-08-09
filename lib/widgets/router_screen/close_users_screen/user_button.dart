@@ -19,7 +19,7 @@ class UserButton extends StatelessWidget {
       onTap: (){
         context.read<CurrentPageProvider>().currentPage = UserScreen(_user, _messageService);
       },
-      child: UserBox(_user, _qualityReducer, _messageService)
+      child: UserBox(_user, _qualityReducer)
     );
   }
 }

@@ -7,7 +7,7 @@ class User {
   late String profileName;
   String? password;
   String? photo;
-  List<String>? interests;
+  List<String> interests = [];
   Map<SocialNetwork, String> socialNetworks = {};
 
   User({
@@ -16,7 +16,7 @@ class User {
     required this.profileName,
     this.password,
     this.photo,
-    this.interests,
+    this.interests = const [],
     this.socialNetworks = const {},
   }): this._username = username;
 
@@ -33,7 +33,7 @@ class User {
     if (json['interests'] != null) {
       interests = <String>[];
       json['interests'].forEach((v) {
-        interests!.add(v);
+        interests.add(v["name"].toString());
       });
     }
   }

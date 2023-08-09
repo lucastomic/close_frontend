@@ -5,7 +5,7 @@ class CreateUserRequestData {
   String? profileName;
   String? password;
   String? photo;
-  List<String>? interests;
+  List<String> interests = [];
 
   CreateUserRequestData({
     this.username,

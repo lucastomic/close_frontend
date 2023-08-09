@@ -9,7 +9,7 @@ class SocialNetworksList extends StatelessWidget {
   final double _logoSize;
   final double _fontSize;
   final double _spaceBetweenRows;
-  final double _width;
+
 
   const SocialNetworksList(
     this._socialNetworksToUsername, 
@@ -17,11 +17,10 @@ class SocialNetworksList extends StatelessWidget {
       double logoSize = 18, 
       double fontSize = 14, 
       double spaceBetweenRows = 4, 
-      double width = double.infinity,
       int? maxSocialNetworksDisplayed
     }
   ):
-  _logoSize = logoSize, _fontSize =fontSize, _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed, _spaceBetweenRows = spaceBetweenRows, _width = width;
+  _logoSize = logoSize, _fontSize =fontSize, _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed, _spaceBetweenRows = spaceBetweenRows;
 
   @override
   Widget build(BuildContext context) {

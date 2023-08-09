@@ -29,6 +29,7 @@ class DecoratedButton extends StatelessWidget {
         {
           _textColor = Theme.of(context).colorScheme.primary;
           _boxDecoration = BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
             borderRadius:_borderRadius,
             border: Border.all(width: 2, color: Theme.of(context).colorScheme.primary),
           );

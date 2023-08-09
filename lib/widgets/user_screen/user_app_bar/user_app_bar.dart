@@ -53,7 +53,7 @@ class _Title extends StatelessWidget {
 
   Gradient _getTitleBackgroundGradient(BuildContext context){
     return LinearGradient(
-      stops: const [0.3,1],
+      stops: const [0.25,1],
       colors: [ 
         Theme.of(context).colorScheme.background,   
         Theme.of(context).colorScheme.background.withOpacity(0),   
