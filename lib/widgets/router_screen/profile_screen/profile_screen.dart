@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
                 BasicProfileInfo(user),
                 DucksReceivedBox(), 
-                Spacer(),
+                const Spacer(),
                 ModifySocialNetworksButton(), 
                 ModifySocialNetworksButton(),
                 const LogOutButton()

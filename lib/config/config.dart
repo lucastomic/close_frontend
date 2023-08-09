@@ -18,9 +18,9 @@ const String initalRoute = 'login';
 const String title = "close";
 ThemeData themeData = ThemeData(
   colorScheme: ColorScheme.fromSeed(
-    seedColor: Color.fromARGB(211, 0, 126, 161),
-    primary: Color.fromARGB(211, 0, 126, 161),
-    onPrimary:Color.fromARGB(210, 104, 178, 198), //onPrimary is the light version of primary
+    seedColor: const Color.fromARGB(211, 0, 126, 161),
+    primary: const Color.fromARGB(211, 0, 126, 161),
+    onPrimary:const Color.fromARGB(210, 104, 178, 198), //onPrimary is the light version of primary
     error: const Color.fromARGB(255, 185, 12, 0),
   ),
   primaryColor: Colors.white,
