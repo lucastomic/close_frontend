@@ -1,8 +1,5 @@
 import 'dart:async';
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/exceptions/internal_server_error.dart/internal_server_error.dart';
-import 'package:close_frontend/exceptions/internet_connection/internet_connection_exception.dart';
-import 'package:close_frontend/exceptions/timeout/timeout_exception.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
