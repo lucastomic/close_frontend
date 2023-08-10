@@ -1,12 +1,12 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/interests_service/interest_service_port.dart';
+import 'package:close_frontend/widgets/forms/form_error_message_box.dart';
 import 'package:close_frontend/widgets/interests_screen/interest_selction_form/interests_selector.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'interest_selector_box.dart';
 
 class InterestSelectionForm extends StatefulWidget {
   final IInterestService _interestService;
@@ -18,6 +18,7 @@ class InterestSelectionForm extends StatefulWidget {
 
 class _InterestSelectionFormState extends State<InterestSelectionForm> {
   final Map<String,bool> _interestsSelection = {};
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _InterestSelectionFormState extends State<InterestSelectionForm> {
     return Column(  
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
+        _getErrorMessageIfExists(),
         InterestSelector(_interestsSelection),
         DecoratedButton.primaryColor(
           context: context, 
@@ -38,6 +40,14 @@ class _InterestSelectionFormState extends State<InterestSelectionForm> {
         )
       ],
     );
+  }
+
+  Widget _getErrorMessageIfExists(){
+    if(_errorMessage != null){
+      return FormErrorMessageBox(_errorMessage!);
+    }else{
+      return Container();
+    }
   }
 
   void _addUserSelectedInterests(){
