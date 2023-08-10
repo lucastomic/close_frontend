@@ -1,6 +1,6 @@
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/social_networks_screen/social_network_form/social_network_form.dart';
-import 'package:close_frontend/widgets/social_networks_screen/social_network_screen_header.dart';
+import 'package:close_frontend/widgets/util_widgets/text_header.dart';
 import 'package:flutter/material.dart';
 
 class SocialNetworksScreen extends StatelessWidget {
@@ -24,7 +24,7 @@ class SocialNetworksScreen extends StatelessWidget {
               hasScrollBody: false,
               child: Column(
                 children: [
-                  const SocialNetworksScreenHeader(), 
+                  const TextHeader("¡Sube las redes sociales que quieras mostrar a los demás!"), 
                   Expanded(
                     child: SocialNetowrksForm(_socialNetworkService, execAfterSubmit: _execAfterSubmit,)
                   ) ,
