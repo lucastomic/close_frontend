@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:close_frontend/exceptions/internal_server_error.dart/internal_server_error.dart';
+import 'package:close_frontend/exceptions/internet_connection/internet_connection_exception.dart';
+import 'package:close_frontend/exceptions/timeout/timeout_exception.dart';
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:http/http.dart' as http;
@@ -82,26 +85,13 @@ class HTTPRequester {
       http.Response rawResponse = await makeSpecificRequest();
       _response = _parseResponse(rawResponse);
     }on TimeoutException{
-      _setTimeoutResponse();
+      throw RenderizableTimeOutException();
     }on SocketException{
-      _setNoConnectionResponse();
+      throw InternalServerErrorException();
     }catch(e){
-      _setInternalServerErrorResponse();
+      throw InternetConnectionException();
     }
   }
-
-  void _setTimeoutResponse(){
-    _response = HTTPResponse(statusCode: HttpStatus.requestTimeout);
-  }
-
-  void _setInternalServerErrorResponse(){
-    _response = HTTPResponse(statusCode: HttpStatus.internalServerError);
-  }
-
-    void _setNoConnectionResponse(){
-    _response = HTTPResponse.connectionError();
-  }
-
 
   HTTPResponse _parseResponse(http.Response response) {
     return HTTPResponse(

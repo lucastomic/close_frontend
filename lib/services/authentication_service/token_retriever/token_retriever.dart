@@ -1,6 +1,5 @@
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
-import 'package:close_frontend/http/http_response_to_exception_conversor.dart';
 
 import '../../../http/http_response.dart';
 
@@ -12,18 +11,20 @@ class TokenRetriever{
   TokenRetriever(this._httpRequest, this._getExceptionFromResponse);
 
   Future<String> getToken() async {
+    try{
+      return await _makeRequestAndProcessResponse();
+    }catch(e){
+      rethrow;
+    }
+  } 
+
+  Future<String> _makeRequestAndProcessResponse()async {
     await _makeRequest();
     if(_httpResponse.statusIsOK){
       return _getAuthenticationTokenFromRequest();  
     }else{
-      throw _getException(_httpResponse);
+      throw _getExceptionFromResponse(_httpResponse);
     }
-  } 
-
-  Exception _getException(HTTPResponse response){
-    Exception? commonException = HTTPResponseToExceptionConversor.convert(response);
-    if(commonException !=null) return commonException;
-    return _getExceptionFromResponse(response);
   }
 
   Future<void> _makeRequest()async{

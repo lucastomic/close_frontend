@@ -2,19 +2,12 @@ class HTTPResponse{
   final int _statusCode;
   Map<String,String> _headers;
   final Map<String,dynamic>? _body;  
-  bool _connectionError = false;
 
   HTTPResponse({
     required int statusCode, 
     Map<String,String> headers =const {}, 
     Map<String,dynamic>? body}
   ):_statusCode = statusCode, _headers = headers, _body = body;
-
-  HTTPResponse.connectionError():
-    _statusCode = -1,
-    _body = null,
-    _headers = {},
-    _connectionError = true;
 
   get statusIsOK{
     return _statusCodeStartsWith2();  
@@ -40,11 +33,6 @@ class HTTPResponse{
   get statusIsInternalServerError{
     return _statusCode == 500;
   }
-
-  get connectionError{
-    return _connectionError;
-  }
-
   get body{
     return _body;
   }
