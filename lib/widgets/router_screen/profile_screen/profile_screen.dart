@@ -5,7 +5,7 @@ import 'package:close_frontend/widgets/router_screen/profile_screen/buttons/log_
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'buttons/modify_social_networks_button.dart';
+import 'buttons/navigable_button.dart';
 import 'ducks_received_box.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -37,8 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 BasicProfileInfo(user),
                 DucksReceivedBox(), 
                 const Spacer(),
-                ModifySocialNetworksButton(), 
-                ModifySocialNetworksButton(),
+                NavigableButton("Modificar intereses","interests"), 
+                NavigableButton("Modificar redes sociales", "socialNetworks"),
                 const LogOutButton()
             ],
           ),
