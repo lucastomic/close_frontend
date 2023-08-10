@@ -11,18 +11,18 @@ class LoginForm extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-	return CustomForm<String,String>(
-	  submitButtonText: "Ingresar",
-	  onSubmit: (Map<String,String> inputValues) async{  
-      AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
-      await authenticationProvider.logIn(
-        inputValues["username"]!, 
-        inputValues["password"]!
-      );
-      Navigator.of(context).pushNamed("main");
-	  }, 
-	  inputs: _getFormInputsList()
-	);
+    return CustomForm<String,String>(
+      submitButtonText: "Ingresar",
+      onSubmit: (Map<String,String> inputValues) async{  
+        AuthenticationProvider authenticationProvider = context.read<AuthenticationProvider>();
+        await authenticationProvider.logIn(
+          inputValues["username"]!, 
+          inputValues["password"]!
+        );
+        Navigator.of(context).pushNamed("main");
+      }, 
+      inputs: _getFormInputsList()
+    );
   }
 
 

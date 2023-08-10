@@ -23,6 +23,17 @@ class HTTPRequester {
     return httpRequester._makeRequest(httpRequester._makePOSTRequest);
   }
 
+  static Future<HTTPResponse> delete(HTTPRequest request) async {
+    HTTPRequester httpRequester = HTTPRequester._internal(request);
+    return httpRequester._makeRequest(httpRequester._makeDELETERequest);
+  }
+
+  static Future<HTTPResponse> put(HTTPRequest request) async {
+    HTTPRequester httpRequester = HTTPRequester._internal(request);
+    return httpRequester._makeRequest(httpRequester._makePUTRequest);
+  }
+
+
   static set authenticationToken(String token){
     _authenticationToken = token;
   }
@@ -43,6 +54,13 @@ class HTTPRequester {
 
   Future<http.Response> _makePOSTRequest()async {
     return await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
+  }
+
+  Future<http.Response> _makeDELETERequest()async {
+    return await http.delete(_requestCodedIntoURI,headers: _request.headers).timeout(defaultTimeOut);
+  }
+  Future<http.Response> _makePUTRequest()async {
+    return await http.put(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
   }
 
 
