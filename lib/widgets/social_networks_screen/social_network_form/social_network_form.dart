@@ -61,8 +61,9 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
 
   Future<void> _updateSocialNetworks(Map<SocialNetwork, String?> inputs) async{
     await Future.forEach(inputs.entries,(entry) async{
-      entry.value != null ? await widget._socialNetworkService.updateSocialNetwork(entry.key, entry.value!):
-      await widget._socialNetworkService.removeSocialNetwork(entry.key);
+      entry.value != null 
+      ? await widget._socialNetworkService.updateSocialNetwork(entry.key, entry.value!)
+      : await widget._socialNetworkService.removeSocialNetwork(entry.key);
     });
   }
 
