@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
@@ -36,7 +38,7 @@ class _CloseUsersScreenState extends State<CloseUsersScreen> {
     return SafeArea(
       child: Column(
         children: [
-            CloseUsersHeader(),
+          CloseUsersHeader(),
           CloseUsersFromStream(_closeUsersStream, widget._qualityReducer, widget._messageService),
         ],
       ),
@@ -44,7 +46,7 @@ class _CloseUsersScreenState extends State<CloseUsersScreen> {
   }
 
   void _initializeStream(BuildContext context) {
-    _closeUsersStream = widget._closeUsersService.getCloseUsersStream(context);
+    _closeUsersStream = widget._closeUsersService.openCloseUsersSubscription(context);
   }
 
   void _closeStream(){

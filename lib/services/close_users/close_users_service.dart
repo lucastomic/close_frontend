@@ -12,7 +12,7 @@ class CloseUsersService implements ICloseUsersService {
   late WebSocketSubscription _closeUsersSubscription;
 
   @override
-  Stream<List<User>> getCloseUsersStream(BuildContext context){
+  Stream<List<User>> openCloseUsersSubscription(BuildContext context){
     _closeUsersStreamController = StreamController<List<User>>(); 
     _initializeSubscription(context);
     return _closeUsersStreamController!.stream;
