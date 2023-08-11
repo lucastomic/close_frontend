@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'form_input.dart';
+import '../form_input.dart';
 
 class FormInputsList<T,I> {
   final Map<T, FormInput<I>> _inputs;
@@ -28,12 +28,13 @@ class FormInputsList<T,I> {
     return response;
   }
 
-  List<Widget> getInputsSpacedBetween() {
+  Widget renderInputs() {
     List<Widget> response = [];
     for (var input in _inputs.values) {
       response.add(input);
       response.add(const SizedBox(height: 30));
     }
-    return response;
+    return Column(children: response,);
   }
 }
+

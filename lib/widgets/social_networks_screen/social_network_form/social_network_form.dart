@@ -2,7 +2,8 @@ import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/forms/custom_form.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
-import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_input_list/expanded_form_inputs_list.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_input_list/form_inputs_list.dart';
 import 'package:close_frontend/widgets/social_networks_screen/social_network_form/social_network_input/social_network_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,7 +57,7 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
     for(SocialNetwork socialNetwork in SocialNetwork.values){
       inputs.addAll(_getSocialNetworkInputMapEntry(socialNetwork));
     }
-    return FormInputsList(inputs);
+    return ExpandedFormInputsList(inputs);
   }
 
   Future<void> _updateSocialNetworks(Map<SocialNetwork, String?> inputs) async{

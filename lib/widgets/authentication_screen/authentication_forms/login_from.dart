@@ -1,7 +1,7 @@
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/widgets/forms/custom_form.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
-import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_input_list/form_inputs_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/widgets/forms/form_error_message_box.dart';
-import 'package:close_frontend/widgets/forms/inputs/form_inputs_list.dart';
+import 'package:close_frontend/widgets/forms/inputs/form_input_list/form_inputs_list.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 
@@ -30,10 +30,9 @@ class _CustomFormState<T,I> extends State<CustomForm<T,I>> {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _showErrorMessageIfExists(),
-          ...widget._inputs.getInputsSpacedBetween(),
+          widget._inputs.renderInputs(),
           DecoratedButton.primaryColor(
             context: context,
             text: widget._submitButtonText,
