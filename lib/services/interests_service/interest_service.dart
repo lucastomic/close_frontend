@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
@@ -19,10 +21,26 @@ class InterestsService implements IInterestService{
     HTTPRequest request = HTTPRequest.toServer(
       unencodedPath: "/users/deleteInterest/$interestName",
     );
-    HTTPResponse response = await HTTPRequester.delete(request);
-    if(!response.statusIsOK){
-      print("Error");
-    }
+    await HTTPRequester.delete(request);
+  }
+  
+  @override
+  Future<List<String>> getPopularInterests(int amountOfInterests)async {
+    HTTPRequest request = HTTPRequest.toServer(
+      unencodedPath: "/interests/getMostPopulars/$amountOfInterests",
+    );
+    HTTPResponse response = await HTTPRequester.get(request);
+    return _parseJsonResponse(response.body["message"]);
+
   }
 
-}
+  List<String> _parseJsonResponse(String response) {
+    List<dynamic> jsonList = json.decode(response);
+
+    List<String> parsedList = jsonList.map((item) {
+      return item['name'] as String;
+    }).toList();
+
+    return parsedList;
+  }
+} 
