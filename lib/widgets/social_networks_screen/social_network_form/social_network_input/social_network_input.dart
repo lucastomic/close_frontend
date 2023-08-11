@@ -3,7 +3,7 @@ import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
 import 'package:close_frontend/widgets/forms/inputs/ui_widgets/decorated_input_container.dart';
 import 'package:flutter/material.dart';
 
-class SocialNetworkInput extends StatefulWidget implements FormInput<String?>{
+class SocialNetworkInput extends FormInput<String?>{
   final SocialNetwork _socialNetwork;
   final String? _initialValue;
   final GlobalKey<SocialNetworkInputState> key = GlobalKey();
@@ -11,14 +11,6 @@ class SocialNetworkInput extends StatefulWidget implements FormInput<String?>{
 
   @override
   State<SocialNetworkInput> createState() => SocialNetworkInputState();
-  
-  @override
-  bool isValid() {
-    return true;
-  }
-  
-  @override
-  void validate() {}
 
   @override
   String? get value => key.currentState!._value == "" ? null :  key.currentState!._value;

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class SocialNetworksScreen extends StatelessWidget {
   ISocialNetworkService _socialNetworkService;
-  final void Function()? _execAfterSubmit;
+  final String? _nextPage;
   
   SocialNetworksScreen(
     this._socialNetworkService,
     {
-      void Function()? execAfterSubmit //If it's omitted it will Pop to the previous page as default after submiting
+      String? nextPage //If it's omitted it will Pop to the previous page as default after submiting
     }
-  ):_execAfterSubmit =execAfterSubmit;
+  ):_nextPage = nextPage;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SocialNetworksScreen extends StatelessWidget {
                 children: [
                   const TextHeader("¡Sube las redes sociales que quieras mostrar a los demás!"), 
                   Expanded(
-                    child: SocialNetowrksForm(_socialNetworkService, execAfterSubmit: _execAfterSubmit,)
+                    child: SocialNetowrksForm(_socialNetworkService, nextPage: _nextPage,)
                   ) ,
                 ],
               ),

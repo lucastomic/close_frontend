@@ -30,6 +30,7 @@ class _CustomFormState<T,I> extends State<CustomForm<T,I>> {
   Widget build(BuildContext context) {
     return Form(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _showErrorMessageIfExists(),
           widget._inputs.renderInputs(),

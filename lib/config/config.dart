@@ -13,9 +13,10 @@ Map<String, Widget Function(BuildContext)> routes = {
   'main': (_) =>getIt.get<RouterScreen>(),
   'login': (_) => AuthenticationScreen.login(getIt.get<ILoginInputFactory>()),
   'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>(),getIt.get<ISocialNetworkService>()),
-  'socialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>()),
-  'interests': (_) => InterestsScreen(getIt.get<IInterestService>()),
-
+  'modifySocialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>()),
+  'newSocialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>(), nextPage: "newInterests",),
+  'modifyInterests': (_) => InterestsScreen(getIt.get<IInterestService>()),
+  'newInterests': (_) => InterestsScreen(getIt.get<IInterestService>(),nextPage: "main",),
 };
 
 const String initalRoute = 'login';

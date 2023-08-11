@@ -2,11 +2,12 @@ import 'package:close_frontend/services/interests_service/interest_service_port.
 import 'package:close_frontend/widgets/util_widgets/text_header.dart';
 import 'package:flutter/material.dart';
 
-import 'interest_selction_form/interests_selection_form.dart';
+import 'interest_selction_form/interests_form.dart';
 
 class InterestsScreen extends StatelessWidget {
   final IInterestService _interestService;
-  InterestsScreen(this._interestService);
+  final String? _nextPage;
+  InterestsScreen(this._interestService,{String? nextPage}):_nextPage = nextPage;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class InterestsScreen extends StatelessWidget {
                 children: [
                   const TextHeader("¡Sube  los intereses que quieras mostrar al resto!"),
                   Expanded(
-                    child: InterestSelectionForm(_interestService)
+                    child: InterestForm(_interestService, nextPage: _nextPage,)
                   ) ,
                 ],
               ),

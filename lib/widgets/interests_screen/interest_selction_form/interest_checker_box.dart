@@ -1,21 +1,29 @@
+import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
 import 'package:flutter/material.dart';
 
-class InterestSelectorBox extends StatefulWidget {
+class InterestCheckerBox extends FormInput<bool>{
   bool _selected;
-  String _interest;
-  void Function() _onTap;
-  InterestSelectorBox.selected(this._interest ,this._onTap):_selected = true;
-  InterestSelectorBox.unselected(this._interest,this._onTap):_selected = false;
+  final String _interest;
+
+  InterestCheckerBox.selected(this._interest):_selected = true;
+  InterestCheckerBox.unselected(this._interest):_selected = false;
 
   @override
-  State<InterestSelectorBox> createState() => _InterestSelectorBoxState();
+  State<InterestCheckerBox> createState() => _InterestCheckerBoxState();
+  
+  @override
+  bool get value => _selected;
 }
 
-class _InterestSelectorBoxState extends State<InterestSelectorBox> {
+class _InterestCheckerBoxState extends State<InterestCheckerBox> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget._onTap,
+      onTap: (){  
+        setState(() {
+          widget._selected = !widget._selected;
+        });
+      },
       child: Container(
         constraints: const BoxConstraints(maxWidth: 200),
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),

@@ -1,10 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
+import 'package:close_frontend/dependency_injection/injection.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
+import 'package:close_frontend/services/interests_service/interest_service.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/forms/custom_form.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input_list/form_inputs_list.dart';
+import 'package:close_frontend/widgets/interests_screen/interests_screen.dart';
 import 'package:close_frontend/widgets/social_networks_screen/social_networks_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,13 +56,6 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _moveToSocialNetworksScreen(){
-    Navigator.push(
-      context, 
-      MaterialPageRoute(builder: (context){
-        return SocialNetworksScreen(widget._socialNetworkService, execAfterSubmit: () {
-          Navigator.of(context).pushNamed("main");   
-        });
-      }),
-    );
+    Navigator.of(context).pushNamed("newSocialNetworks");
   }
 }

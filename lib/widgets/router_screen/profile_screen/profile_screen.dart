@@ -37,8 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 BasicProfileInfo(user),
                 DucksReceivedBox(), 
                 const Spacer(),
-                NavigableButton("Modificar intereses","interests"), 
-                NavigableButton("Modificar redes sociales", "socialNetworks"),
+                NavigableButton("Modificar intereses","modifyInterests"), 
+                NavigableButton("Modificar redes sociales", "modifySocialNetworks"),
                 const LogOutButton()
             ],
           ),
