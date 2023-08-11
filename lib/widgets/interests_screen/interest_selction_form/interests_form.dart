@@ -50,11 +50,13 @@ class _InterestFormState extends State<InterestForm> {
     User authUser= _authProvider.authenticatedUser;
     for (var interest in authUser.interests) {
       _inputs.addAll({interest:InterestCheckerBox.selected(interest)});
-    }
+    } 
   }
 
   Future<void> _submit(Map<String, bool> inputs)async{
-    inputs.forEach(_processFormInput);
+    await Future.forEach(inputs.entries,(entry) async{
+      await _processFormInput(entry.key, entry.value);
+    });    
   }
 
   Future<void> _processFormInput(String interest, bool selected)async{
