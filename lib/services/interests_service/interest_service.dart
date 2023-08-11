@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
@@ -13,10 +11,7 @@ class InterestsService implements IInterestService{
     HTTPRequest request = HTTPRequest.toServer(
       unencodedPath: "/users/addInterest/$interestName",
     );
-    HTTPResponse response = await HTTPRequester.put(request);
-    if(!response.statusIsOK){
-      print("Error");
-    }
+    await HTTPRequester.put(request);
   }
 
   @override
