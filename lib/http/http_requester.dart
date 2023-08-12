@@ -14,7 +14,7 @@ class HTTPRequester {
   late HTTPResponse _response; 
 
   static String? _authenticationToken;
-  final Duration defaultTimeOut = const Duration(seconds: 15);
+  final Duration _defaultTimeOut = const Duration(seconds: 15);
 
   static Future<HTTPResponse> get(HTTPRequest request) async {
     HTTPRequester httpRequester = HTTPRequester._internal(request);
@@ -51,24 +51,28 @@ class HTTPRequester {
   }
 
   Future<http.Response> _makeGETRequest() async{
-    return await http.get(_requestCodedIntoURI,headers: _request.headers).timeout(defaultTimeOut);
+    return await http.get(_requestCodedIntoURI,headers: _request.headers).timeout(_defaultTimeOut);
 
   }
 
   Future<http.Response> _makePOSTRequest()async {
-    return await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
+    return await http.post(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(_defaultTimeOut);
   }
 
   Future<http.Response> _makeDELETERequest()async {
-    return await http.delete(_requestCodedIntoURI,headers: _request.headers).timeout(defaultTimeOut);
+    return await http.delete(_requestCodedIntoURI,headers: _request.headers).timeout(_defaultTimeOut);
   }
   Future<http.Response> _makePUTRequest()async {
-    return await http.put(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(defaultTimeOut);
+    return await http.put(_requestCodedIntoURI,headers: _request.headers, body: _request.body).timeout(_defaultTimeOut);
   }
 
 
   void _setRequestCodedIntoURI() {
-    _requestCodedIntoURI =  Uri.http(_request.url, _request.unencodedPath, _request.queryParameters);
+    _requestCodedIntoURI =  Uri.http(
+      _request.url,
+      _request.unencodedPath, 
+      _getParsedQueryParameters(),
+    );
   }
 
   void _authenticateRequestIfTokenExists(){
@@ -101,6 +105,10 @@ class HTTPRequester {
     );
   }
 
+  Map<String,String>? _getParsedQueryParameters(){
+    return _request.queryParameters?.map(_parseValueToString);
+  }
+
   bool _requestContainsHeaders(){
     return _request.headers != null;
   }
@@ -120,4 +128,8 @@ class HTTPRequester {
     }
   }
 
+  MapEntry<String,String> _parseValueToString(String key, dynamic value){
+    return MapEntry(key, value.toString());
+  }
+  
 }

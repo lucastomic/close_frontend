@@ -7,6 +7,7 @@ class InterestCheckerBox extends FormInput<bool>{
 
   InterestCheckerBox.selected(this._interest):_selected = true;
   InterestCheckerBox.unselected(this._interest):_selected = false;
+  InterestCheckerBox(this._interest,{bool defaultValue = false}):_selected = defaultValue;
 
   @override
   State<InterestCheckerBox> createState() => _InterestCheckerBoxState();

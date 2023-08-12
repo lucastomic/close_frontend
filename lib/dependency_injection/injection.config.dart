@@ -33,18 +33,22 @@ import '../services/social_network/port/social_network_service_port.dart'
     as _i10;
 import '../services/social_network/social_network_service.dart' as _i11;
 import '../widgets/authentication_screen/authentication_forms/input_factory/login_input_factory.dart'
-    as _i24;
-import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
-    as _i23;
-import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
-    as _i25;
-import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
     as _i26;
+import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
+    as _i25;
+import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
+    as _i27;
+import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
+    as _i28;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i18;
+import '../widgets/interests_screen/interest_selction_form/interest_checkers_factory/interest_checker_factory_port.dart'
+    as _i23;
+import '../widgets/interests_screen/interest_selction_form/interest_checkers_factory/interest_checkers_factory.dart'
+    as _i24;
 import '../widgets/router_screen/current_page_provider.dart' as _i3;
 import '../widgets/router_screen/router_screen.dart'
-    as _i27; // ignore_for_file: unnecessary_lambdas
+    as _i29; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -73,13 +77,15 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i20.AuthenticationService(get<_i16.ImageUploader>()));
     gh.factory<_i21.IChatService>(
         () => _i22.ChatService(get<_i4.IChatStreamService>()));
-    gh.factory<_i23.ILoginInputFactory>(
-        () => _i24.LoginInputFactory(get<_i18.InputValidator>()));
-    gh.factory<_i25.IRegisterInputFactory>(() => _i26.RegisterInputFactory(
+    gh.factory<_i23.IInterestCheckerFactory>(
+        () => _i24.InterestCheckerBoxFactory(get<_i8.IInterestService>()));
+    gh.factory<_i25.ILoginInputFactory>(
+        () => _i26.LoginInputFactory(get<_i18.InputValidator>()));
+    gh.factory<_i27.IRegisterInputFactory>(() => _i28.RegisterInputFactory(
           get<_i18.InputValidator>(),
           get<_i12.ImagePickerPort>(),
         ));
-    gh.factory<_i27.RouterScreen>(() => _i27.RouterScreen(
+    gh.factory<_i29.RouterScreen>(() => _i29.RouterScreen(
           get<_i6.ICloseUsersService>(),
           get<_i14.ImageQualityReducer>(),
           get<_i21.IChatService>(),

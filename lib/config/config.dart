@@ -4,6 +4,7 @@ import 'package:close_frontend/services/social_network/port/social_network_servi
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_screen.dart';
+import 'package:close_frontend/widgets/interests_screen/interest_selction_form/interest_checkers_factory/interest_checker_factory_port.dart';
 import 'package:close_frontend/widgets/interests_screen/interests_screen.dart';
 import 'package:close_frontend/widgets/router_screen/router_screen.dart';
 import 'package:close_frontend/widgets/social_networks_screen/social_networks_screen.dart';
@@ -15,8 +16,8 @@ Map<String, Widget Function(BuildContext)> routes = {
   'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>(),getIt.get<ISocialNetworkService>()),
   'modifySocialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>()),
   'newSocialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>(), nextPage: "newInterests",),
-  'modifyInterests': (_) => InterestsScreen(getIt.get<IInterestService>()),
-  'newInterests': (_) => InterestsScreen(getIt.get<IInterestService>(),nextPage: "main",),
+  'modifyInterests': (_) => InterestsScreen(getIt.get<IInterestService>(),getIt.get<IInterestCheckerFactory>()),
+  'newInterests': (_) => InterestsScreen(getIt.get<IInterestService>(),getIt.get<IInterestCheckerFactory>(),nextPage: "main",),
 };
 
 const String initalRoute = 'login';

@@ -25,13 +25,26 @@ class InterestsService implements IInterestService{
   }
   
   @override
-  Future<List<String>> getPopularInterests(int amountOfInterests)async {
+  Future<List<String>> getPopularInterests(int limit)async {
     HTTPRequest request = HTTPRequest.toServer(
-      unencodedPath: "/interests/getMostPopulars/$amountOfInterests",
+      unencodedPath: "/interests/getMostPopulars/$limit",
     );
     HTTPResponse response = await HTTPRequester.get(request);
     return _parseJsonResponse(response.body["message"]);
 
+  }
+
+  @override
+  Future<List<String>> getExcluding(List<String> exclude,int limit) async {
+    HTTPRequest request = HTTPRequest.toServer(
+      unencodedPath: "/interests/getExcluding",
+      queryParameters: {
+        "limit":limit,
+        "excluding":exclude.join(","),
+      }
+    );
+    HTTPResponse response = await HTTPRequester.get(request);
+    return _parseJsonResponse(response.body["message"]);
   }
 
   List<String> _parseJsonResponse(String response) {
@@ -43,4 +56,6 @@ class InterestsService implements IInterestService{
 
     return parsedList;
   }
+  
+
 } 
