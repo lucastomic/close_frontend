@@ -38,6 +38,10 @@ class User {
     }
   }
 
+  void addNewInterest(String newInterest){
+    interests.add(newInterest);
+  }
+
   String get presentationImage {
     return photo!;
   }

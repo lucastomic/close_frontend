@@ -11,13 +11,14 @@ import 'package:provider/provider.dart';
 @Injectable(as:IInterestCheckerFactory)
 class InterestCheckerBoxFactory implements IInterestCheckerFactory{
   final IInterestService _interestService;
-  final int _minimumAmountOfCheckers = 14;
-  final Map<String,FormInput<bool>> _interests = {};
+  final int _minimumAmountOfCheckers = 12;
+  late Map<String,FormInput<bool>> _interests;
 
   InterestCheckerBoxFactory(this._interestService);
 
   @override
   Future<Map<String,FormInput<bool>>> getInterestCheckers(BuildContext context)async{
+    _interests = {};
     _addUserSelectedInterests(context);
     await _addPopularInterestsIfNeeded();
     await _addDifferentInterestsIfNeeded();

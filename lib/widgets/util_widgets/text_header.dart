@@ -11,7 +11,7 @@ class TextHeader extends StatelessWidget {
       child: Text(
         _text,
         textAlign: TextAlign.center,  
-        style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.secondary), 
+        style: TextStyle(fontSize: 25, color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.w700), 
     )
     );
   }

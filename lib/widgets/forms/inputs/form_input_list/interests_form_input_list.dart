@@ -1,18 +1,27 @@
 import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input_list/form_inputs_list.dart';
+import 'package:close_frontend/widgets/interests_screen/interest_selction_form/other_interest_form/other_interest_form.dart';
 import 'package:flutter/material.dart';
 
-class GridCheckerFormInputList extends FormInputsList<String,bool>{
+class InterestsFormInputsList extends FormInputsList<String,bool>{
   final Map<String, FormInput<bool>> _inputs;
+  final void Function(String) _addNewInterestToUser;
 
-  GridCheckerFormInputList(this._inputs):super(_inputs);
+  InterestsFormInputsList(this._inputs,this._addNewInterestToUser):super(_inputs);
 
   @override
   Widget renderInputs() {
-    return _AlternateExpandedGrid(_inputs.values);
+    return Expanded(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          OtherInterestForm(_addNewInterestToUser),
+          _AlternateExpandedGrid(_inputs.values),
+        ],
+      ),
+    );
   }
 }
-
 
 class _AlternateExpandedGrid extends StatelessWidget {
   final Iterable<Widget> _children;
