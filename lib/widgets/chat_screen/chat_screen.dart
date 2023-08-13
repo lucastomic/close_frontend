@@ -24,7 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar:ChatAppBarGetter.getAppBar(context,widget._user),
       body: Column(
         children: [
-          ChatRendering(chatService:widget._chatService,receiver: widget._user),  
+          ChatRenderer(chatService:widget._chatService,externalUser: widget._user),  
           SendMessageForm(
             messageService: widget._chatService,
             receiver: widget._user,
