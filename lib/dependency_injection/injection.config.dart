@@ -42,9 +42,9 @@ import '../widgets/authentication_screen/authentication_forms/input_factory/regi
     as _i28;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i18;
-import '../widgets/interests_screen/interest_selction_form/interest_checkers_factory/interest_checker_factory_port.dart'
+import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checker_manager_port.dart'
     as _i23;
-import '../widgets/interests_screen/interest_selction_form/interest_checkers_factory/interest_checkers_factory.dart'
+import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checkers_manager.dart'
     as _i24;
 import '../widgets/router_screen/current_page_provider.dart' as _i3;
 import '../widgets/router_screen/router_screen.dart'
@@ -77,8 +77,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i20.AuthenticationService(get<_i16.ImageUploader>()));
     gh.factory<_i21.IChatService>(
         () => _i22.ChatService(get<_i4.IChatStreamService>()));
-    gh.factory<_i23.IInterestCheckerFactory>(
-        () => _i24.InterestCheckerBoxFactory(get<_i8.IInterestService>()));
+    gh.factory<_i23.IInterestCheckerManager>(
+        () => _i24.InterestCheckerBoxManager(get<_i8.IInterestService>()));
     gh.factory<_i25.ILoginInputFactory>(
         () => _i26.LoginInputFactory(get<_i18.InputValidator>()));
     gh.factory<_i27.IRegisterInputFactory>(() => _i28.RegisterInputFactory(
