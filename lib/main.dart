@@ -1,5 +1,6 @@
 import 'package:close_frontend/config/config.dart';
 import 'package:close_frontend/dependency_injection/injection.dart';
+import 'package:close_frontend/local_storage/local_storage_port.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/current_page_provider.dart';
@@ -10,7 +11,7 @@ void main() {
   configureDependencies();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => AuthenticationProvider(getIt.get<IAuthenticationService>())),
+      ChangeNotifierProvider(create: (_) => AuthenticationProvider(getIt.get<IAuthenticationService>(),getIt.get<IAuthenticationLocalStorage>())),
       ChangeNotifierProvider(create: (_) => CurrentPageProvider()),
     ],
     child: const MyApp(),

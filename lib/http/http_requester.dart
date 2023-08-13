@@ -40,6 +40,9 @@ class HTTPRequester {
   static set authenticationToken(String token){
     _authenticationToken = token;
   }
+  static cleanAuthenticationToken(){
+    _authenticationToken = null;
+  }
 
   HTTPRequester._internal(this._request);
 
