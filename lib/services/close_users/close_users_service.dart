@@ -29,7 +29,7 @@ class CloseUsersService implements ICloseUsersService {
   }
 
   void _initializeSubscription(BuildContext context){
-    _closeUsersSubscription = WebSocketSubscription(
+    _closeUsersSubscription = WebSocketSubscription.activate(
       context,
       destination: "/user/queue/closeusers", 
       url:"ws://192.168.18.32:8080/socket", 

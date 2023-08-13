@@ -12,7 +12,7 @@ class WebSocketSubscription{
   final Function(String?) _callback;
   late void Function({Map<String, String>? unsubscribeHeaders}) _unsuscribeFunction;
 
-  WebSocketSubscription(BuildContext context, {required String destination,required String url,required void Function(String?) callback}):_callback = callback, _destination = destination
+  WebSocketSubscription.activate(BuildContext context, {required String destination,required String url,required void Function(String?) callback}):_callback = callback, _destination = destination
   {
     AuthenticationProvider provider =  context.read<AuthenticationProvider>();
     _authenticationToken = provider.authenticationToken;

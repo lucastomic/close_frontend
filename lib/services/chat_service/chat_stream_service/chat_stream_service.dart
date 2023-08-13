@@ -24,7 +24,7 @@ class ChatStreamService implements IChatStreamService{
   }
 
   void _initializeSubscription(BuildContext context){
-    _chatSubscription = WebSocketSubscription(
+    _chatSubscription = WebSocketSubscription.activate(
       context,
       destination: "/user/queue/chat", 
       url:"ws://192.168.18.32:8080/socket", 
