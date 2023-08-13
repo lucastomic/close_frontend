@@ -36,12 +36,15 @@ class _RouterScreenState extends State<RouterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: ()async=>false,
+      child: Scaffold(
         bottomNavigationBar: CustomizedNaviagtionBar( 
           initialIndex: _initalPageIndex,
           onItemTapped: _onItemTapped,
         ),
         body: context.watch<CurrentPageProvider>().currentPage
+      ),
     );
   }
 
