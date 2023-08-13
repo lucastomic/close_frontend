@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class AuthenticationProvider extends ChangeNotifier {
   AuthenticatedUser? _authenticatedUser;
   String? _authenticationToken;
-  IAuthenticationLocalStorage _localStorage;
+  final IAuthenticationLocalStorage _localStorage;
 
   final IAuthenticationService _authenticationService;
 
