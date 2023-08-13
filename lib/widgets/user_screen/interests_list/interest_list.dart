@@ -1,3 +1,4 @@
+import 'package:close_frontend/math/math.dart';
 import 'package:close_frontend/widgets/user_screen/interests_list/intrest_row.dart';
 import 'package:flutter/material.dart';
 
@@ -21,13 +22,8 @@ class InterestList extends StatelessWidget {
   }
 
   InterestRow _getInterestRow(int index){
-    return isEven(index) 
+    return Math.isEven(index) 
       ? InterestRow.right(_interests[index])
       : InterestRow.left(_interests[index]);
   }
-
-  bool isEven(int n){
-    return n%2 == 0;
-  }
-
 }
