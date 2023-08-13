@@ -15,19 +15,17 @@ class AuthenticationService extends IAuthenticationService {
 
   @override
   Future<String> tokenFromRegister(CreateUserRequestData requestData) async {
-      requestData.photo = await _uploadUserPhoto(requestData);
-      RegisterTokenRetriever registerTokenRetriever = RegisterTokenRetriever();
-      String authenticationToken = await registerTokenRetriever.getToken(requestData);
-      HTTPRequester.authenticationToken = authenticationToken;
-      return authenticationToken;
+    requestData.photo = await _uploadUserPhoto(requestData);
+    RegisterTokenRetriever registerTokenRetriever = RegisterTokenRetriever();
+    String authenticationToken = await registerTokenRetriever.getToken(requestData);
+    return authenticationToken;
   }
 
   @override
   Future<String> tokenFromLogin(String username, String password) async {
-      LoginTokenRetriever loginTokenRetriever = LoginTokenRetriever();
-      String authenticationToken = await loginTokenRetriever.getToken(username, password);
-      HTTPRequester.authenticationToken = authenticationToken;
-      return authenticationToken;
+    LoginTokenRetriever loginTokenRetriever = LoginTokenRetriever();
+    String authenticationToken = await loginTokenRetriever.getToken(username, password);
+    return authenticationToken;
   } 
 
   @override
