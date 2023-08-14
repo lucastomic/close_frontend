@@ -53,9 +53,14 @@ class AuthenticationProvider extends ChangeNotifier {
     return _authenticationToken!;
   }
 
+  bool get isCurrentlyAuthenticated{
+    return _authenticatedUser != null;
+  }
+
   void addNewInterest(String interest){
     _authenticatedUser!.addNewInterest(interest);
   }
+
 
   bool isUserAuthenticated(User user){
     return _authenticatedUser!.id == user.id;
