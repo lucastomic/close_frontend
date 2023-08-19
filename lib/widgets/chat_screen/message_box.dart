@@ -74,11 +74,12 @@ class _MessageBoxMisaligned extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(5),
+      constraints: const BoxConstraints(maxWidth: 300),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary.withOpacity(0.8),
         borderRadius: BorderRadius.circular(20)
       ),
-      child: Text(_message.value, style: TextStyle(color: Theme.of(context).primaryColor)),
+      child: Text(_message.value, style: TextStyle(color: Theme.of(context).primaryColor,),),
     );
   }
 }
