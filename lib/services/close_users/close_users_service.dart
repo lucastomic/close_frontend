@@ -23,16 +23,12 @@ class CloseUsersService implements ICloseUsersService {
     _closeUsersSubscription.unsuscribe();
   }
 
-  @override
-  void sendLocation(String latitude, String longitude) {
-    // TODO: implement sendLocation
-  }
 
   void _initializeSubscription(BuildContext context){
     _closeUsersSubscription = WebSocketSubscription.activate(
       context,
       destination: "/user/queue/closeusers", 
-      url:"ws://192.168.18.32:8080/socket", 
+      url:"ws://192.168.25.22:8080/socket", 
       callback: _onUsersReceived
     );
   }
