@@ -1,7 +1,6 @@
 import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/local_storage/local_storage_port.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';

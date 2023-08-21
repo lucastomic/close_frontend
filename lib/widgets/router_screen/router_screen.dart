@@ -1,4 +1,5 @@
 import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
+import 'package:close_frontend/provider/location/location_provider.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/close_users_screen/close_users_screen.dart';
@@ -31,6 +32,7 @@ class _RouterScreenState extends State<RouterScreen> {
   void initState() {
     _initDisplayOptions();
     _initCurrentPageProvider();
+    _initLocationProvider();
     super.initState();
   }
 
@@ -63,5 +65,10 @@ class _RouterScreenState extends State<RouterScreen> {
       CloseUsersScreen(widget._closeUsersService,widget._qualityReducer, widget._messageService), 
       const ProfileScreen()
     ];
+  }
+
+  void _initLocationProvider(){
+    LocationProvider provider = context.read<LocationProvider>();
+    provider.init();
   }
 }

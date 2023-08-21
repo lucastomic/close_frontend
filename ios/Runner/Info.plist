@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+        <key>UIBackgroundModes</key>
+        <string>location</string>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>Necesitamos tu ubicación para encontrar los usuarios cercanos</string>
+        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+        <string>La ubicación es necesaria siempre ya que los otros usuarios deben poder percibirte incluso cuando no tienes la aplicación en primer plano</string>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>

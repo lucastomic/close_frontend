@@ -55,6 +55,7 @@ dependencies:
   localstorage: ^4.0.1+4
   flutter_native_splash: ^2.3.2
   flutter_launcher_icons: ^0.13.1
+  location: ^5.0.3
 
 dev_dependencies:
   flutter_test:
