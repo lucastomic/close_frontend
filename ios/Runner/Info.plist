@@ -3,7 +3,9 @@
 <plist version="1.0">
 	<dict>
         <key>UIBackgroundModes</key>
-        <string>location</string>
+            <array>
+                <string>location</string>
+            </array>
         <key>NSLocationWhenInUseUsageDescription</key>
         <string>Necesitamos tu ubicación para encontrar los usuarios cercanos</string>
         <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
