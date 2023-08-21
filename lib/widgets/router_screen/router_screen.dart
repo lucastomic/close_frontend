@@ -6,7 +6,6 @@ import 'package:close_frontend/widgets/router_screen/close_users_screen/close_us
 import 'package:close_frontend/widgets/router_screen/current_page_provider.dart';
 import 'package:close_frontend/widgets/router_screen/customized_bottom_navigation_bar.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/profile_screen.dart';
-import 'package:close_frontend/widgets/router_screen/settings/settings_list.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +25,7 @@ class RouterScreen extends StatefulWidget {
 class _RouterScreenState extends State<RouterScreen> {
   late List<Widget> _displayOptions;
   late CurrentPageProvider _currentPage;
-  final int _initalPageIndex =1;
+  final int _initalPageIndex =0;
 
   @override
   void initState() {
@@ -61,7 +60,6 @@ class _RouterScreenState extends State<RouterScreen> {
 
   void _initDisplayOptions(){
     _displayOptions = [
-      const SettingsList(), 
       CloseUsersScreen(widget._closeUsersService,widget._qualityReducer, widget._messageService), 
       const ProfileScreen()
     ];
