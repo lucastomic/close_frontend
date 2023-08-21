@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:close_frontend/config/config.dart';
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/websockets/web_socket_subscription.dart';
@@ -28,7 +29,7 @@ class CloseUsersService implements ICloseUsersService {
     _closeUsersSubscription = WebSocketSubscription.activate(
       context,
       destination: "/user/queue/closeusers", 
-      url:"ws://192.168.25.22:8080/socket", 
+      url:"ws://$serverURL/socket", 
       callback: _onUsersReceived
     );
   }

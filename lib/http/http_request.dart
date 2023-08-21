@@ -1,3 +1,5 @@
+import 'package:close_frontend/config/config.dart';
+
 class HTTPRequest {
   String url;
   String unencodedPath;
@@ -6,5 +8,5 @@ class HTTPRequest {
   Object? body;
 
   HTTPRequest({required this.url, this.unencodedPath = '', this.queryParameters, this.headers, this.body});
-  HTTPRequest.toServer({this.unencodedPath ='', this.queryParameters,this.headers,this.body}): url = "192.168.18.32:8080";
+  HTTPRequest.toServer({this.unencodedPath ='', this.queryParameters,this.headers,this.body}): url =serverURL;
 }

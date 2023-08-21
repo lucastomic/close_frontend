@@ -22,6 +22,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   'splash': (_) => SplashScreen()
 };
 
+const String serverURL = '192.168.50.92:8080';
 const String initalRoute = 'splash';
 const String title = "close";
 ThemeData themeData = ThemeData(
