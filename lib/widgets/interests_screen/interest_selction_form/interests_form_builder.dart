@@ -1,6 +1,7 @@
 import 'package:close_frontend/services/interests_service/interest_service_port.dart';
 import 'package:close_frontend/widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checker_manager_port.dart';
 import 'package:close_frontend/widgets/interests_screen/interest_selction_form/interests_form.dart';
+import 'package:close_frontend/widgets/util_widgets/centred_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 
 class InterestsFormBuilder extends StatefulWidget {
@@ -26,12 +27,16 @@ class _InterestsFormBuilderState extends State<InterestsFormBuilder> {
     return FutureBuilder(
       future: widget._checkerFactory.getInterestCheckers(context),
       builder: (context, snapshot) {
-        return InterestsForm(
-          snapshot.data ?? {}, 
-          widget._interestService,
-          widget._nextPage,
-          widget._checkerFactory
-        );
+        if(snapshot.data == null){
+          return const CentredCircularProgressIndicator();
+        }else{
+          return InterestsForm(
+            snapshot.data!, 
+            widget._interestService,
+            widget._nextPage,
+            widget._checkerFactory
+          );
+        }
       }
     );
   }
