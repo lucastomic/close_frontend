@@ -5,14 +5,14 @@ import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
 import '../provider/authentication/auth_provider.dart';
 
-class WebSocketSubscription{
+class WebSocketClientListener{
   late StompClient _client;
   late String _authenticationToken;
   late final String _destination;
-  final Function(String?) _callback;
+  final Function(String?)? _callback;
   late void Function({Map<String, String>? unsubscribeHeaders}) _unsuscribeFunction;
 
-  WebSocketSubscription.activate(BuildContext context, {required String destination,required String url,required void Function(String?) callback}):_callback = callback, _destination = destination
+  WebSocketClientListener.subscribe(BuildContext context, {required String destination,required String url,required void Function(String?) callback}):_callback = callback, _destination = destination
   {
     AuthenticationProvider provider =  context.read<AuthenticationProvider>();
     _authenticationToken = provider.authenticationToken;
@@ -28,7 +28,6 @@ class WebSocketSubscription{
     _client.activate();
   }
 
-
   void unsuscribe(){
     _client.deactivate(); 
     _unsuscribeFunction(unsubscribeHeaders: {"simpDestination":_destination});
@@ -40,7 +39,7 @@ class WebSocketSubscription{
           "Authorization": "Bearer $_authenticationToken}"
         },
         destination: _destination,
-        callback: (StompFrame frame)=>_callback(frame.body)
+        callback: (StompFrame frame)=>_callback!(frame.body)
     );
   }
 }
