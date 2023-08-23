@@ -10,6 +10,8 @@ import 'package:close_frontend/widgets/splash_screen/splash_screen_functionality
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'services/navigation/navigation_service.dart';
+
 void main() {
   configureDependencies();
   perserveSplashScreen();
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: title,
       theme: themeData,
+      navigatorKey: NavigationService.navigatorKey, 
       routes: routes,
       initialRoute: initalRoute,
     );
