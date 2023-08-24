@@ -31,7 +31,6 @@ class _RouterScreenState extends State<RouterScreen> {
   void initState() {
     _initDisplayOptions();
     _initCurrentPageProvider();
-    _initLocationProvider();
     super.initState();
   }
 
@@ -63,10 +62,5 @@ class _RouterScreenState extends State<RouterScreen> {
       CloseUsersScreen(widget._closeUsersService,widget._qualityReducer, widget._messageService), 
       const ProfileScreen()
     ];
-  }
-
-  void _initLocationProvider(){
-    LocationProvider provider = context.read<LocationProvider>();
-    provider.init();
   }
 }
