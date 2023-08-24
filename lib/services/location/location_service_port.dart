@@ -1,6 +1,7 @@
 abstract class ILocationService{
-  void startLocationSending();
-  void stopLocationSending();
-  Future<bool> tryToEnableService();
-  Future<bool> getPermission();
+  Future<void> sendLocation();
+  Future<bool> checkNeededConfig();
+  Future<bool> promptToEnableMissingConfig();
+  void startLocationUpdating();
+  void cancelLocationUpdating();
 }
