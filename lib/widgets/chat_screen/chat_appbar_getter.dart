@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 class ChatAppBarGetter{
   static getAppBar(BuildContext context, User user){
     return AppBar(
-      backgroundColor: Theme.of(context).primaryColor,
-      shadowColor: Colors.black,
-      elevation: 2,
+      backgroundColor: Theme.of(context).colorScheme.background,
       toolbarHeight: 80,
+      forceMaterialTransparency: true,
       leadingWidth: 80,
       title: Row(
         children: [
