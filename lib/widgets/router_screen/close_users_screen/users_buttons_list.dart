@@ -14,17 +14,15 @@ class UsersButtonsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: _users.length,
-        itemBuilder: (_, int index){
-          return UserButton(
-            _users[index],
-            _qualityReducer,
-            _messageService
-          );
-        }
-      ),
+    return ListView.builder(
+      itemCount: _users.length,
+      itemBuilder: (_, int index){
+        return UserButton(
+          _users[index],
+          _qualityReducer,
+          _messageService
+        );
+      }
     );
   }
 }

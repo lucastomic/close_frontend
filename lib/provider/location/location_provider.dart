@@ -18,17 +18,16 @@ class LocationProvider extends ChangeNotifier {
   Future<void> init() async {
     if(_locationIsActive == null){
       await _neededConfig.init();
-      await _activateLocationIfIsPossible();
-      _updateLocationSending();
+      await setLocationActivity(true);
       _listenIfNeededConfigTurnsOff();
     }
   }
 
-  bool get locationIsActive{
-    return _locationIsActive!;
+  bool? get locationIsActive{
+    return _locationIsActive;
   }
 
-  Future<void> setLocationIsActive(bool value) async {
+  Future<void> setLocationActivity(bool value) async {
     await _setLocationIsActive(value);
     _updateLocationSending();
     notifyListeners();
@@ -44,7 +43,7 @@ class LocationProvider extends ChangeNotifier {
 
   void _listenIfNeededConfigTurnsOff(){
     _neededConfig.turnedOffStream.listen((event) {
-      if(_locationIsActive!)setLocationIsActive(false);
+      if(_locationIsActive!)setLocationActivity(false);
     });
   }
 

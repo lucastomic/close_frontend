@@ -20,11 +20,11 @@ class LocationNeededConfig{
   }
 
   bool get isSettedUp{
-    return _isSettedUp!;
+    return _isSettedUp;
   }
 
   Future<void> tryToSetUp() async {
-    if(!_isSettedUp!){
+    if(!_isSettedUp){
        _isSettedUp = await _locationService.promptToEnableMissingConfig();
     }
   }
