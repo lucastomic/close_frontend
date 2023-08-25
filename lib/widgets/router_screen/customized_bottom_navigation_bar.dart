@@ -20,7 +20,7 @@ class CustomizedNaviagtionBar extends StatelessWidget {
       iconSize: 28,
       tabs: const [
         GButton(
-          icon: Icons.gps_fixed,
+          icon: Icons.supervised_user_circle_sharp,
           text: 'Cerca',
         ),
         GButton(
