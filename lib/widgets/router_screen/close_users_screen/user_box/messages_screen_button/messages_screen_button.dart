@@ -26,6 +26,6 @@ class _MessagesScreenButtonState extends State<MessagesScreenButton> {
 	}
 
 	void _onPressed(){
-    context.read<CurrentPageProvider>().currentPage = ChatScreen(widget._user, widget._messageService);
+    Navigator.of(context).push(MaterialPageRoute(builder: (_)=> ChatScreen(widget._user, widget._messageService)));
 	}
 }
