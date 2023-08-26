@@ -23,7 +23,8 @@ class UserScreen extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 _CentredAndFixed(
-                  SocialNetworksList(_user.socialNetworks, logoSize: 30, fontSize: 20, spaceBetweenRows: 24,), 200),
+                  SocialNetworksList(_user.socialNetworks, logoSize: 30, fontSize: 20, spaceBetweenRows: 24,), 200
+                ),
                 InterestList(_user.interests),
                 const SizedBox(height: 70,)
               ]
