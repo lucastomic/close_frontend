@@ -8,7 +8,7 @@ class SendMessageForm extends StatefulWidget {
   final IChatService _chatService;
   final User _receiver;
 
-  SendMessageForm({
+  const SendMessageForm({
     required IChatService messageService,
     required User receiver,
   }):
@@ -22,6 +22,7 @@ class SendMessageForm extends StatefulWidget {
 class _SendMessageFormState extends State<SendMessageForm> {
   String? _message;
   final TextEditingController _messageInputController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
