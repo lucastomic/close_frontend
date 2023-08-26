@@ -25,9 +25,12 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           ChatRenderer(chatService:widget._chatService,externalUser: widget._user),  
-          SendMessageForm(
-            messageService: widget._chatService,
-            receiver: widget._user,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SendMessageForm(
+              messageService: widget._chatService,
+              receiver: widget._user,
+            ),
           )
         ],
       )
