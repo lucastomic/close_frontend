@@ -5,6 +5,7 @@ import 'package:close_frontend/widgets/user_screen/interests_list/interest_list.
 import 'package:close_frontend/widgets/user_screen/user_app_bar/user_app_bar.dart';
 import 'package:close_frontend/widgets/util_widgets/social_networks_list.dart';
 import 'package:flutter/material.dart';
+import 'package:sliver_fill_remaining_box_adapter/sliver_fill_remaining_box_adapter.dart';
 
 class UserScreen extends StatelessWidget {
   final User _user;
@@ -19,16 +20,19 @@ class UserScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           UserAppBar(_user),  
-          SliverList( 
-            delegate: SliverChildListDelegate(
-              [
-                _CentredAndFixed(
-                  SocialNetworksList(_user.socialNetworks, logoSize: 30, fontSize: 20, spaceBetweenRows: 24,), 200
-                ),
+          SliverFillRemainingBoxAdapter(
+            child: Column(  
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children:[
+                const _SubTitle("Redes sociales"),
+                SocialNetworksList(_user.socialNetworks, logoSize: 28, fontSize: 16, spaceBetweenRows: 24,),
+                const SizedBox(height: 20,),
+                const _SubTitle("Intereses"),
                 InterestList(_user.interests),
-                const SizedBox(height: 70,)
+                const SizedBox(height: 70,),
               ]
-            ),
+            )
           ),
         ],
       ),
@@ -36,22 +40,15 @@ class UserScreen extends StatelessWidget {
   }
 }
 
-class _CentredAndFixed extends StatelessWidget {
-  final Widget _child;
-  final double _width;
-  const _CentredAndFixed(this._child,this._width);
+class _SubTitle extends StatelessWidget {
+  final String _text;
+  const _SubTitle(this._text,{super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Spacer(),
-        SizedBox(
-          width:_width,
-          child:_child  
-        ),
-        const Spacer(),
-      ],
+    return  Container(
+        margin: const EdgeInsets.only(left: 15),
+        child: Text(_text, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),)
     );
   }
 }

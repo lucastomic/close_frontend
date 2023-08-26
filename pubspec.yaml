@@ -57,6 +57,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   location: ^5.0.3
   animated_toggle_switch: ^0.7.0
+  sliver_fill_remaining_box_adapter: ^1.0.0
 
 dev_dependencies:
   flutter_test:

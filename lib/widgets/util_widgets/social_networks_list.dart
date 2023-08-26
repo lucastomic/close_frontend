@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/extensions/string_extensions.dart';
+import 'package:close_frontend/widgets/util_widgets/custom_divider.dart';
 import 'package:flutter/material.dart';
 
 class SocialNetworksList extends StatelessWidget {
@@ -9,6 +10,7 @@ class SocialNetworksList extends StatelessWidget {
   final double _logoSize;
   final double _fontSize;
   final double _spaceBetweenRows;
+  final double _dividerWidth;
 
 
   const SocialNetworksList(
@@ -16,11 +18,16 @@ class SocialNetworksList extends StatelessWidget {
     {
       double logoSize = 18, 
       double fontSize = 14, 
+      double dividerWidth = 250,
       double spaceBetweenRows = 4, 
       int? maxSocialNetworksDisplayed
     }
   ):
-  _logoSize = logoSize, _fontSize =fontSize, _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed, _spaceBetweenRows = spaceBetweenRows;
+  _logoSize = logoSize,
+  _dividerWidth = dividerWidth,
+  _fontSize =fontSize, 
+  _maxSocialNetworksDisplayed = maxSocialNetworksDisplayed,
+  _spaceBetweenRows = spaceBetweenRows;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +37,31 @@ class SocialNetworksList extends StatelessWidget {
       itemCount:  _getNumberOfSocialNetworksDisplayed(),
       itemBuilder: (_, int index){
         SocialNetwork socialNetwork = _socialNetworksToUsername.keys.elementAt(index);
-        return Padding(
-          padding: EdgeInsets.only(bottom: _spaceBetweenRows),
-          child: _SocialNetworkRow(socialNetwork, _socialNetworksToUsername[socialNetwork]!, _logoSize, _fontSize),
+        return Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(left: 15),
+              child: _SocialNetworkRow(socialNetwork, _socialNetworksToUsername[socialNetwork]!, _logoSize, _fontSize)
+            ),
+            if(_isNotTheLastIndex(index))_getDividerAlignedWithPadding()
+          ],
         );
       }
+    );
+  }
+
+  bool _isNotTheLastIndex( int index){
+    return index != _socialNetworksToUsername.length -1;
+  }
+
+  Widget _getDividerAlignedWithPadding(){
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical:_spaceBetweenRows/2),
+      child: Row( //This row is for aligning the divider to the left
+        children: [
+          CustomDivider(width: _dividerWidth,),
+        ],
+      ),
     );
   }
 

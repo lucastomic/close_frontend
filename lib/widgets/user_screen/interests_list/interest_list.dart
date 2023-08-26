@@ -1,5 +1,4 @@
-import 'package:close_frontend/math/math.dart';
-import 'package:close_frontend/widgets/user_screen/interests_list/intrest_row.dart';
+import 'package:close_frontend/widgets/user_screen/interests_list/intrest_item.dart';
 import 'package:flutter/material.dart';
 
 class InterestList extends StatelessWidget {
@@ -8,22 +7,17 @@ class InterestList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),  
-      shrinkWrap: true,
-      itemCount: _interests.length,
-      itemBuilder: (_, int i){
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 14),
-          child: _getInterestRow(i)
-        );
-      }
+    return Wrap(  
+      
+      children: _getInterestItems(),
     );
   }
-
-  InterestRow _getInterestRow(int index){
-    return Math.isEven(index) 
-      ? InterestRow.right(_interests[index])
-      : InterestRow.left(_interests[index]);
+  List<Widget>_getInterestItems(){
+    List<Widget> response = [];
+    for (var interest in _interests) {
+      response.add(InterestItem(interest));
+    }
+    return response;
   }
+
 }
