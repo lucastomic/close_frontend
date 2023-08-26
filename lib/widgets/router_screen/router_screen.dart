@@ -1,14 +1,11 @@
 import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
-import 'package:close_frontend/provider/location/location_provider.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/close_users_screen/close_users_screen.dart';
-import 'package:close_frontend/widgets/router_screen/current_page_provider.dart';
 import 'package:close_frontend/widgets/router_screen/customized_bottom_navigation_bar.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:provider/provider.dart';
 
 @Injectable()
 class RouterScreen extends StatefulWidget {
@@ -24,13 +21,11 @@ class RouterScreen extends StatefulWidget {
 
 class _RouterScreenState extends State<RouterScreen> {
   late List<Widget> _displayOptions;
-  late CurrentPageProvider _currentPage;
-  final int _initalPageIndex =0;
+  int _index =0;
 
   @override
   void initState() {
     _initDisplayOptions();
-    _initCurrentPageProvider();
     super.initState();
   }
 
@@ -40,21 +35,18 @@ class _RouterScreenState extends State<RouterScreen> {
       onWillPop: ()async=>false,
       child: Scaffold(
         bottomNavigationBar: CustomizedNaviagtionBar( 
-          initialIndex: _initalPageIndex,
+          initialIndex: _index,
           onItemTapped: _onItemTapped,
         ),
-        body: context.watch<CurrentPageProvider>().currentPage
+        body: _displayOptions[_index]
       ),
     );
   }
 
   void _onItemTapped(int index) {
-    _currentPage.currentPage = _displayOptions[index];
-  }
-
-  void _initCurrentPageProvider(){
-    _currentPage = context.read<CurrentPageProvider>();
-    _currentPage.defaultAndCurrentPage = _displayOptions[_initalPageIndex];
+    setState(() {
+      _index = index;
+    });
   }
 
   void _initDisplayOptions(){
