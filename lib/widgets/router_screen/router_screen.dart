@@ -1,6 +1,7 @@
 import 'package:close_frontend/image_manage/image_quality_reducer/image_quality_reducer.dart';
 import 'package:close_frontend/services/close_users/close_users_servic_port.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
+import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/close_users_screen/close_users_screen.dart';
 import 'package:close_frontend/widgets/router_screen/customized_bottom_navigation_bar.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/profile_screen.dart';
@@ -12,8 +13,8 @@ class RouterScreen extends StatefulWidget {
   final IChatService _messageService;
   final ICloseUsersService _closeUsersService;
   final ImageQualityReducer _qualityReducer;
-
-  RouterScreen(this._closeUsersService, this._qualityReducer, this._messageService);
+  final IDuckService _duckService;
+  RouterScreen(this._closeUsersService, this._qualityReducer, this._messageService,this._duckService);
 
   @override
   State<RouterScreen> createState() => _RouterScreenState();
@@ -51,7 +52,7 @@ class _RouterScreenState extends State<RouterScreen> {
 
   void _initDisplayOptions(){
     _displayOptions = [
-      CloseUsersScreen(widget._closeUsersService,widget._qualityReducer, widget._messageService), 
+      CloseUsersScreen(widget._closeUsersService,widget._qualityReducer, widget._messageService,widget._duckService), 
       const ProfileScreen()
     ];
   }

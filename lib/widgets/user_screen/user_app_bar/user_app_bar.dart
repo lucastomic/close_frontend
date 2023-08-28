@@ -1,4 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/buttons/duck_button.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/profile_info/profile_name_and_username.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,8 @@ import 'package:flutter/material.dart';
 class UserAppBar extends StatelessWidget {
   final User _user; 
   final double _maxHeight = 240.0;
-  UserAppBar(this._user);
+  IDuckService _duckService;
+  UserAppBar(this._user,this._duckService);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class UserAppBar extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         titlePadding: const EdgeInsets.all(0),
         centerTitle: true,
-        title: _AppBarTitle(_user),
+        title: _AppBarTitle(_user,_duckService),
         background: _getBackground(),
       )
     );
@@ -39,7 +41,8 @@ class UserAppBar extends StatelessWidget {
 
 class _AppBarTitle extends StatelessWidget {
   final User _user; 
-  const _AppBarTitle(this._user);
+  final IDuckService _duckService;
+  const _AppBarTitle(this._user,this._duckService);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +61,7 @@ class _AppBarTitle extends StatelessWidget {
             profileNameFontSize: 13,
           ),
           const SizedBox(width: 14,),
-          const DuckButton()
+          DuckButton(_duckService, _user)
         ],
       )
     );

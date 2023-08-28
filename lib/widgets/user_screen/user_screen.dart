@@ -1,5 +1,6 @@
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
+import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/close_users_screen/user_box/messages_screen_button/messages_screen_button.dart';
 import 'package:close_frontend/widgets/user_screen/interests_list/interest_list.dart';
 import 'package:close_frontend/widgets/user_screen/user_app_bar/user_app_bar.dart';
@@ -10,7 +11,8 @@ import 'package:sliver_fill_remaining_box_adapter/sliver_fill_remaining_box_adap
 class UserScreen extends StatelessWidget {
   final User _user;
   final IChatService _messageService;
-  const UserScreen(this._user,this._messageService);
+  final IDuckService _duckService;
+  const UserScreen(this._user,this._messageService,this._duckService);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class UserScreen extends StatelessWidget {
       floatingActionButton:SizedBox(height: 70 ,child: MessagesScreenButton(_user,_messageService)) ,
       body: CustomScrollView(
         slivers: [
-          UserAppBar(_user),  
+          UserAppBar(_user, _duckService),  
           SliverFillRemainingBoxAdapter(
             child: Column(  
               mainAxisAlignment: MainAxisAlignment.spaceAround,
