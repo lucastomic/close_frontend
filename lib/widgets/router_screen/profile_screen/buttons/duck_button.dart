@@ -1,6 +1,5 @@
 import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/local_storage/local_storage.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/widgets/duck/duck_logo.dart';

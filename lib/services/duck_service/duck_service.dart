@@ -8,9 +8,17 @@ import 'package:injectable/injectable.dart';
 @Injectable(as:IDuckService)
 class DuckService implements IDuckService{
   @override
-  Future<void> removeDuck(User user) {
-    // TODO: implement removeDuck
-    throw UnimplementedError();
+  Future<void> removeDuck(User user) async {
+    HTTPRequest request = HTTPRequest.toServer(
+      unencodedPath: "/users/ducks/reclaim",
+      queryParameters: {
+        "receiverId":user.id
+      }
+    );
+    HTTPResponse response = await HTTPRequester.delete(request);
+    if( !response.statusIsOK){
+      //TODO: HANDLE ERROR
+    }
   }
 
   @override
@@ -18,11 +26,11 @@ class DuckService implements IDuckService{
     HTTPRequest request = HTTPRequest.toServer(
       unencodedPath: "/users/ducks/send",
       queryParameters: {
-        "id":user.id
+        "receiverId":user.id
       }
     );
     HTTPResponse response = await HTTPRequester.post(request);
-    if(!response.statusIsOK){
+    if( !response.statusIsOK){
       //TODO: HANDLE ERROR
     }
   }
