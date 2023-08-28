@@ -31,9 +31,9 @@ class _DuckButtonState extends State<DuckButton> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
+    return GestureDetector(
       child: _sended ? DuckLogo.primary(width: _buttonWidth) : DuckLogo.grey(width: _buttonWidth),
-      onPressed: () {
+      onTap: () {
         if(_sended){
           widget._duckService.removeDuck(widget._receiver);
           _authenticatedUser.removeDuckSent(widget._receiver);
