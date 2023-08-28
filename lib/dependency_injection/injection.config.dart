@@ -97,6 +97,7 @@ extension GetItInjectableX on _i1.GetIt {
           get<_i7.ICloseUsersService>(),
           get<_i19.ImageQualityReducer>(),
           get<_i26.IChatService>(),
+          get<_i9.IDuckService>(),
         ));
     return this;
   }
