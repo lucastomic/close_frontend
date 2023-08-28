@@ -16,4 +16,15 @@ class AuthenticatedUser extends User{
     return _ducksReceived;
   }
 
+  bool hasSentDuckTo(User user){
+    return _ducksSent.contains(user.id);
+  }
+  void addDuckSent(User user){
+    _ducksSent.add(user.id!);
+  }
+
+  void removeDuckSent(User user){
+    _ducksSent.remove(user.id);
+  }
+
 }

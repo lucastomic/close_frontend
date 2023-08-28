@@ -42,7 +42,7 @@ class AuthenticationProvider extends ChangeNotifier {
     _authenticatedUser = await _authenticationService.getUserFromToken(_authenticationToken!);
   }
 
-  User get authenticatedUser {
+  AuthenticatedUser get authenticatedUser {
     assert(_authenticationToken !=null, "There is no authentitcated user");
     return _authenticatedUser!;
   }

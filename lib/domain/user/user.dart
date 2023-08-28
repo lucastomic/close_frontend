@@ -21,9 +21,9 @@ class User {
   }): this._username = username;
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id']!;
     _username = json['username']!;
-    profileName = json['profileName'!];
+    profileName = json['profileName'];
     password = json['password'];
     photo = json['photo'];
     socialNetworks = {};
