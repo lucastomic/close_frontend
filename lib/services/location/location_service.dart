@@ -43,6 +43,10 @@ class LocationService implements ILocationService{
       })
     );
   }
+  @override
+  void closeLocationSending() {
+    _webSocketSender.close();
+  }
 
   @override
   Future<bool> checkNeededConfig() async {
@@ -91,10 +95,10 @@ class LocationService implements ILocationService{
 
   void _initalizeWebSocketSender(){
     _webSocketSender = WebSocketSender(
-      NavigationService.navigatorKey.currentContext!, 
       destination: "/app/location", 
       url: "ws://$serverURL/socket", 
     );
   }
+
 
 }

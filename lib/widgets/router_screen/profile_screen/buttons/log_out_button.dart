@@ -1,5 +1,6 @@
 
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
+import 'package:close_frontend/provider/location/location_provider.dart';
 import 'package:close_frontend/widgets/util_widgets/decored_button/decored_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,8 @@ class _LogOutButtonState extends State<LogOutButton> {
 
   void _logOut(){
     AuthenticationProvider authProvider = context.read<AuthenticationProvider>();
+    LocationProvider locationProvider = context.read<LocationProvider>();
+    locationProvider.setLocationActivity(false);
     authProvider.logOut();
     Navigator.of(context).pushNamed("login");
   }

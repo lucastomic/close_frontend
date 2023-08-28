@@ -20,6 +20,7 @@ class LocationSender{
   void stopSending(){
     if(_isCurrentlySending){
       _locationService.cancelLocationUpdating();
+      _locationService.closeLocationSending();
       _timerSender?.cancel();
       _isCurrentlySending = false;
     }

@@ -1,48 +1,56 @@
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
-import 'package:flutter/material.dart';
+import 'package:close_frontend/services/navigation/navigation_service.dart';
 import 'package:provider/provider.dart';
 import 'package:stomp_dart_client/stomp.dart';
 import 'package:stomp_dart_client/stomp_config.dart';
 
 class WebSocketSender{
-  late final String _destination;
-  late StompClient _client;
-  late String _authenticationToken;
+  final String _url;
+  final String _destination;
+  StompClient? _client;
 
-  WebSocketSender(BuildContext context, {required String destination,required String url}): _destination = destination
+  WebSocketSender({required String destination,required String url}): _destination = destination, _url = url
   {
-    AuthenticationProvider provider =  context.read<AuthenticationProvider>();
-    _authenticationToken = provider.authenticationToken;
-    _client = StompClient(
-      config: StompConfig(
-        webSocketConnectHeaders: {
-          "Authorization": "Bearer $_authenticationToken}"
-        },
-        url:url,
-      )
-    );
-    _client.activate();
+    _initalizeWebSocketConnection();
   }
 
   void send({
       Map<String, String>? headers,
       required String body,
   }) async {
-    Map<String,String>? authenticatedHeaders = _getAuthenticatedHeaders(headers);
-    _client.send(destination: _destination,body: body, headers: authenticatedHeaders);
+    if(_client == null)_initalizeWebSocketConnection();
+    _client!.send(destination: _destination,body: body, headers: headers);
   }
 
-  Map<String,String> _getAuthenticatedHeaders(Map<String,String>? headers){
-    if(headers != null){
-      return _addAuthorizationToken(headers);
-    }else{
-      return {"Authorization": "Bearer $_authenticationToken"};
-    }
+  void close(){
+    _client?.deactivate();
+    _client = null;
   }
 
-  Map<String,String> _addAuthorizationToken(Map<String,String> headers){
-      headers.addAll({"Authorization": "Bearer $_authenticationToken"});
-      return headers;
+  void _initalizeWebSocketConnection(){
+    String authenticationToken = _getAuthenticationToken();
+    _initClient(authenticationToken);
+    _client!.activate();
   }
 
+  String _getAuthenticationToken(){
+    AuthenticationProvider provider =  _getAuthenticationProvider();
+    return provider.authenticationToken;
+  }
+
+  void _initClient(String authenticationToken){
+    _client = StompClient(
+      config: StompConfig(
+        webSocketConnectHeaders: {
+          "Authorization": "Bearer $authenticationToken}"
+        },
+        url:_url,
+      )
+    );
+
+  }
+
+  AuthenticationProvider _getAuthenticationProvider(){
+    return NavigationService.navigatorKey.currentContext!.read<AuthenticationProvider>();  
+  }
 }
