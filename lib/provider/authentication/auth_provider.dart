@@ -5,6 +5,7 @@ import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/local_storage/local_storage_port.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
+import 'package:close_frontend/widgets/social_networks_screen/social_network_form/social_network_form.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
@@ -61,6 +62,7 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
 
+
   bool isUserAuthenticated(User user){
     return _authenticatedUser!.id == user.id;
   }
@@ -72,6 +74,15 @@ class AuthenticationProvider extends ChangeNotifier {
   int get ducksReceived{
     return _authenticatedUser!.ducksReceived;
   } 
+
+  void updateSocialNetowrks(Map<SocialNetwork,String?> socialNetowrks){
+    Map<SocialNetwork,String> existingElements = {};
+    socialNetowrks.forEach((socialNetwork, username) {
+      if(username != null) existingElements.addAll({socialNetwork:username});
+    });
+    _authenticatedUser!.socialNetworks = existingElements;
+    notifyListeners();
+  }
 
   Future<void> _authenticate(String token) async {
     await _localStorage.setAuthToken(token);

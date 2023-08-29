@@ -38,7 +38,7 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
     return UserModifingForm<SocialNetwork,String?>(
       inputs: _getFormInputsList(),
       submitButtonText: "Guardar",
-      onSubmit:_updateSocialNetworks,
+      onSubmit:(inputs)=>_updateSocialNetworks(inputs,context),
       nextPage: widget._nextPage,
     );
   }
@@ -51,12 +51,13 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
     return ExpandedFormInputsList(inputs);
   }
 
-  Future<void> _updateSocialNetworks(Map<SocialNetwork, String?> inputs) async{
+  Future<void> _updateSocialNetworks(Map<SocialNetwork, String?> inputs, BuildContext context) async{
     await Future.forEach(inputs.entries,(entry) async{
       entry.value != null 
       ? await widget._socialNetworkService.updateSocialNetwork(entry.key, entry.value!)
       : await widget._socialNetworkService.removeSocialNetwork(entry.key);
     });
+    context.read<AuthenticationProvider>().updateSocialNetowrks(inputs);
   }
 
   Map<SocialNetwork,FormInput<String?>>_getSocialNetworkInputMapEntry(SocialNetwork socialNetwork){

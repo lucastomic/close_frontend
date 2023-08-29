@@ -18,7 +18,7 @@ class ProfileNameAndUsername extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _getProfileNameWidget(_user.profileName),
+        _getProfileNameWidget(_user.profileName), 
         _getUsernameWidget(_user.username),
       ],
     );
@@ -27,7 +27,7 @@ class ProfileNameAndUsername extends StatelessWidget {
   Widget _getUsernameWidget(String username){
     return Text(
       username,
-      style: TextStyle(fontSize: _usernameFontSize),
+      style: TextStyle(fontSize: _usernameFontSize,),
       textAlign: TextAlign.center,
     );
   }
@@ -35,7 +35,11 @@ class ProfileNameAndUsername extends StatelessWidget {
   Widget _getProfileNameWidget(String name){
     return Text(
       name,
-      style: TextStyle(fontSize: _profileNameFontSize, fontWeight: FontWeight.bold),
+      style: TextStyle(
+        fontSize: _profileNameFontSize, 
+        fontWeight: FontWeight.bold,
+        height: .8
+    ),
       textAlign: TextAlign.center,
     );
   }

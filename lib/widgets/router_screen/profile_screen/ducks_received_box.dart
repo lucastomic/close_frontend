@@ -1,29 +1,41 @@
-import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/widgets/duck/duck_logo.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class DucksReceivedBox extends StatefulWidget {
-  @override
-  State<DucksReceivedBox> createState() => _DucksReceivedBoxState();
-}
+class DucksReceivedBox extends StatelessWidget {
+  final int _ducksReceived;
+  const DucksReceivedBox(this._ducksReceived);
 
-class _DucksReceivedBoxState extends State<DucksReceivedBox> {
-  late int _ducksReceived;
-
-  @override
-  void initState() {
-    _ducksReceived = context.read<AuthenticationProvider>().ducksReceived;
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        DuckLogo.primary(width:130),
-        Text(_ducksReceived.toString(),style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),),
-        const SizedBox(width:150,height: 1, child: Divider()),
-        const Text("patos recibidos",style: TextStyle(fontSize: 15),),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal:20, vertical: 3),
+          decoration: BoxDecoration(
+            border: Border.all(width: .6),
+            borderRadius: BorderRadius.circular(15)
+          ),
+          child: _DuckAndNumber(_ducksReceived),
+        ),
+      ],
+    );
+  }
+}
+
+class _DuckAndNumber extends StatelessWidget {
+  final int _ducksReceived;
+  const _DuckAndNumber(this._ducksReceived);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        DuckLogo.primary(width:35),
+        const SizedBox(width: 10,),
+        Text(_ducksReceived.toString(),style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600),),
+        const SizedBox(width: 10,),
       ],
     );
   }
