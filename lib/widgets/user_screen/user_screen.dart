@@ -28,10 +28,10 @@ class UserScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children:[
                 const _SubTitle("Redes sociales"),
-                SocialNetworksList(_user.socialNetworks, logoSize: 28, fontSize: 16, spaceBetweenRows: 24,),
+                _getSocialNetworksWidget(),
                 const SizedBox(height: 20,),
                 const _SubTitle("Intereses"),
-                InterestList(_user.interests),
+                _getInterestsWidget(),
                 const SizedBox(height: 70,),
               ]
             )
@@ -39,6 +39,18 @@ class UserScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _getSocialNetworksWidget(){
+    return _user.hasSocialNetowks 
+    ? SocialNetworksList(_user.socialNetworks, logoSize: 28, fontSize: 16, spaceBetweenRows: 24,)
+    : const _NoElementsMessage("No hay redes sociales disponibles");
+  }
+
+  Widget _getInterestsWidget(){
+    return _user.hasInterests 
+    ? InterestList(_user.interests)
+    : const _NoElementsMessage("No hay intereses disponibles");
   }
 }
 
@@ -51,6 +63,23 @@ class _SubTitle extends StatelessWidget {
     return  Container(
         margin: const EdgeInsets.only(left: 15),
         child: Text(_text, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),)
+    );
+  }
+}
+
+class _NoElementsMessage extends StatelessWidget {
+  final String _message;
+  const _NoElementsMessage(this._message);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          const Icon(Icons.sentiment_dissatisfied, size: 60,),
+          Text(_message),
+        ],
+      ),
     );
   }
 }

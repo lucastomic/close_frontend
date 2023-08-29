@@ -49,4 +49,11 @@ class User {
   String get username{
     return _username.asUsername();
   }
+
+  bool get hasInterests{
+    return interests.isNotEmpty;  
+  }
+  bool get hasSocialNetowks{
+    return socialNetworks.isNotEmpty;  
+  }
 }
