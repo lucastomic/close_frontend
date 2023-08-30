@@ -1,4 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:close_frontend/domain/social_network/social_network.dart';
+import 'package:close_frontend/exception_displayer/exception_displayer.dart';
+import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input_list/expanded_form_inputs_list.dart';
@@ -52,13 +57,10 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
   }
 
   Future<void> _updateSocialNetworks(Map<SocialNetwork, String?> inputs, BuildContext context) async{
-    await Future.forEach(inputs.entries,(entry) async{
-      entry.value != null 
-      ? await widget._socialNetworkService.updateSocialNetwork(entry.key, entry.value!)
-      : await widget._socialNetworkService.removeSocialNetwork(entry.key);
-    });
-    context.read<AuthenticationProvider>().updateSocialNetowrks(inputs);
+    await _updateSocialNetworksInServer(inputs);
+    _updateSocialNetworksInLocal(inputs, context);
   }
+
 
   Map<SocialNetwork,FormInput<String?>>_getSocialNetworkInputMapEntry(SocialNetwork socialNetwork){
     return {
@@ -69,4 +71,15 @@ class _SocialNetowrksFormState extends State<SocialNetowrksForm> {
     };
   }
 
+  Future<void> _updateSocialNetworksInServer(Map<SocialNetwork, String?> inputs) async {
+    await Future.forEach(inputs.entries,(entry) async{
+      entry.value != null 
+      ? await widget._socialNetworkService.updateSocialNetwork(entry.key, entry.value!)
+      : await widget._socialNetworkService.removeSocialNetwork(entry.key);
+    });
+  }
+
+  void _updateSocialNetworksInLocal(Map<SocialNetwork, String?> inputs, BuildContext context){
+    context.read<AuthenticationProvider>().updateSocialNetowrks(inputs);
+  }
 }

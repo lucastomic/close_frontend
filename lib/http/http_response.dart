@@ -10,10 +10,10 @@ class HTTPResponse{
   ):_statusCode = statusCode, _headers = headers, _body = body;
 
   get statusIsOK{
-    return _statusCodeStartsWith2();  
+    return _statusCodeStartsWith(2);  
   }
-  bool _statusCodeStartsWith2(){
-    return _statusCode.toString()[0] == "2";
+  bool _statusCodeStartsWith(int number){
+    return _statusCode.toString()[0] == "$number";
   }
 
   get statusIsBadRequest{
