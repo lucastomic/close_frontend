@@ -1,8 +1,11 @@
 import 'package:close_frontend/domain/social_network/social_network.dart';
+import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../http/http_response.dart';
 
 @Injectable(as: ISocialNetworkService)
 class SocialNetworkService extends ISocialNetworkService{
@@ -17,8 +20,10 @@ class SocialNetworkService extends ISocialNetworkService{
           "username":username
         }
     ); 
-    await HTTPRequester.post(request);
-    //TODO: HANDLE ERROR
+    HTTPResponse response = await HTTPRequester.post(request);
+    if(!response.statusIsOK){
+      throw ExceptionWithMessage("Las redes sociales no fueron actualizadas con éxito");
+    }
   }
   
   @override
@@ -30,7 +35,10 @@ class SocialNetworkService extends ISocialNetworkService{
           "socialNetwork":socialNetwork.name.toUpperCase(),
         }
     ); 
-    await HTTPRequester.post(request);  
+    HTTPResponse response = await HTTPRequester.post(request);
+    if(!response.statusIsOK){
+      throw ExceptionWithMessage("Las redes sociales no fueron actualizadas con éxito");
+    }  
   }
 
 }

@@ -1,5 +1,7 @@
 import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/exception_displayer/exception_displayer.dart';
+import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/widgets/duck/duck_logo.dart';
@@ -33,18 +35,34 @@ class _DuckButtonState extends State<DuckButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: _sended ? DuckLogo.primary(width: _buttonWidth) : DuckLogo.grey(width: _buttonWidth),
-      onTap: () {
-        if(_sended){
-          widget._duckService.removeDuck(widget._receiver);
-          _authenticatedUser.removeDuckSent(widget._receiver);
-        }else{
-          widget._duckService.sendDuck(widget._receiver); 
-          _authenticatedUser.addDuckSent(widget._receiver);
+      onTap: () async {
+        _toggleSended();
+        try{
+          await _sendOrRemoveDuck();
+        }on ExceptionWithMessage catch(e){
+          ExceptionDisplayer.display(e, context);
+          _toggleSended();
         }
-        setState(() {
-          _sended = !_sended;
-        });
       },
     );
+  }
+
+  void _toggleSended(){ 
+    setState(() {
+      _sended = !_sended;
+    });
+  }
+  Future<void> _sendOrRemoveDuck() async {
+     _sended ? await _sendDuck() : await _removeDuck();
+  } 
+
+  Future<void> _sendDuck() async {
+    await widget._duckService.removeDuck(widget._receiver);
+    _authenticatedUser.removeDuckSent(widget._receiver);
+  }
+
+  Future<void> _removeDuck() async {
+    await widget._duckService.sendDuck(widget._receiver); 
+    _authenticatedUser.addDuckSent(widget._receiver);
   }
 }

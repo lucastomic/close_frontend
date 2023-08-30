@@ -1,4 +1,5 @@
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
@@ -17,7 +18,7 @@ class DuckService implements IDuckService{
     );
     HTTPResponse response = await HTTPRequester.delete(request);
     if( !response.statusIsOK){
-      //TODO: HANDLE ERROR
+      throw ExceptionWithMessage("El pato no pudo ser enviado con éxito");
     }
   }
 
@@ -31,7 +32,7 @@ class DuckService implements IDuckService{
     );
     HTTPResponse response = await HTTPRequester.post(request);
     if( !response.statusIsOK){
-      //TODO: HANDLE ERROR
+      throw ExceptionWithMessage("El pato no pudo ser enviado con éxito");
     }
   }
   
