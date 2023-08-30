@@ -28,8 +28,8 @@ class SendMessageButton extends StatelessWidget {
   }
   void _onTap()async{
     if(_messageIsValid()){
-      await _chatService.sendMessage(_receiver, _message!);
       executeOnSubmitIfExists();
+      await _chatService.sendMessage(_receiver, _message!);
     }
   }
 
