@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
@@ -17,28 +18,20 @@ class ChatService implements IChatService{
 
   @override
   Future<void> sendMessage(User user, String message)async {
-    try{
       HTTPRequest request = HTTPRequest.toServer(
         unencodedPath: "/chat/send",
         body: <String,dynamic>{"receiverID":user.id.toString(),"value":message}
       );
       await HTTPRequester.post(request);
-    }catch(e){
-      rethrow;
-    }
   }
   
   @override
   Future<Chat> getChat(User receiver) async {
-    try{
       HTTPRequest request = HTTPRequest.toServer(
         unencodedPath: "/chat/get/${receiver.id}",
       );
       HTTPResponse response = await HTTPRequester.get(request);
       return Chat.fromJSON(response.body);
-    }catch(e){
-      rethrow;
-    }
   }
 
   @override
