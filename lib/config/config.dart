@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 Map<String, Widget Function(BuildContext)> routes = {
   'main': (_) =>getIt.get<RouterScreen>(),
   'login': (_) => AuthenticationScreen.login(getIt.get<ILoginInputFactory>()),
-  'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>(),getIt.get<ISocialNetworkService>()),
+  'register': (_) => AuthenticationScreen.register(getIt.get<IRegisterInputFactory>()),
   'modifySocialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>()),
   'newSocialNetworks': (_) => SocialNetworksScreen(getIt.get<ISocialNetworkService>(), nextPage: "newInterests",),
   'modifyInterests': (_) => InterestsScreen(getIt.get<IInterestService>(),getIt.get<IInterestCheckerManager>()),
@@ -22,7 +22,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   'splash': (_) => SplashScreen()
 };
 
-const String serverURL = '192.168.18.32:8080';
+const String serverURL = '192.168.1.79:8080';
 const String initalRoute = 'splash';
 const String title = "close";
 ThemeData themeData = ThemeData(

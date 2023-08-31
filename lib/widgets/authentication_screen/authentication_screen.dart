@@ -14,8 +14,8 @@ class AuthenticationScreen extends StatelessWidget {
       : _form = LoginForm(inputFactory),
         _changeScreenButton = _ChangeScreenButton("Aun no tengo cuenta", "register");
 
-  AuthenticationScreen.register(IRegisterInputFactory inputFactory, ISocialNetworkService socialNetworkService)
-      : _form = RegisterForm(inputFactory, socialNetworkService),
+  AuthenticationScreen.register(IRegisterInputFactory inputFactory)
+      : _form = RegisterForm(inputFactory),
         _changeScreenButton = _ChangeScreenButton("Ya tengo cuenta", "login");
 
   @override
