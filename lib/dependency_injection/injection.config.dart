@@ -35,6 +35,8 @@ import '../services/interests_service/interest_service.dart' as _i12;
 import '../services/interests_service/interest_service_port.dart' as _i11;
 import '../services/location/location_service.dart' as _i14;
 import '../services/location/location_service_port.dart' as _i13;
+import '../services/profile_photo/profile_photo_service.dart' as _i33;
+import '../services/profile_photo/profile_photo_service_port.dart' as _i32;
 import '../services/social_network/port/social_network_service_port.dart'
     as _i15;
 import '../services/social_network/social_network_service.dart' as _i16;
@@ -43,9 +45,9 @@ import '../widgets/authentication_screen/authentication_forms/input_factory/logi
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
     as _i30;
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
-    as _i32;
+    as _i34;
 import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
-    as _i33;
+    as _i35;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i23;
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checker_manager_port.dart'
@@ -53,7 +55,7 @@ import '../widgets/interests_screen/interest_selction_form/interest_checkers_man
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checkers_manager.dart'
     as _i29;
 import '../widgets/router_screen/router_screen.dart'
-    as _i34; // ignore_for_file: unnecessary_lambdas
+    as _i36; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -89,11 +91,13 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i29.InterestCheckerBoxManager(get<_i11.IInterestService>()));
     gh.factory<_i30.ILoginInputFactory>(
         () => _i31.LoginInputFactory(get<_i23.InputValidator>()));
-    gh.factory<_i32.IRegisterInputFactory>(() => _i33.RegisterInputFactory(
+    gh.factory<_i32.IProfilePhotoService>(
+        () => _i33.ProfilePhotoService(get<_i21.ImageUploader>()));
+    gh.factory<_i34.IRegisterInputFactory>(() => _i35.RegisterInputFactory(
           get<_i23.InputValidator>(),
           get<_i17.ImagePickerPort>(),
         ));
-    gh.factory<_i34.RouterScreen>(() => _i34.RouterScreen(
+    gh.factory<_i36.RouterScreen>(() => _i36.RouterScreen(
           get<_i7.ICloseUsersService>(),
           get<_i19.ImageQualityReducer>(),
           get<_i26.IChatService>(),
