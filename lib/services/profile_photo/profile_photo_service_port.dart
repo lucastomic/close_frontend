@@ -1,3 +1,3 @@
 abstract class IProfilePhotoService{
-  Future<void> modify(String imagePath);  
+  Future<String> modify(String imagePath);  
 }

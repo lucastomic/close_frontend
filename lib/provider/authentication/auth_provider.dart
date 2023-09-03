@@ -61,8 +61,6 @@ class AuthenticationProvider extends ChangeNotifier {
     _authenticatedUser!.addNewInterest(interest);
   }
 
-
-
   bool isUserAuthenticated(User user){
     return _authenticatedUser!.id == user.id;
   }
@@ -74,6 +72,11 @@ class AuthenticationProvider extends ChangeNotifier {
   int get ducksReceived{
     return _authenticatedUser!.ducksReceived;
   } 
+
+  void setPhoto(String imageURL){
+    _authenticatedUser!.photo = imageURL;
+    notifyListeners();
+  }
 
   void updateSocialNetowrks(Map<SocialNetwork,String?> socialNetowrks){
     Map<SocialNetwork,String> existingElements = {};

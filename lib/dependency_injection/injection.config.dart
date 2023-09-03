@@ -102,6 +102,8 @@ extension GetItInjectableX on _i1.GetIt {
           get<_i19.ImageQualityReducer>(),
           get<_i26.IChatService>(),
           get<_i9.IDuckService>(),
+          get<_i17.ImagePickerPort>(),
+          get<_i32.IProfilePhotoService>(),
         ));
     return this;
   }

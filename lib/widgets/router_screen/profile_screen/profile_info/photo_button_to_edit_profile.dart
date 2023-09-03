@@ -1,14 +1,19 @@
+import 'package:close_frontend/image_manage/image_picker/image_picker_port.dart';
+import 'package:close_frontend/services/profile_photo/profile_photo_service_port.dart';
+import 'package:close_frontend/widgets/router_screen/profile_screen/edit_photo_dialaog/edit_photo_dialaog.dart';
 import 'package:close_frontend/widgets/util_widgets/circular_image_with_loader.dart';
 import 'package:flutter/material.dart';
 
 class PhotoButtonToEditProfile extends StatelessWidget {
   final String _imagePath;
-  const PhotoButtonToEditProfile(this._imagePath);
+  final ImagePickerPort _imagePicker;
+  final IProfilePhotoService _photoService;
+  const PhotoButtonToEditProfile(this._imagePath,this._imagePicker,this._photoService);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: _navigateToEditProfileScreen,
+      onPressed: ()=>_showEditPhotoDialog(context),
       child: Stack(
         children: [
           CircularImageWithLaoder(
@@ -24,8 +29,13 @@ class PhotoButtonToEditProfile extends StatelessWidget {
     );
   }
 
-  void _navigateToEditProfileScreen(){
-    //TODO: implement
+  void _showEditPhotoDialog(BuildContext context){
+    showDialog(
+      context: context, 
+      builder: (_){
+        return EditPhotoDialog(_imagePicker,_photoService);
+      }
+    );
   }
 }
 

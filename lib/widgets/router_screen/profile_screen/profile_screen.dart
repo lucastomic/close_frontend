@@ -1,5 +1,7 @@
 import 'package:close_frontend/domain/user/authenticated_user.dart';
+import 'package:close_frontend/image_manage/image_picker/image_picker_port.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
+import 'package:close_frontend/services/profile_photo/profile_photo_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/profile_info/basic_profile_info.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/buttons/log_out_button.dart';
 import 'package:close_frontend/widgets/util_widgets/social_networks_list.dart';
@@ -8,12 +10,26 @@ import 'package:provider/provider.dart';
 import 'buttons/navigable_button.dart';
 
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  ImagePickerPort _imagePickerPort;
+  IProfilePhotoService _photoService;
+  ProfileScreen(this._imagePickerPort,this._photoService);
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  late AuthenticatedUser user;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    AuthenticatedUser user = context.watch<AuthenticationProvider>().authenticatedUser;
+    user = context.watch<AuthenticationProvider>().authenticatedUser;
     return SafeArea(
       child: CustomScrollView(  
         slivers: [
@@ -21,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                  BasicProfileInfo(user),
+                  BasicProfileInfo(user,widget._imagePickerPort,widget._photoService),
                   const Spacer(),
                   SocialNetworksList(
                     user.socialNetworks,
