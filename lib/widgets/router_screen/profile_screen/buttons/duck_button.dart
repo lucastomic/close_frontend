@@ -56,12 +56,12 @@ class _DuckButtonState extends State<DuckButton> {
      _sended ? await _sendDuck() : await _removeDuck();
   } 
 
-  Future<void> _sendDuck() async {
+  Future<void> _removeDuck() async {
     await widget._duckService.removeDuck(widget._receiver);
     _authenticatedUser.removeDuckSent(widget._receiver);
   }
 
-  Future<void> _removeDuck() async {
+  Future<void> _sendDuck() async {
     await widget._duckService.sendDuck(widget._receiver); 
     _authenticatedUser.addDuckSent(widget._receiver);
   }
