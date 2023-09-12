@@ -2,6 +2,7 @@ import 'package:close_frontend/domain/chat/chat.dart';
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:close_frontend/widgets/chat_screen/lazy_loading_messages_list/messages_list_with_lazy_loading.dart';
+import 'package:close_frontend/widgets/util_widgets/centred_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 
 class ChatRenderer extends StatefulWidget {
@@ -42,7 +43,7 @@ class _ChatRendererState extends State<ChatRenderer> {
         },
       );
     }else{
-      return Expanded(child: Container(),);
+      return Expanded(child: CentredCircularProgressIndicator());
     }
   }
 }
