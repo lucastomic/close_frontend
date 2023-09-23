@@ -1,6 +1,5 @@
 import 'package:close_frontend/firebase_options.dart';
 import 'package:close_frontend/services/notifications_service/notification.dart' as notification;
-
 import 'package:close_frontend/services/notifications_service/notification_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

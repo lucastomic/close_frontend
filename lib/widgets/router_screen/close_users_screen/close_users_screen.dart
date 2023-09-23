@@ -28,7 +28,7 @@ class _CloseUsersScreenState extends State<CloseUsersScreen> {
     context.read<LocationProvider>().init();
     super.initState();
   }
-  @override
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
