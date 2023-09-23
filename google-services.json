@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1013396963796",
+    "project_id": "close-f65f1",
+    "storage_bucket": "close-f65f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013396963796:android:62247a8686c88a5a005641",
+        "android_client_info": {
+          "package_name": "com.lucastomic.close"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYB-3tmoIxNF8VFtTEc2ajRub-_yBEQPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

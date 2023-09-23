@@ -1,4 +1,4 @@
-package com.example.close_frontend
+package com.lucastomic.close
 
 import io.flutter.embedding.android.FlutterActivity
 

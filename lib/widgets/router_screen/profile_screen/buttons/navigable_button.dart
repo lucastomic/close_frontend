@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class NavigableButton extends StatelessWidget {
   final String _text;
   final String _path;
+
   NavigableButton(this._text,this._path);
 
   @override

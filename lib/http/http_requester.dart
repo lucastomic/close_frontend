@@ -55,7 +55,6 @@ class HTTPRequester {
 
   Future<http.Response> _makeGETRequest() async{
     return await http.get(_requestCodedIntoURI,headers: _request.headers).timeout(_defaultTimeOut);
-
   }
 
   Future<http.Response> _makePOSTRequest()async {
