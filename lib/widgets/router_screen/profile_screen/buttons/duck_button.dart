@@ -1,9 +1,9 @@
 import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/exception_displayer/exception_displayer.dart';
 import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/services/duck_service/duck_service_port.dart';
+import 'package:close_frontend/snackbar_displayer/snackbar_displayer.dart';
 import 'package:close_frontend/widgets/duck/duck_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +40,7 @@ class _DuckButtonState extends State<DuckButton> {
         try{
           await _sendOrRemoveDuck();
         }on ExceptionWithMessage catch(e){
-          ExceptionDisplayer.display(e, context);
+          SnackbarDisplayer.displayException(e);
           _toggleSended();
         }
       },
