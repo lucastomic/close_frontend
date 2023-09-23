@@ -18,6 +18,8 @@ import '../image_manage/image_uploader/cloudinary_image_uploader.dart' as _i22;
 import '../image_manage/image_uploader/image_uploader_port.dart' as _i21;
 import '../local_storage/local_storage.dart' as _i4;
 import '../local_storage/local_storage_port.dart' as _i3;
+import '../notifications_handler/notifications_handler.dart' as _i35;
+import '../notifications_handler/notifications_handler_port.dart' as _i34;
 import '../services/authentication_service/authentication_service.dart' as _i27;
 import '../services/authentication_service/port/authentication_service_port.dart'
     as _i26;
@@ -38,8 +40,8 @@ import '../services/location/location_service_port.dart' as _i13;
 import '../services/notifications_service/firebase_notification_service.dart'
     as _i25;
 import '../services/notifications_service/notification_service.dart' as _i24;
-import '../services/profile_photo/profile_photo_service.dart' as _i35;
-import '../services/profile_photo/profile_photo_service_port.dart' as _i34;
+import '../services/profile_photo/profile_photo_service.dart' as _i37;
+import '../services/profile_photo/profile_photo_service_port.dart' as _i36;
 import '../services/social_network/port/social_network_service_port.dart'
     as _i15;
 import '../services/social_network/social_network_service.dart' as _i16;
@@ -48,9 +50,9 @@ import '../widgets/authentication_screen/authentication_forms/input_factory/logi
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
     as _i32;
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
-    as _i36;
+    as _i38;
 import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
-    as _i37;
+    as _i39;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i23;
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checker_manager_port.dart'
@@ -58,7 +60,7 @@ import '../widgets/interests_screen/interest_selction_form/interest_checkers_man
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checkers_manager.dart'
     as _i31;
 import '../widgets/router_screen/router_screen.dart'
-    as _i38; // ignore_for_file: unnecessary_lambdas
+    as _i40; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -96,19 +98,21 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i31.InterestCheckerBoxManager(get<_i11.IInterestService>()));
     gh.factory<_i32.ILoginInputFactory>(
         () => _i33.LoginInputFactory(get<_i23.InputValidator>()));
-    gh.factory<_i34.IProfilePhotoService>(
-        () => _i35.ProfilePhotoService(get<_i21.ImageUploader>()));
-    gh.factory<_i36.IRegisterInputFactory>(() => _i37.RegisterInputFactory(
+    gh.factory<_i34.INotificationsHanlder>(
+        () => _i35.NotificationsHanlder(get<_i24.NotificationService>()));
+    gh.factory<_i36.IProfilePhotoService>(
+        () => _i37.ProfilePhotoService(get<_i21.ImageUploader>()));
+    gh.factory<_i38.IRegisterInputFactory>(() => _i39.RegisterInputFactory(
           get<_i23.InputValidator>(),
           get<_i17.ImagePickerPort>(),
         ));
-    gh.factory<_i38.RouterScreen>(() => _i38.RouterScreen(
+    gh.factory<_i40.RouterScreen>(() => _i40.RouterScreen(
           get<_i7.ICloseUsersService>(),
           get<_i19.ImageQualityReducer>(),
           get<_i28.IChatService>(),
           get<_i9.IDuckService>(),
           get<_i17.ImagePickerPort>(),
-          get<_i34.IProfilePhotoService>(),
+          get<_i36.IProfilePhotoService>(),
         ));
     return this;
   }

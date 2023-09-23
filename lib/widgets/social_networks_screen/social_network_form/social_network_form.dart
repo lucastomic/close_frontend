@@ -1,9 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:close_frontend/domain/social_network/social_network.dart';
-import 'package:close_frontend/exception_displayer/exception_displayer.dart';
-import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input.dart';
 import 'package:close_frontend/widgets/forms/inputs/form_input_list/expanded_form_inputs_list.dart';
