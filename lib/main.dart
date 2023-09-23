@@ -5,16 +5,16 @@ import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/provider/location/location_provider.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/location/location_service_port.dart';
+import 'package:close_frontend/services/notifications_service/notification_service.dart';
 import 'package:close_frontend/widgets/splash_screen/splash_screen_functionality.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'services/navigation/navigation_service.dart';
 
 void main() {
   configureDependencies();
   perserveSplashScreen();
-
+  getIt.get<NotificationService>().init();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => AuthenticationProvider(getIt.get<IAuthenticationService>(),getIt.get<IAuthenticationLocalStorage>())),

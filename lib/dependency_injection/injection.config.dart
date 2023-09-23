@@ -18,11 +18,11 @@ import '../image_manage/image_uploader/cloudinary_image_uploader.dart' as _i22;
 import '../image_manage/image_uploader/image_uploader_port.dart' as _i21;
 import '../local_storage/local_storage.dart' as _i4;
 import '../local_storage/local_storage_port.dart' as _i3;
-import '../services/authentication_service/authentication_service.dart' as _i25;
+import '../services/authentication_service/authentication_service.dart' as _i27;
 import '../services/authentication_service/port/authentication_service_port.dart'
-    as _i24;
-import '../services/chat_service/chat_service.dart' as _i27;
-import '../services/chat_service/chat_service_port.dart' as _i26;
+    as _i26;
+import '../services/chat_service/chat_service.dart' as _i29;
+import '../services/chat_service/chat_service_port.dart' as _i28;
 import '../services/chat_service/chat_stream_service/chat_stream_service.dart'
     as _i6;
 import '../services/chat_service/chat_stream_service/chat_stream_service_port.dart'
@@ -35,27 +35,30 @@ import '../services/interests_service/interest_service.dart' as _i12;
 import '../services/interests_service/interest_service_port.dart' as _i11;
 import '../services/location/location_service.dart' as _i14;
 import '../services/location/location_service_port.dart' as _i13;
-import '../services/profile_photo/profile_photo_service.dart' as _i33;
-import '../services/profile_photo/profile_photo_service_port.dart' as _i32;
+import '../services/notifications_service/firebase_notification_service.dart'
+    as _i25;
+import '../services/notifications_service/notification_service.dart' as _i24;
+import '../services/profile_photo/profile_photo_service.dart' as _i35;
+import '../services/profile_photo/profile_photo_service_port.dart' as _i34;
 import '../services/social_network/port/social_network_service_port.dart'
     as _i15;
 import '../services/social_network/social_network_service.dart' as _i16;
 import '../widgets/authentication_screen/authentication_forms/input_factory/login_input_factory.dart'
-    as _i31;
+    as _i33;
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
-    as _i30;
+    as _i32;
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
-    as _i34;
+    as _i36;
 import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
-    as _i35;
+    as _i37;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i23;
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checker_manager_port.dart'
-    as _i28;
+    as _i30;
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checkers_manager.dart'
-    as _i29;
+    as _i31;
 import '../widgets/router_screen/router_screen.dart'
-    as _i36; // ignore_for_file: unnecessary_lambdas
+    as _i38; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -83,27 +86,29 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i20.CloudinaryImageQualityReducer());
     gh.factory<_i21.ImageUploader>(() => _i22.CloudinaryImageUploader());
     gh.factory<_i23.InputValidator>(() => _i23.InputValidator());
-    gh.factory<_i24.IAuthenticationService>(
-        () => _i25.AuthenticationService(get<_i21.ImageUploader>()));
-    gh.factory<_i26.IChatService>(
-        () => _i27.ChatService(get<_i5.IChatStreamService>()));
-    gh.factory<_i28.IInterestCheckerManager>(
-        () => _i29.InterestCheckerBoxManager(get<_i11.IInterestService>()));
-    gh.factory<_i30.ILoginInputFactory>(
-        () => _i31.LoginInputFactory(get<_i23.InputValidator>()));
-    gh.factory<_i32.IProfilePhotoService>(
-        () => _i33.ProfilePhotoService(get<_i21.ImageUploader>()));
-    gh.factory<_i34.IRegisterInputFactory>(() => _i35.RegisterInputFactory(
+    gh.factory<_i24.NotificationService>(
+        () => _i25.FirebaseNotificationService());
+    gh.factory<_i26.IAuthenticationService>(
+        () => _i27.AuthenticationService(get<_i21.ImageUploader>()));
+    gh.factory<_i28.IChatService>(
+        () => _i29.ChatService(get<_i5.IChatStreamService>()));
+    gh.factory<_i30.IInterestCheckerManager>(
+        () => _i31.InterestCheckerBoxManager(get<_i11.IInterestService>()));
+    gh.factory<_i32.ILoginInputFactory>(
+        () => _i33.LoginInputFactory(get<_i23.InputValidator>()));
+    gh.factory<_i34.IProfilePhotoService>(
+        () => _i35.ProfilePhotoService(get<_i21.ImageUploader>()));
+    gh.factory<_i36.IRegisterInputFactory>(() => _i37.RegisterInputFactory(
           get<_i23.InputValidator>(),
           get<_i17.ImagePickerPort>(),
         ));
-    gh.factory<_i36.RouterScreen>(() => _i36.RouterScreen(
+    gh.factory<_i38.RouterScreen>(() => _i38.RouterScreen(
           get<_i7.ICloseUsersService>(),
           get<_i19.ImageQualityReducer>(),
-          get<_i26.IChatService>(),
+          get<_i28.IChatService>(),
           get<_i9.IDuckService>(),
           get<_i17.ImagePickerPort>(),
-          get<_i32.IProfilePhotoService>(),
+          get<_i34.IProfilePhotoService>(),
         ));
     return this;
   }

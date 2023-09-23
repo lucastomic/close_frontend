@@ -1,4 +1,4 @@
-  import 'package:close_frontend/dependency_injection/injection.dart';
+import 'package:close_frontend/dependency_injection/injection.dart';
 import 'package:close_frontend/services/interests_service/interest_service_port.dart';
 import 'package:close_frontend/services/social_network/port/social_network_service_port.dart';
 import 'package:close_frontend/widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart';
@@ -22,14 +22,14 @@ Map<String, Widget Function(BuildContext)> routes = {
   'splash': (_) => SplashScreen()
 };
 
-const String serverURL = '192.168.1.79:8080';
+const String serverURL = '192.168.18.21:8080';
 const String initalRoute = 'splash';
 const String title = "close";
 ThemeData themeData = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color.fromARGB(211, 0, 126, 161),
     primary: const Color.fromARGB(211, 0, 126, 161),
-  onPrimary:const Color.fromARGB(210, 104, 178, 198), //onPrimary is the light version of primary
+    onPrimary:const Color.fromARGB(210, 104, 178, 198), //onPrimary is the light version of primary
     error: const Color.fromARGB(255, 185, 12, 0),
   ),
   primaryColor: Colors.white,
