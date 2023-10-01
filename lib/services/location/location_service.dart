@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:close_frontend/config/config.dart';
 import 'package:close_frontend/services/location/location_service_port.dart';
-import 'package:close_frontend/services/navigation/navigation_service.dart';
 import 'package:close_frontend/websockets/web_socket_sender.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart';
@@ -10,10 +9,8 @@ import 'package:location/location.dart';
 
 @Injectable(as: ILocationService)
 class LocationService implements ILocationService{
-  LocationData? _lastLocation;
   final Location _locationServiceController = Location();
   late WebSocketSender _webSocketSender;
-  StreamSubscription<LocationData>? _locationStreamSubscription;
 
   LocationService(){
     _locationServiceController.enableBackgroundMode(enable: true); 
@@ -21,28 +18,17 @@ class LocationService implements ILocationService{
   }
 
   @override
-  void startLocationUpdating()async{
-    _lastLocation = await _locationServiceController.getLocation();
-    _locationStreamSubscription = _locationServiceController.onLocationChanged.listen((LocationData location) {
-        _lastLocation = location;
-    });
-  }
-
-  @override
-  void cancelLocationUpdating()async{
-    _locationStreamSubscription?.cancel();
-  }
-
-  @override
   Future<void> sendLocation() async {
+    LocationData location = await _locationServiceController.getLocation();
     _webSocketSender.send(
       headers: {"Content-Type":"application/json"},
       body: jsonEncode({
-        "latitude":_lastLocation!.latitude,
-        "longitude":_lastLocation!.longitude
+        "latitude":location.latitude,
+        "longitude":location.longitude
       })
     );
   }
+
   @override
   void closeLocationSending() {
     _webSocketSender.close();

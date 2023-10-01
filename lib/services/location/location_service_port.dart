@@ -3,6 +3,4 @@ abstract class ILocationService{
   void closeLocationSending();
   Future<bool> checkNeededConfig();
   Future<bool> promptToEnableMissingConfig();
-  void startLocationUpdating();
-  void cancelLocationUpdating();
 }

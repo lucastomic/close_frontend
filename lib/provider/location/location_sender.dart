@@ -11,7 +11,6 @@ class LocationSender{
 
   void activateSending(){ 
     if(!_isCurrentlySending){
-      _locationService.startLocationUpdating();
       _startPeriodicSending();
       _isCurrentlySending = true;
     }
@@ -19,7 +18,6 @@ class LocationSender{
 
   void stopSending(){
     if(_isCurrentlySending){
-      _locationService.cancelLocationUpdating();
       _locationService.closeLocationSending();
       _timerSender?.cancel();
       _isCurrentlySending = false;
