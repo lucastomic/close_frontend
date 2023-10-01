@@ -6,15 +6,20 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: INotificationsHanlder)
 class NotificationsHanlder implements INotificationsHanlder{
-  NotificationService _notificationService;
+  final NotificationService _notificationService;
   NotificationsHanlder(this._notificationService);
 
   @override
   void init() async {
     await _notificationService.init();
     _notificationService.listenForeground(_onForegroundNotification);
+    _notificationService.listenBackground(_onBackgroundNotification);
   }
   void _onForegroundNotification(Notification notification){
+    SnackbarDisplayer.displayNotification(notification);
+  }
+
+  void _onBackgroundNotification(Notification notification){
     SnackbarDisplayer.displayNotification(notification);
   }
 }
