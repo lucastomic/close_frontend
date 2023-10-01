@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/services/navigation/navigation_service.dart';
 import 'package:close_frontend/services/notifications_service/notification.dart' as notification;
@@ -27,15 +26,5 @@ class SnackbarDisplayer{
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }  
 
-  static void _showSnackbar(AwesomeSnackbarContent content, BuildContext context){
-      SnackBar snackBar = SnackBar(
-        elevation: 0,
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        content: content
-      );  
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(snackBar);
-  }
+
 }
