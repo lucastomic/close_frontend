@@ -9,14 +9,14 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as:IChatStreamService)
 class ChatStreamService implements IChatStreamService{
-  StreamController<Chat>? _closeUsersStreamController;
+  StreamController<Chat>? _chatStreamController;
   late WebSocketClientListener _chatSubscription;
 
   @override
   Stream<Chat> getChatStream(BuildContext context){
-    _closeUsersStreamController = StreamController<Chat>(); 
+    _chatStreamController = StreamController<Chat>(); 
     _initializeSubscription(context);
-    return _closeUsersStreamController!.stream;
+    return _chatStreamController!.stream;
   }
 
   @override
@@ -36,6 +36,6 @@ class ChatStreamService implements IChatStreamService{
   void _onChatReceived(String? frameBody){
     final chatJSON = jsonDecode(frameBody!);
     Chat chat = Chat.fromJSON(chatJSON);
-    _closeUsersStreamController!.add(chat);      
+    _chatStreamController!.add(chat);      
   }
 }
