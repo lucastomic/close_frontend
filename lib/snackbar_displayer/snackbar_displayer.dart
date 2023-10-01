@@ -5,17 +5,15 @@ import 'package:close_frontend/services/notifications_service/notification.dart'
 import 'package:flutter/material.dart';
 
 class SnackbarDisplayer{
-  static const String _errorTitle = "¡Vaya!";
-
   static void displayException(ExceptionWithMessage exception){
-      _showSnackbar(
-        AwesomeSnackbarContent(
-          message: exception.message, 
-          title: _errorTitle,
-          contentType: ContentType.failure,
-        ),
-        NavigationService.navigatorKey.currentContext!
+      BuildContext context = NavigationService.navigatorKey.currentContext!;
+      final snackBar = SnackBar(
+        content: Text(exception.message),
+        backgroundColor: Theme.of(context).colorScheme.error,
+        behavior: SnackBarBehavior.floating,
       );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }  
 
   static void displayNotification(notification.Notification n){
