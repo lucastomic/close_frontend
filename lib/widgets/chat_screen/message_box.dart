@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class MessageBox extends StatefulWidget {
 	final Message _message;
 
-	MessageBox(this._message);
+	const MessageBox(this._message, {super.key});
 
   @override
   State<MessageBox> createState() => _MessageBoxState();
@@ -65,9 +65,8 @@ class _MessageBoxState extends State<MessageBox> {
 
 class _MessageBoxMisaligned extends StatelessWidget {
 	final Message _message;
-  final MessageType _messageType;
 
-	_MessageBoxMisaligned(this._message,{MessageType messageType = MessageType.received}) : _messageType = messageType;
+	const _MessageBoxMisaligned(this._message,);
 
   @override
   Widget build(BuildContext context) {

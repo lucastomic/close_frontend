@@ -4,7 +4,7 @@ import 'package:close_frontend/widgets/util_widgets/text_header.dart';
 import 'package:flutter/material.dart';
 
 class SocialNetworksScreen extends StatelessWidget {
-  ISocialNetworkService _socialNetworkService;
+  final ISocialNetworkService _socialNetworkService;
   final String? _nextPage;
   
   SocialNetworksScreen(

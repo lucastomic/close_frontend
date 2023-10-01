@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DuckButton extends StatefulWidget {
-  IDuckService _duckService;
-  User _receiver;
+  final IDuckService _duckService;
+  final User _receiver;
 
   DuckButton(this._duckService, this._receiver);
 

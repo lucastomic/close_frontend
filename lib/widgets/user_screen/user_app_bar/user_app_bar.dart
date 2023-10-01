@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 class UserAppBar extends StatelessWidget {
   final User _user; 
   final double _maxHeight = 240.0;
-  IDuckService _duckService;
-  UserAppBar(this._user,this._duckService);
+  final IDuckService _duckService;
+  const UserAppBar(this._user,this._duckService);
 
   @override
   Widget build(BuildContext context) {

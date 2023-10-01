@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomDivider extends StatelessWidget {
-  double _width;
-  CustomDivider({double? width}): _width = width ?? double.infinity;
+  final double _width;
+  const CustomDivider({double? width}): _width = width ?? double.infinity;
 
   @override
   Widget build(BuildContext context) {

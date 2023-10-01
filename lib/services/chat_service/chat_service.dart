@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:close_frontend/domain/user/user.dart';
-import 'package:close_frontend/exceptions/exception_with_message.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
