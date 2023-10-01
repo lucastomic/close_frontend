@@ -5,6 +5,7 @@ import 'package:close_frontend/notifications_handler/notifications_handler_port.
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
 import 'package:close_frontend/provider/location/location_provider.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
+import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/services/location/location_service_port.dart';
 import 'package:close_frontend/widgets/splash_screen/splash_screen_functionality.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ void main() {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => AuthenticationProvider(getIt.get<IAuthenticationService>(),getIt.get<IAuthenticationLocalStorage>())),
+      ChangeNotifierProvider(create: (_) => AuthenticationProvider(getIt.get<IAuthenticationService>(),getIt.get<IAuthenticationLocalStorage>(),getIt.get<IDuckService>())),
       ChangeNotifierProvider(create: (_) => LocationProvider(getIt.get<ILocationService>())),
     ],
     child: const MyApp(),

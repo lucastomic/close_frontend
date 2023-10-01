@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:close_frontend/domain/social_network/social_network.dart';
 import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/domain/user/user.dart';
@@ -5,17 +7,19 @@ import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/local_storage/local_storage_port.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
-import 'package:close_frontend/widgets/social_networks_screen/social_network_form/social_network_form.dart';
+import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:flutter/material.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
   AuthenticatedUser? _authenticatedUser;
   String? _authenticationToken;
   final IAuthenticationLocalStorage _localStorage;
-
+  final IDuckService _duckService;
   final IAuthenticationService _authenticationService;
 
-  AuthenticationProvider(this._authenticationService, this._localStorage);
+  StreamSubscription? _ducksReceivedListening;
+
+  AuthenticationProvider(this._authenticationService, this._localStorage, this._duckService);
 
   Future<void> authenticateFromLocalStorage() async {
     _authenticationToken = await _localStorage.getAuthToken();
@@ -32,6 +36,7 @@ class AuthenticationProvider extends ChangeNotifier {
     _authenticatedUser = null;
     HTTPRequester.cleanAuthenticationToken();
     _localStorage.cleanAuthToken();
+    _cancelDucksReceivedListening();
   }
 
   Future<void> register(CreateUserRequestData requestData) async {
@@ -91,5 +96,16 @@ class AuthenticationProvider extends ChangeNotifier {
     await _localStorage.setAuthToken(token);
     HTTPRequester.authenticationToken = token;
     _authenticatedUser = await _authenticationService.getUserFromToken(_authenticationToken!);
+    _initDuckReceivedListening();
+  }
+
+  void _initDuckReceivedListening(){
+    _ducksReceivedListening =  _duckService.getDucksReceivedStream().listen((ducks) {
+      _authenticatedUser!.ducksReceived = ducks;
+    });
+  }
+
+  void _cancelDucksReceivedListening(){
+    _ducksReceivedListening!.cancel();
   }
 }

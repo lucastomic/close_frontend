@@ -1,6 +1,7 @@
 import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/image_manage/image_picker/image_picker_port.dart';
 import 'package:close_frontend/provider/authentication/auth_provider.dart';
+import 'package:close_frontend/services/duck_service/duck_service_port.dart';
 import 'package:close_frontend/services/profile_photo/profile_photo_service_port.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/profile_info/basic_profile_info.dart';
 import 'package:close_frontend/widgets/router_screen/profile_screen/buttons/log_out_button.dart';
@@ -10,22 +11,13 @@ import 'package:provider/provider.dart';
 import 'buttons/navigable_button.dart';
 
 
-class ProfileScreen extends StatefulWidget {
-  ImagePickerPort _imagePickerPort;
-  IProfilePhotoService _photoService;
-  ProfileScreen(this._imagePickerPort,this._photoService);
+class ProfileScreen extends StatelessWidget {
+  final ImagePickerPort _imagePickerPort;
+  final IProfilePhotoService _photoService;
+  final IDuckService _duckService;
+  ProfileScreen(this._imagePickerPort,this._photoService, this._duckService);
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   late AuthenticatedUser user;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                  BasicProfileInfo(user,widget._imagePickerPort,widget._photoService),
+                  BasicProfileInfo(user,_imagePickerPort,_photoService, _duckService),
                   const Spacer(),
                   SocialNetworksList(
                     user.socialNetworks,

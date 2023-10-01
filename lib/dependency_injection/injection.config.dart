@@ -18,8 +18,8 @@ import '../image_manage/image_uploader/cloudinary_image_uploader.dart' as _i22;
 import '../image_manage/image_uploader/image_uploader_port.dart' as _i21;
 import '../local_storage/local_storage.dart' as _i4;
 import '../local_storage/local_storage_port.dart' as _i3;
-import '../notifications_handler/notifications_handler.dart' as _i35;
-import '../notifications_handler/notifications_handler_port.dart' as _i34;
+import '../notifications_handler/notifications_handler.dart' as _i37;
+import '../notifications_handler/notifications_handler_port.dart' as _i36;
 import '../services/authentication_service/authentication_service.dart' as _i27;
 import '../services/authentication_service/port/authentication_service_port.dart'
     as _i26;
@@ -31,8 +31,12 @@ import '../services/chat_service/chat_stream_service/chat_stream_service_port.da
     as _i5;
 import '../services/close_users/close_users_servic_port.dart' as _i7;
 import '../services/close_users/close_users_service.dart' as _i8;
-import '../services/duck_service/duck_service.dart' as _i10;
-import '../services/duck_service/duck_service_port.dart' as _i9;
+import '../services/duck_service/duck_service.dart' as _i31;
+import '../services/duck_service/duck_service_port.dart' as _i30;
+import '../services/duck_service/duck_stream_service/duck_stream_service.dart'
+    as _i10;
+import '../services/duck_service/duck_stream_service/duck_stream_service_port.dart'
+    as _i9;
 import '../services/interests_service/interest_service.dart' as _i12;
 import '../services/interests_service/interest_service_port.dart' as _i11;
 import '../services/location/location_service.dart' as _i14;
@@ -40,27 +44,27 @@ import '../services/location/location_service_port.dart' as _i13;
 import '../services/notifications_service/firebase_notification_service.dart'
     as _i25;
 import '../services/notifications_service/notification_service.dart' as _i24;
-import '../services/profile_photo/profile_photo_service.dart' as _i37;
-import '../services/profile_photo/profile_photo_service_port.dart' as _i36;
+import '../services/profile_photo/profile_photo_service.dart' as _i39;
+import '../services/profile_photo/profile_photo_service_port.dart' as _i38;
 import '../services/social_network/port/social_network_service_port.dart'
     as _i15;
 import '../services/social_network/social_network_service.dart' as _i16;
 import '../widgets/authentication_screen/authentication_forms/input_factory/login_input_factory.dart'
-    as _i33;
+    as _i35;
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/login_input_factory_port.dart'
-    as _i32;
+    as _i34;
 import '../widgets/authentication_screen/authentication_forms/input_factory/ports/register_input_factory_port.dart'
-    as _i38;
+    as _i40;
 import '../widgets/authentication_screen/authentication_forms/input_factory/register_input_factory.dart'
-    as _i39;
+    as _i41;
 import '../widgets/authentication_screen/authentication_forms/input_factory/validator/input_validator.dart'
     as _i23;
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checker_manager_port.dart'
-    as _i30;
+    as _i32;
 import '../widgets/interests_screen/interest_selction_form/interest_checkers_manager/interest_checkers_manager.dart'
-    as _i31;
+    as _i33;
 import '../widgets/router_screen/router_screen.dart'
-    as _i40; // ignore_for_file: unnecessary_lambdas
+    as _i42; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// an extension to register the provided dependencies inside of [GetIt]
@@ -79,7 +83,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i4.AuthenticationLocalStorage());
     gh.factory<_i5.IChatStreamService>(() => _i6.ChatStreamService());
     gh.factory<_i7.ICloseUsersService>(() => _i8.CloseUsersService());
-    gh.factory<_i9.IDuckService>(() => _i10.DuckService());
+    gh.factory<_i9.IDuckStreamService>(() => _i10.DuckStreamService());
     gh.factory<_i11.IInterestService>(() => _i12.InterestsService());
     gh.factory<_i13.ILocationService>(() => _i14.LocationService());
     gh.factory<_i15.ISocialNetworkService>(() => _i16.SocialNetworkService());
@@ -94,25 +98,27 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i27.AuthenticationService(get<_i21.ImageUploader>()));
     gh.factory<_i28.IChatService>(
         () => _i29.ChatService(get<_i5.IChatStreamService>()));
-    gh.factory<_i30.IInterestCheckerManager>(
-        () => _i31.InterestCheckerBoxManager(get<_i11.IInterestService>()));
-    gh.factory<_i32.ILoginInputFactory>(
-        () => _i33.LoginInputFactory(get<_i23.InputValidator>()));
-    gh.factory<_i34.INotificationsHanlder>(
-        () => _i35.NotificationsHanlder(get<_i24.NotificationService>()));
-    gh.factory<_i36.IProfilePhotoService>(
-        () => _i37.ProfilePhotoService(get<_i21.ImageUploader>()));
-    gh.factory<_i38.IRegisterInputFactory>(() => _i39.RegisterInputFactory(
+    gh.factory<_i30.IDuckService>(
+        () => _i31.DuckService(get<_i9.IDuckStreamService>()));
+    gh.factory<_i32.IInterestCheckerManager>(
+        () => _i33.InterestCheckerBoxManager(get<_i11.IInterestService>()));
+    gh.factory<_i34.ILoginInputFactory>(
+        () => _i35.LoginInputFactory(get<_i23.InputValidator>()));
+    gh.factory<_i36.INotificationsHanlder>(
+        () => _i37.NotificationsHanlder(get<_i24.NotificationService>()));
+    gh.factory<_i38.IProfilePhotoService>(
+        () => _i39.ProfilePhotoService(get<_i21.ImageUploader>()));
+    gh.factory<_i40.IRegisterInputFactory>(() => _i41.RegisterInputFactory(
           get<_i23.InputValidator>(),
           get<_i17.ImagePickerPort>(),
         ));
-    gh.factory<_i40.RouterScreen>(() => _i40.RouterScreen(
+    gh.factory<_i42.RouterScreen>(() => _i42.RouterScreen(
           get<_i7.ICloseUsersService>(),
           get<_i19.ImageQualityReducer>(),
           get<_i28.IChatService>(),
-          get<_i9.IDuckService>(),
+          get<_i30.IDuckService>(),
           get<_i17.ImagePickerPort>(),
-          get<_i36.IProfilePhotoService>(),
+          get<_i38.IProfilePhotoService>(),
         ));
     return this;
   }

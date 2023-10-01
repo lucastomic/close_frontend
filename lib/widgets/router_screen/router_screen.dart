@@ -24,7 +24,7 @@ class RouterScreen extends StatefulWidget {
     this._messageService,
     this._duckService,
     this._imagePicker,
-    this._photoService
+    this._photoService,
   );
 
   @override
@@ -64,7 +64,7 @@ class _RouterScreenState extends State<RouterScreen> {
   void _initDisplayOptions(){
     _displayOptions = [
       CloseUsersScreen(widget._closeUsersService,widget._qualityReducer, widget._messageService,widget._duckService), 
-      ProfileScreen(widget._imagePicker,widget._photoService)
+      ProfileScreen(widget._imagePicker,widget._photoService,widget._duckService)
     ];
   }
 }

@@ -4,10 +4,15 @@ import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/http/http_response.dart';
 import 'package:close_frontend/services/duck_service/duck_service_port.dart';
+import 'package:close_frontend/services/duck_service/duck_stream_service/duck_stream_service_port.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as:IDuckService)
 class DuckService implements IDuckService{
+  IDuckStreamService _streamService;
+
+  DuckService(this._streamService);
+
   @override
   Future<void> removeDuck(User user) async {
     HTTPRequest request = HTTPRequest.toServer(
@@ -34,6 +39,11 @@ class DuckService implements IDuckService{
     if( !response.statusIsOK){
       throw ExceptionWithMessage("El pato no pudo ser enviado con éxito");
     }
+  }
+  
+  @override
+  Stream<int> getDucksReceivedStream() {
+    return _streamService.getDucksReceivedStream();
   }
   
 }
