@@ -4,4 +4,5 @@ abstract class NotificationService{
   Future<void> init();
   void listenBackground(void Function(Notification) func);
   void listenForeground(void Function(Notification) func);
+  Future<String> getNotificationDeviceId();
 }

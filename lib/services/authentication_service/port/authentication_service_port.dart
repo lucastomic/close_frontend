@@ -3,7 +3,7 @@ import 'package:close_frontend/services/authentication_service/create_user_reque
 
 
 abstract class IAuthenticationService {
-  Future<String> tokenFromRegister(CreateUserRequestData requestData);
+  Future<String> registerAndGetToken(CreateUserRequestData requestData);
   Future<String> tokenFromLogin(String username, String password);
   Future<AuthenticatedUser> getUserFromToken(String token);
 }

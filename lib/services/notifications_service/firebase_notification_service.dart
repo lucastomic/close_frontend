@@ -31,8 +31,15 @@ class FirebaseNotificationService implements NotificationService{
       func(notification.Notification(title: message.notification!.title!, body: message.notification!.body!));
     });  }
 
+  @override
+  Future<String> getNotificationDeviceId() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    return token!;
+  }
+
   Future<void> _askPermissions() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     await messaging.requestPermission();
   }
+  
 }

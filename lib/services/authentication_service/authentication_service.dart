@@ -6,16 +6,19 @@ import 'package:close_frontend/services/authentication_service/port/authenticati
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:close_frontend/services/authentication_service/token_retriever/login_token_retriever.dart';
 import 'package:close_frontend/services/authentication_service/token_retriever/register_token_retriever.dart';
+import 'package:close_frontend/services/notifications_service/notification_service.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: IAuthenticationService)
 class AuthenticationService extends IAuthenticationService {
   final ImageUploader _imageUploader;
-  AuthenticationService(this._imageUploader);
+  final NotificationService _notificationService;
+  AuthenticationService(this._imageUploader,this._notificationService);
 
   @override
-  Future<String> tokenFromRegister(CreateUserRequestData requestData) async {
+  Future<String> registerAndGetToken(CreateUserRequestData requestData) async {
     requestData.photo = await _uploadUserPhoto(requestData);
+    requestData.notificationDeviceid = await _notificationService.getNotificationDeviceId();
     RegisterTokenRetriever registerTokenRetriever = RegisterTokenRetriever();
     String authenticationToken = await registerTokenRetriever.getToken(requestData);
     return authenticationToken;

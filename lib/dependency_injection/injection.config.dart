@@ -94,8 +94,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i23.InputValidator>(() => _i23.InputValidator());
     gh.factory<_i24.NotificationService>(
         () => _i25.FirebaseNotificationService());
-    gh.factory<_i26.IAuthenticationService>(
-        () => _i27.AuthenticationService(get<_i21.ImageUploader>()));
+    gh.factory<_i26.IAuthenticationService>(() => _i27.AuthenticationService(
+          get<_i21.ImageUploader>(),
+          get<_i24.NotificationService>(),
+        ));
     gh.factory<_i28.IChatService>(
         () => _i29.ChatService(get<_i5.IChatStreamService>()));
     gh.factory<_i30.IDuckService>(

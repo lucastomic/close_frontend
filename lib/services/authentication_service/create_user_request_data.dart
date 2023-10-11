@@ -1,10 +1,9 @@
-import 'package:close_frontend/domain/user/user.dart';
-
 class CreateUserRequestData {
   String? username;
   String? profileName;
   String? password;
   String? photo;
+  String? notificationDeviceid;
   List<String> interests = [];
 
   CreateUserRequestData({
@@ -12,6 +11,7 @@ class CreateUserRequestData {
     this.profileName,
     this.password,
     this.photo,
+    this.notificationDeviceid
   });
 
   Map<String, dynamic> toJson() => {
@@ -20,15 +20,7 @@ class CreateUserRequestData {
         "password": password,
         "photo": photo,
         "interests": interests,
+        "notificationDeviceID":notificationDeviceid
       };
 
-  User toUser() {
-    return User(
-      username: this.username!,
-      profileName: this.profileName!,
-      password: this.password,
-      photo: this.photo,
-      interests: this.interests,
-    );
-  }
 }

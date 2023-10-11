@@ -40,7 +40,7 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   Future<void> register(CreateUserRequestData requestData) async {
-    _authenticationToken = await _authenticationService.tokenFromRegister(requestData);
+    _authenticationToken = await _authenticationService.registerAndGetToken(requestData);
     await _authenticate(_authenticationToken!);
   }
 
