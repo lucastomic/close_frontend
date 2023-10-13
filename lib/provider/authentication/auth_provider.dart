@@ -5,6 +5,7 @@ import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/local_storage/local_storage_port.dart';
+import 'package:close_frontend/services/authentication_service/login_user_request_data.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:close_frontend/services/duck_service/duck_service_port.dart';
@@ -27,7 +28,8 @@ class AuthenticationProvider extends ChangeNotifier {
   }
 
   Future<void> logIn(String username, String password) async {
-    _authenticationToken = await _authenticationService.tokenFromLogin(username, password);
+    LoginUserRequestData requestData = LoginUserRequestData(username: username, password: password);
+    _authenticationToken = await _authenticationService.tokenFromLogin(requestData);
     await _authenticate(_authenticationToken!);
   }
 

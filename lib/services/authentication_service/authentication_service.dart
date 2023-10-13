@@ -2,6 +2,7 @@ import 'package:close_frontend/domain/user/authenticated_user.dart';
 import 'package:close_frontend/http/http_request.dart';
 import 'package:close_frontend/http/http_requester.dart';
 import 'package:close_frontend/image_manage/image_uploader/image_uploader_port.dart';
+import 'package:close_frontend/services/authentication_service/login_user_request_data.dart';
 import 'package:close_frontend/services/authentication_service/port/authentication_service_port.dart';
 import 'package:close_frontend/services/authentication_service/create_user_request_data.dart';
 import 'package:close_frontend/services/authentication_service/token_retriever/login_token_retriever.dart';
@@ -25,9 +26,10 @@ class AuthenticationService extends IAuthenticationService {
   }
 
   @override
-  Future<String> tokenFromLogin(String username, String password) async {
+  Future<String> tokenFromLogin(LoginUserRequestData requestData) async {
     LoginTokenRetriever loginTokenRetriever = LoginTokenRetriever();
-    String authenticationToken = await loginTokenRetriever.getToken(username, password);
+    requestData.deviceID = await _notificationService.getNotificationDeviceId();
+    String authenticationToken = await loginTokenRetriever.getToken(requestData);
     return authenticationToken;
   } 
 
