@@ -1,9 +1,8 @@
 import 'package:close_frontend/domain/user/user.dart';
+import 'package:close_frontend/provider/currentChatScreen/current_chat_screen_provider.dart';
 import 'package:close_frontend/services/chat_service/chat_service_port.dart';
 import 'package:close_frontend/widgets/chat_screen/chat_appbar_getter.dart';
-
 import 'package:flutter/material.dart';
-
 import 'chat_rendering.dart';
 import 'send_message_form/send_message_form.dart';
 
@@ -18,6 +17,19 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
+  @override
+  void initState() {
+    CurrentChatScreen.currentReceiver = widget._user;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    CurrentChatScreen.deleteCurrentReceiver();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(  

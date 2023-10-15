@@ -1,5 +1,8 @@
-class Notification{
+import '../../domain/user/user.dart';
+
+class MessageNotification{
   String title;
   String body;
-  Notification({required this.title,required this.body});
+  User user;
+  MessageNotification({required this.title,required this.body, required this.user});
 }
