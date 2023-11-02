@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:close_frontend/config/config.dart';
+import 'package:close_frontend/config/enviroment.dart';
+
+
 import 'package:close_frontend/services/location/location_service_port.dart';
 import 'package:close_frontend/websockets/web_socket_sender.dart';
 import 'package:injectable/injectable.dart';

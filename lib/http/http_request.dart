@@ -1,4 +1,6 @@
-import 'package:close_frontend/config/config.dart';
+import 'package:close_frontend/config/enviroment.dart';
+
+
 
 class HTTPRequest {
   String url;

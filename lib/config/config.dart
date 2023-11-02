@@ -10,6 +10,7 @@ import 'package:close_frontend/widgets/router_screen/router_screen.dart';
 import 'package:close_frontend/widgets/social_networks_screen/social_networks_screen.dart';
 import 'package:close_frontend/widgets/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   'main': (_) =>getIt.get<RouterScreen>(),
@@ -22,9 +23,7 @@ Map<String, Widget Function(BuildContext)> routes = {
   'splash': (_) => SplashScreen()
 };
 
-const String serverURL = '192.168.50.92:8080';
 const String initalRoute = 'splash';
-const String title = "close";
 ThemeData themeData = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: const Color.fromARGB(211, 0, 126, 161),

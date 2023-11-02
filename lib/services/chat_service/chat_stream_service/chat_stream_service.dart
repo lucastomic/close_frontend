@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:close_frontend/config/config.dart';
+import 'package:close_frontend/config/enviroment.dart';
+
+
 import 'package:close_frontend/domain/chat/chat.dart';
 import 'package:close_frontend/services/chat_service/chat_stream_service/chat_stream_service_port.dart';
 import 'package:close_frontend/websockets/web_socket_listener.dart';

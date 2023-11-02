@@ -1,4 +1,6 @@
-import 'package:close_frontend/config/config.dart';
+import 'package:close_frontend/config/enviroment.dart';
+
+
 import 'package:close_frontend/dependency_injection/injection.dart';
 import 'package:close_frontend/domain/user/user.dart';
 import 'package:close_frontend/local_storage/local_storage_port.dart';
@@ -13,6 +15,7 @@ import 'package:close_frontend/widgets/splash_screen/splash_screen_functionality
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'config/config.dart';
 import 'services/navigation/navigation_service.dart';
 
 // According to firebase-messaging documentation
@@ -29,8 +32,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     ));
 }
 
-void main() {
+void main() async {
   configureDependencies();
+  await loadEnviroments();
   perserveSplashScreen();
   getIt.get<NotificationService>().init();
   getIt.get<NotificationService>().listenForeground();

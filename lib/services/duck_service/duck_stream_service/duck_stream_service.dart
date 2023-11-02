@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:close_frontend/config/config.dart';
+import 'package:close_frontend/config/enviroment.dart';
+
+
 import 'package:close_frontend/services/duck_service/duck_stream_service/duck_stream_service_port.dart';
 import 'package:close_frontend/services/navigation/navigation_service.dart';
 import 'package:close_frontend/websockets/web_socket_listener.dart';
