@@ -69,3 +69,17 @@ class FirebaseNotificationService implements NotificationService{
   
 }
 
+
+// According to firebase-messaging documentation
+// There are a few things to keep in mind about your background message handler:
+// - It must not be an anonymous function.
+// - It must be a top-level function (e.g. not a class method which requires initialization).
+// So, (unfortunately) the only way to listen the background notifications, is listening them here. 
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+    User user = User.fromJson(message.data["user"]);
+    getIt.get<NotificationService>().handleBackground(MessageNotification(
+      title: message.notification!.title!, 
+      body: message.notification!.body!, 
+      user: user
+    ));
+}
